@@ -1,5 +1,29 @@
 (function(window, document, undefined){
-	
 
+	var dataVisualisation = function(){
 
+		d3.csv("data/all_week.csv", function(error, data){
+			if(error){
+				console.log("there is an error " + error);
+			} else {
+				var dataset = [];
+				data.forEach(function(entry){
+					if(entry.mag > 0  && entry.type === "earthquake"){
+						var datum = {};
+						datum["time"] = entry["time"];
+						datum["latitude"] = entry.latitude;
+						datum["longitude"] = entry.longitude;
+						datum["depth"] = entry.depth;
+						datum["mag"] = entry.mag;
+						datum["place"] = entry.place;
+						dataset.push(datum);
+					}
+				});
+
+				scatterVisualistion(dataset);
+			}
+		});
+
+	};
+	dataVisualisation();
 })(this, document);
