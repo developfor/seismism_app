@@ -66,6 +66,17 @@ margin-right: 13.2px;
 margin-bottom: 13.2px;
 }
 
+.block-b{
+background: #008B16;
+width: 473px;
+height: 230px;
+margin-top: 13.2px;
+float: left;
+padding: 0;
+margin-right: 13.2px;
+margin-bottom: 13.2px;
+}
+
 .block-last{
 background: pink;
 width: 230px;
