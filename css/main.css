@@ -1,0 +1,142 @@
+@font-face {
+  font-family: 'Droid Sans';
+  font-weight: normal;
+  src: url(../fonts/DroidSans.ttf); 
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-weight: bold;
+  src: url(../fonts/DroidSans-Bold.ttf); 
+}
+
+html, body{
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	background: #F5F5F5;
+	padding: 0;
+	margin: 0;
+}
+
+.wrapper{
+	margin: 0 auto;
+	width:960px;
+	height: 1000px;
+	/*background: #FFFFFF;*/
+}
+
+.title {
+margin-top: 0px;
+background-color: #2E5879;
+height: 50px;
+color: #FFF;
+}
+
+.wrapper-title {
+width: 960px;
+height: 50px;
+margin: 0 auto;
+}
+
+.title h1 {
+font-weight: bold;
+line-height: 50px;
+font-size: 25px;
+margin-left: 10px;
+display: inline;
+}
+
+.title p {
+font-size: 11px;
+margin-left: 2px;
+display: inline;
+}
+
+.block-wrapper{
+	width: 730px;
+float: left;
+}
+.block-a{
+background: #000;
+width: 230px;
+height: 230px;
+margin-top: 13.2px;
+float: left;
+padding: 0;
+margin-right: 13.2px;
+margin-bottom: 13.2px;
+}
+
+.block-last{
+background: pink;
+width: 230px;
+height: 580px;
+margin-top: 13.2px;
+float: left;
+}
+
+.block-map{
+background: #FFC0CB;
+width: 716px;
+height: 335px;
+clear: both;
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
