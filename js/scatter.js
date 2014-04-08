@@ -1,16 +1,17 @@
 var scatterVisualistion = function(data){
 
-	var margin = {top:5, right:5, bottom: 55, left:45},
-	width = 250 - margin.right - margin.left,
-	height = 250 - margin.top - margin.bottom,
-	padding = 30,
+	var margin = {top:5, right:5, bottom: 5, left:5},
+	padding2 = {top: 30, right: 30, bottom: 20, left:30},
+	width = 500 - margin.right - margin.left,
+	height = 220 - margin.top - margin.bottom,
+	padding = 45,
 	minRadius = 0.2,
 	maxRadius = 4;
 
 	var svg = d3.select("#viz-b").append('svg')
 	.attr("width", width)
-	.attr("height", height)
-	.attr("transform", "translate(10, 10)");
+	.attr("height", height);
+	// .attr("transform", "translate(20, -10)");
 	// .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -21,7 +22,7 @@ var scatterVisualistion = function(data){
 	var yScale = d3.scale.linear()
 	.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { 
 		return +d.depth; })])
-	.range([height - padding, padding * 3]);
+	.range([height - padding, padding * 0.5]);
 
 	var rScale = d3.scale.linear()
 	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
@@ -56,12 +57,14 @@ var scatterVisualistion = function(data){
         .call(yAxis);
 
      svg.append("text")
-    .attr("class", "y label")
-    .attr("y", -3)
-    .attr("x", -330)
-    .attr("dy", ".85em")
-    .attr("transform", "rotate(-90)")
-    // .text("earthquake depth of focus (km)");
+    	.attr("class", "y label")
+    	.attr("y", 2)
+    	.attr("font-size", "11px")
+    	 .attr("x", -150)
+    	// .style("text-anchor", "middle")
+    	.attr("dy", ".85em")
+    	.attr("transform", "rotate(-90)")
+    	.text("depth of focus (km)");
 
     svg.append("text")
     .attr("class", "x label")
