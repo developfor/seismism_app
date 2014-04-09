@@ -153,6 +153,10 @@ left: 20px;*/
 	font-size: 10px;
 	font-weight: normal;
 }
+
+.label{
+	font-size: 12px;
+}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) 

@@ -6,14 +6,12 @@ var scatterVisualistion = function(data){
 	height = 220 - margin.top - margin.bottom,
 	padding = 45,
 	minRadius = 0.2,
-	maxRadius = 4;
+	maxRadius = 4
+	yMultiply = 0.5;
 
 	var svg = d3.select("#viz-b").append('svg')
 	.attr("width", width)
 	.attr("height", height);
-	// .attr("transform", "translate(20, -10)");
-	// .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
 	var xScale = d3.scale.linear()
 	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
@@ -22,7 +20,7 @@ var scatterVisualistion = function(data){
 	var yScale = d3.scale.linear()
 	.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { 
 		return +d.depth; })])
-	.range([height - padding, padding * 0.5]);
+	.range([height - padding, padding * yMultiply]);
 
 	var rScale = d3.scale.linear()
 	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
@@ -59,7 +57,6 @@ var scatterVisualistion = function(data){
      svg.append("text")
     	.attr("class", "y label")
     	.attr("y", 2)
-    	.attr("font-size", "11px")
     	 .attr("x", -150)
     	// .style("text-anchor", "middle")
     	.attr("dy", ".85em")
