@@ -7,6 +7,7 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/scatter.css">
 
 	<title>seismism</title>
 
@@ -22,7 +23,6 @@
 			</div>
 		</div>
 
-
 		<div class ="wrapper">
 			<div class ="block-wrapper">	
 				<div class ="block-a">
@@ -30,40 +30,41 @@
 						Last 7 Days
 					</div>
 					<div class="prime-info-text-middle">
-						<!-- 1600 -->
+						
 					</div>
 					<div class="info-text-bottom">Total Earthquakes
 					</div>
 					<div class="detail-info-text">Total earthquakes in the past 7 days.
 					</div>
 				</div>
-			<!-- <div class ="block-a">
-		</div> -->
-		<div class ="block-b">
-			<div id = "viz-b"></div>
+				<div class ="block-b">
+					<div id = "viz-b"></div>
+					<div class = "b-buttons">
+						<h1 id = "mag1">mag + 1 </h1>
+						<h1 id = "mag4">mag + 4 </h1>
+						<h1 id = "mag5">mag + 5 </h1>
+				</div>
+				<div class ="block-map">
+				</div>
+			</div>
+
+			<div class ="block-last">
+			</div>
 		</div>
-		<div class ="block-map">
-		</div>
-	</div>
 
-	<div class ="block-last">
-	</div>
+		<script src = "js/vendor/d3.v3.min.js"></script>
+		<script src = "js/vendor/jquery-1.10.2.min.js"></script>
+		<script src = "js/vendor/jquery-ui-1.10.3.js"></script>
+		<script src = "js/vendor/jquery.ui.touch-punch.min.js"></script>
+		<script src = "js/vendor/modernizr.js"></script>
 
-</div>
+		<script src = "js/plug.js"></script>
+		<script src = "js/scatter.js"></script>
+		<script src = "js/total.js"></script>
+		<script src = "js/main.js"></script>
 
-<script src = "js/vendor/d3.v3.min.js"></script>
-<script src = "js/vendor/jquery-1.10.2.min.js"></script>
-<script src = "js/vendor/jquery-ui-1.10.3.js"></script>
-<script src = "js/vendor/jquery.ui.touch-punch.min.js"></script>
-<script src = "js/vendor/modernizr.js"></script>
-
-<script src = "js/plug.js"></script>
-<script src = "js/scatter.js"></script>
-<script src = "js/total.js"></script>
-<script src = "js/main.js"></script>
-
-</body>
+	</body>
 
 
 
-</html>
+	</html>

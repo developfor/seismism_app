@@ -3,7 +3,7 @@ var scatterVisualistion = function(data){
 	var margin = {top:5, right:5, bottom: 5, left:5},
 	padding2 = {top: 30, right: 30, bottom: 20, left:30},
 	width = 500 - margin.right - margin.left,
-	height = 220 - margin.top - margin.bottom,
+	height = 200 - margin.top - margin.bottom,
 	padding = 45,
 	minRadius = 0.2,
 	maxRadius = 4
@@ -58,14 +58,13 @@ var scatterVisualistion = function(data){
     	.attr("class", "y label")
     	.attr("y", 2)
     	 .attr("x", -150)
-    	// .style("text-anchor", "middle")
     	.attr("dy", ".85em")
     	.attr("transform", "rotate(-90)")
     	.text("depth of focus (km)");
 
     svg.append("text")
     .attr("class", "x label")
-    .attr("x", width - 400)
+    .attr("x", width - 320)
     .attr("y", height - 3)
     .text("earthquake magitude");
 

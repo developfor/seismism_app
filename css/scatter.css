@@ -1,0 +1,20 @@
+#viz-b{
+	background: white;
+	position: relative;
+}
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: arial;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.label{
+	font-size: 12px;
+}
