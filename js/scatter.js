@@ -1,15 +1,15 @@
 var scatterVisualistion = function(data){
-
+	//variables for postion and sizes
 	var margin = {top:5, right:5, bottom: 5, left:5},
-	// padding2 = {top: 30, right: 30, bottom: 20, left:30},
 	width = 500 - margin.right - margin.left,
 	height = 200 - margin.top - margin.bottom,
 	padding = 40,
 	padding2 = 30,
-	minRadius = 0.2,
-	maxRadius = 4
+	minRadius = 0.3,
+	maxRadius = 7,
 	yMultiply = 0.3;
 
+	//variables for data
 	var mag1 = [],
 	mag4 = [],
 	mag5 = [],
@@ -17,41 +17,66 @@ var scatterVisualistion = function(data){
 	data4 = 4.5,
 	data5 = 5.5;
 
+	//used to checked which button has been clicked. Used in on click function 
+	var previous,
+	buttonHighlight = '#2E5879';
+
 	var svg = d3.select("#viz-b").append('svg')
-	.attr("width", width)
-	.attr("height", height);
+		.attr("width", width)
+		.attr("height", height);
 
-	var xScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range([padding, width - padding]);
+	//the variables hold the different scale functions
+	var xScale = xScales(data);
+	var yScale = yScales(data);
+	var rScale = rScales(data);
+	var colorScale = colorScales(data);
+	var xAxis = xAxes(data);
+	var yAxis = yAxes(data);
 
-	var yScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { 
-		return +d.depth; })])
-	.range([height - padding, padding * yMultiply]);
+	//*******SCALING FUNCITONS************
+	function xScales(data){
+		return d3.scale.linear()
+			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+			.range([padding, width - padding]);
+	}	
 
-	var rScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range([0.5, 6]);
+	function yScales(data){
+		return d3.scale.linear()
+			.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { return +d.depth; })])
+			.range([height - padding, padding * yMultiply]);
+	}
 
-	var colorScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range(["red", "orange"]);
+	function rScales(data){
+		return d3.scale.linear()
+			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+			.range([minRadius, maxRadius]);
+	}
 
+	function colorScales(data){
+		return d3.scale.linear()
+			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+			.range(["red", "orange"]);
+	}
 
-	var xAxis = d3.svg.axis()
-	.scale(xScale)
-	.orient("bottom")
-	.ticks(5);
+	function xAxes(data){
+		return d3.svg.axis()
+			.scale(xScales(data))
+			.orient("bottom")
+			.ticks(5);
+	}
 
-	var yAxis = d3.svg.axis()
-	.scale(yScale)
-	.orient("left")
-	.ticks(5);
+	function yAxes(data){
+		return d3.svg.axis()
+			.scale(yScales(data))
+			.orient("left")
+			.ticks(5);
+	}
 
+	//********END OF SCALING FUNCTIONS
+
+	//Parses the data, returns an array of objects for particular magnitudes
 	var parseData = function(number){
-		var tempArray = [];
-
+		var tempArray = [];//will hold the temporary array
 		data.forEach(function(entry){
 			var tempObj = {};
 			if(entry.mag >= number){
@@ -63,124 +88,123 @@ var scatterVisualistion = function(data){
 		return tempArray;
 	};//END OF PARSEDATA
 
+	//fill each array with data
 	mag1 = parseData(data1);
 	mag4 = parseData(data4);
 	mag5 = parseData(data5);
 
+	//update creates and updates the graph
 	var update = function(data){	
+		//*******THE AXIS these are called once these are the initial axis ********/
+		svg.append("g")
+			.attr("class", "b-x b-axis")
+			.attr("transform", "translate(0," + (height - padding) + ")")
+			.call(xAxis);
 
 		svg.append("g")
-		.attr("class", "b-x b-axis")
-		.attr("transform", "translate(0," + (height - padding) + ")")
-		.call(xAxis);
-
-		svg.append("g")
-		.attr("class", "b-y b-axis")
-		.attr("transform", "translate(" + padding + ",0)")
-		.call(yAxis);
+			.attr("class", "b-y b-axis")
+			.attr("transform", "translate(" + padding + ",0)")
+			.call(yAxis);
 
 		svg.append("text")
-		.attr("class", "b-label")
-		.attr("y", 0)
-		.attr("x", -150)
-		.attr("dy", ".85em")
-		.attr("transform", "rotate(-90)")
-		.text("depth of focus (km)");
+			.attr("class", "b-label")
+			.attr("y", 0)
+			.attr("x", -150)
+			.attr("dy", ".85em")
+			.attr("transform", "rotate(-90)")
+			.text("depth of focus (km)");
 
 		svg.append("text")
-		.attr("class", "b-label")
-		.attr("x", width - 320)
-		.attr("y", height - 3)
-		.text("earthquake magitude");
+			.attr("class", "b-label")
+			.attr("x", width - 320)
+			.attr("y", height - 3)
+			.text("earthquake magitude");
 
+		//this function visualises the initial data and all updates
+		//including updating the axis.
 		var graphUpdate = function(data){
-
-				var xScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range([padding, width - padding]);
-
-	var yScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { 
-		return +d.depth; })])
-	.range([height - padding, padding * yMultiply]);
-
-	var rScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range([0.5, 6]);
-
-	var colorScale = d3.scale.linear()
-	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-	.range(["red", "orange"]);
-
-		var xAxis = d3.svg.axis()
-	.scale(xScale)
-	.orient("bottom")
-	.ticks(5);
-
-	var yAxis = d3.svg.axis()
-	.scale(yScale)
-	.orient("left")
-	.ticks(5);
+			//update the scales with the new data
+			xScale = xScales(data);
+			yScale = yScales(data);
+			rScale = rScales(data);
+			colorScale = colorScales(data);
+			xAxis = xAxes(data);
+			yAxis = yAxes(data);
 
 			var circle = svg.selectAll("circle")
-			.data(data);
+				.data(data);
 
 			circle.enter()
-			.append("circle")
-			.style("opacity", "0")
-			.attr("r", "0");
+				.append("circle")
+				.style("opacity", "0")
+				.attr("r", "0");
 
 			circle.style("fill", "#ff5500")
-			.transition()
-			.duration(1000)
-			.attr("cx", function(d) {
-				return xScale(d.mag);
-			})
-			.attr("cy", function(d) {
-				return yScale(d.depth);
-			})
-			.attr("r", function(d){
-				return rScale(d.mag);
-			})
-			.style("fill", function(d) { return colorScale(d.mag); })
-			.style("opacity", "0.5")
-			.each('end',  function(d){ isClicked = 0;});
+				.transition()
+				.duration(1000)
+				.attr("cx", function(d) {
+					return xScale(d.mag);
+				})
+				.attr("cy", function(d) {
+					return yScale(d.depth);
+				})
+				.attr("r", function(d){
+					return rScale(d.mag);
+				})
+				.style("fill", function(d) { return colorScale(d.mag); })
+				.style("opacity", "0.5");
 
 			circle.exit()
-			.transition()
-			.duration(1000)
-			.attr("r", "0")
-			.style("opacity", "0")
-			.remove();
+				.transition()
+				.duration(1000)
+				.attr("r", "0")
+				.style("opacity", "0")
+				.remove();
 
-			      svg.select(".b-x.b-axis")
-        .transition()
-        .duration(1000)
-        .call(xAxis);
-          
-      svg.select(".b-y.b-axis")
-        .transition()
-        .duration(1000)
-        .call(yAxis);
+			//updates the axis
+			svg.select(".b-x.b-axis")
+				.transition()
+				.duration(1000)
+				.call(xAxis);
+
+			svg.select(".b-y.b-axis")
+				.transition()
+				.duration(1000)
+				.call(yAxis);
    		};//END OF GRAPHUPDATE
 
+   		//call graphUpdate on initial update call
    		graphUpdate(data);
-
+   		//calls graphUpdate when buttons are clicked
+   		//checks the id of the clicked DOM element and uses that
+   		//to work out which array of data is passed to graphUpdate.
    		$('.b-button').on('click', function(){
-
    			var picked = this.id;
+   			if(picked != previous){
+   				$('#mag1, #mag4, #mag5').css('background-color', 'white')
+   				.css('color', 'black');
 
-   			if(picked === "mag1"){
-   				graphUpdate(mag1);
-   			}else if(picked === "mag4"){
-   				graphUpdate(mag4);
-   			}else if(picked=== "mag5"){
-   				graphUpdate(mag5);
+   				$(this).css('background-color', buttonHighlight)
+   				.css('color', 'white');
+
+   				if(picked === "mag1"){
+   					minRadius = 0.3;
+   					maxRadius = 7;
+   					graphUpdate(mag1);
+
+   				}else if(picked === "mag4"){
+   					minRadius = 1;
+   					maxRadius = 8;
+   					graphUpdate(mag4);
+   				}else if(picked=== "mag5"){
+   					minRadius = 4;
+   					maxRadius = 12;
+   					graphUpdate(mag5);
+   				}
    			}
+   			previous = picked;
    		});
-
 	};//END OF UPDATE
-
+	//Call the initial update and pass all the data
 	update(mag1);
 };
-
