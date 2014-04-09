@@ -78,13 +78,22 @@ margin-right: 13.2px;
 margin-bottom: 13.2px;
 }
 
-.block-last{
+.block-graph{
 background: pink;
 width: 230px;
-height: 580px;
+height: 400px;
 margin-top: 13.2px;
 float: left;
 }
+
+.block-twitter{
+background: pink;
+width: 230px;
+height: 165px;
+margin-top: 13.2px;
+float: left;
+}
+
 
 .block-map{
 background: #FFC0CB;
