@@ -1,0 +1,118 @@
+{
+    "type": "FeatureCollection",
+    "metadata": {
+        "generated": 1397064942000,
+        "url": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson",
+        "title": "USGS Significant Earthquakes, Past Week",
+        "status": 200,
+        "api": "1.0.13",
+        "count": 3
+    },
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "mag": 5.4,
+            "place": "17km WNW of Hacienda La Calera, Chile",
+            "time": 1396664558940,
+            "updated": 1396990963776,
+            "tz": -180,
+            "url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000p66r",
+            "detail": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/usc000p66r.geojson",
+            "felt": 309,
+            "cdi": 5.6,
+            "mmi": null,
+            "alert": null,
+            "status": "reviewed",
+            "tsunami": null,
+            "sig": 622,
+            "net": "us",
+            "code": "c000p66r",
+            "ids": ",usc000p66r,gcmt20140405022238,",
+            "sources": ",us,gcmt,",
+            "types": ",cap,dyfi,general-link,geoserve,moment-tensor,nearby-cities,origin,phase-data,tectonic-summary,",
+            "nst": null,
+            "dmin": 0.411,
+            "rms": 0.9,
+            "gap": 100,
+            "magType": "mb",
+            "type": "earthquake",
+            "title": "M 5.4 - 17km WNW of Hacienda La Calera, Chile"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-71.3783, -32.6995, 32.17]
+        },
+        "id": "usc000p66r"
+    }, {
+        "type": "Feature",
+        "properties": {
+            "mag": 7.7,
+            "place": "49km SW of Iquique, Chile",
+            "time": 1396492994770,
+            "updated": 1397064002834,
+            "tz": -300,
+            "url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000p27i",
+            "detail": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/usc000p27i.geojson",
+            "felt": 55,
+            "cdi": 7.1,
+            "mmi": 7.11,
+            "alert": "yellow",
+            "status": "reviewed",
+            "tsunami": 1,
+            "sig": 951,
+            "net": "us",
+            "code": "c000p27i",
+            "ids": ",pt14093001,at00n3fow6,usc000p27i,gcmt20140403024317,",
+            "sources": ",pt,at,us,gcmt,",
+            "types": ",cap,dyfi,finite-fault,general-link,geoserve,impact-link,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,",
+            "nst": null,
+            "dmin": 0.981,
+            "rms": 1.27,
+            "gap": 83,
+            "magType": "mww",
+            "type": "earthquake",
+            "title": "M 7.7 - 49km SW of Iquique, Chile"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-70.4979, -20.518, 31.09]
+        },
+        "id": "usc000p27i"
+    }, {
+        "type": "Feature",
+        "properties": {
+            "mag": 6.5,
+            "place": "43km W of Iquique, Chile",
+            "time": 1396490311440,
+            "updated": 1396537042000,
+            "tz": -300,
+            "url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000p26f",
+            "detail": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/usc000p26f.geojson",
+            "felt": 5,
+            "cdi": 6.4,
+            "mmi": 5.69,
+            "alert": "green",
+            "status": "reviewed",
+            "tsunami": null,
+            "sig": 653,
+            "net": "us",
+            "code": "c000p26f",
+            "ids": ",usc000p26f,gcmt20140403015831,",
+            "sources": ",us,gcmt,",
+            "types": ",cap,dyfi,general-link,geoserve,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,",
+            "nst": null,
+            "dmin": 0.781,
+            "rms": 1.36,
+            "gap": 82,
+            "magType": "mww",
+            "type": "earthquake",
+            "title": "M 6.5 - 43km W of Iquique, Chile"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-70.5558, -20.268, 22.83]
+        },
+        "id": "usc000p26f"
+    }],
+    "bbox": [-71.3783, -32.6995, 22.83, -70.4979, -20.268, 32.17]
+}
