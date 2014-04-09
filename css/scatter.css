@@ -2,19 +2,30 @@
 	background: white;
 	position: relative;
 }
-.axis path,
-.axis line {
+.b-axis path,
+.b-axis line {
 	fill: none;
 	stroke: black;
 	shape-rendering: crispEdges;
 }
 
-.axis text {
+.b-axis text {
 	font-family: arial;
 	font-size: 10px;
 	font-weight: normal;
 }
 
-.label{
+.b-label{
 	font-size: 12px;
+}
+.b-buttons{
+	width: 100%;
+}
+
+.b-buttons h1{
+	float: left;
+	cursor: pointer;
+	margin: 5px;
+	padding: 5px;
+	background-color: white;
 }
