@@ -70,12 +70,12 @@ var scatterVisualistion = function(data){
 	var update = function(data){	
 
 		svg.append("g")
-		.attr("class", "b-axis")
+		.attr("class", "b-x b-axis")
 		.attr("transform", "translate(0," + (height - padding) + ")")
 		.call(xAxis);
 
 		svg.append("g")
-		.attr("class", "b-axis")
+		.attr("class", "b-y b-axis")
 		.attr("transform", "translate(" + padding + ",0)")
 		.call(yAxis);
 
@@ -94,6 +94,33 @@ var scatterVisualistion = function(data){
 		.text("earthquake magitude");
 
 		var graphUpdate = function(data){
+
+				var xScale = d3.scale.linear()
+	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+	.range([padding, width - padding]);
+
+	var yScale = d3.scale.linear()
+	.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { 
+		return +d.depth; })])
+	.range([height - padding, padding * yMultiply]);
+
+	var rScale = d3.scale.linear()
+	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+	.range([0.5, 6]);
+
+	var colorScale = d3.scale.linear()
+	.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+	.range(["red", "orange"]);
+
+		var xAxis = d3.svg.axis()
+	.scale(xScale)
+	.orient("bottom")
+	.ticks(5);
+
+	var yAxis = d3.svg.axis()
+	.scale(yScale)
+	.orient("left")
+	.ticks(5);
 
 			var circle = svg.selectAll("circle")
 			.data(data);
@@ -125,14 +152,31 @@ var scatterVisualistion = function(data){
 			.attr("r", "0")
 			.style("opacity", "0")
 			.remove();
+
+			      svg.select(".b-x.b-axis")
+        .transition()
+        .duration(1000)
+        .call(xAxis);
+          
+      svg.select(".b-y.b-axis")
+        .transition()
+        .duration(1000)
+        .call(yAxis);
    		};//END OF GRAPHUPDATE
 
    		graphUpdate(data);
 
    		$('.b-button').on('click', function(){
 
-   			console.log(this.id);
-   			graphUpdate(mag4);
+   			var picked = this.id;
+
+   			if(picked === "mag1"){
+   				graphUpdate(mag1);
+   			}else if(picked === "mag4"){
+   				graphUpdate(mag4);
+   			}else if(picked=== "mag5"){
+   				graphUpdate(mag5);
+   			}
    		});
 
 	};//END OF UPDATE
