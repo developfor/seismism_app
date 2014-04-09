@@ -129,10 +129,10 @@ var scatterVisualistion = function(data){
 
    		graphUpdate(data);
 
-   		$('.b-buttons').on('click', function(){
+   		$('.b-button').on('click', function(){
 
-   			console.log(this);
-   			graphUpdate(mag5);
+   			console.log(this.id);
+   			graphUpdate(mag4);
    		});
 
 	};//END OF UPDATE
