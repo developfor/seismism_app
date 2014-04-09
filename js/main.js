@@ -20,7 +20,7 @@
 				});
 				scatterVisualistion(dataset);
 				totalEarthquakes(dataset.length);
-				barVisualisation(dataset);
+				barVisualistion(dataset);
 			}
 		});
 	};
