@@ -1,5 +1,4 @@
 (function(window, document, undefined){
-
 	var dataVisualisation = function(){
 
 		d3.csv("data/all_week.csv", function(error, data){
@@ -19,12 +18,11 @@
 						dataset.push(datum);
 					}
 				});
-
 				scatterVisualistion(dataset);
 				totalEarthquakes(dataset.length);
+				barVisualisation(dataset);
 			}
 		});
-
 	};
 	dataVisualisation();
 })(this, document);
