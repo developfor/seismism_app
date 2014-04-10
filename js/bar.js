@@ -25,9 +25,9 @@ var barVisualistion = function(data){
 	};
 
 		//variables for postion and sizes
-	var margin = {top:15, right:0, bottom: 30, left:30},
+	var margin = {top:15, right:0, bottom: 50, left:30},
 	width = 220 - margin.right - margin.left,
-	height = 350 - margin.top - margin.bottom,
+	height = 340 - margin.top - margin.bottom,
 	padding = 10;
 
 	//call the mag_numbers function and store the return value in the variable
@@ -67,7 +67,7 @@ var barVisualistion = function(data){
 
 		console.log('in update');
 
-		x.domain(magnitude.map(function(d) { return d.magnitude; }));
+		x.domain(magnitude.map(function(d) { return d.name; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
 		var rect = svg.selectAll(".graph-bar")
@@ -76,7 +76,7 @@ var barVisualistion = function(data){
 		rect.enter().append("rect")
 		.attr("class", "graph-bar");
 
-		rect.attr("x", function(d) { return x(d.magnitude); })
+		rect.attr("x", function(d) { return x(d.name); })
 		.attr("width", x.rangeBand())
 		.attr("y", function(d) { return y(d.numberOf); })
 		.attr("height", function(d) { return height - y(d.numberOf); })
@@ -91,6 +91,13 @@ var barVisualistion = function(data){
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-65)" 
+                })
 		.append("text")
 		.style("text-anchor", "start")
 		.attr("y", 28)
