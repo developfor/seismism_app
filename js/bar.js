@@ -1,5 +1,10 @@
 var barVisualistion = function(data){
 
+
+
+
+
+
 	//function to calculate the number of earthquakes in each class of magnitude
 	//the return value is an array of objects
 	//The array has the lower and upper magnitudes for each class of magnitude
@@ -24,6 +29,86 @@ var barVisualistion = function(data){
 		});
 		return magnitudes
 	};
+
+		var data_parsed = [];
+
+    for(i = 0; i < data.length; i++){
+      var quake = {}
+      quake["time"] = data[i].time;
+      quake["mag"] = data[i].mag;
+      data_parsed.push(quake);
+    }
+
+    var magnitude = mag_numbers(data_parsed);
+
+    // display(magnitude);
+
+    var start = new Date(data_parsed[data_parsed.length - 1].time);
+    var end = new Date(data_parsed[0].time);
+
+    var curr_date = start.getDate();
+    var curr_month = start.getMonth() + 1; //Months are zero based
+    var curr_year = start.getFullYear();
+    var start_date = curr_date + "/" + curr_month + "/" + curr_year;
+
+    curr_date = end.getDate();
+    curr_month = end.getMonth() + 1; //Months are zero based
+    curr_year = end.getFullYear();
+    var end_date = curr_date + "/" + curr_month + "/" + curr_year;
+
+
+    // $('#start').html('start date: ' + start_date);
+    //  $('#end').html('end date: ' + end_date);
+
+    var slide = 8;
+
+    $( "#slider-range-max" ).slider({
+
+      range: "max",
+      min: 1,
+      max: 7,
+      value: 7,
+      slide: function( event, ui ) {
+        var data_temp = [];
+        $( "#amount" ).val( ui.value );
+        slide = ui.value;
+        slide = -slide;
+
+        var dateTo = d3.time.day.offset(new Date(end), slide);
+        for(var i = 0; i < data_parsed.length; i++){
+            var testDate = new Date(data_parsed[i].time);
+            if (testDate >= dateTo){
+              data_temp.push(data_parsed[i]);
+            }
+          }
+
+          magnitude = mag_numbers(data_parsed);
+
+      //     magnitude = mag_bar(data_temp);
+
+      // display(magnitude);
+
+      var starts = new Date(data_temp[data_temp.length - 1].time);
+      var ends = new Date(data_temp[0].time);
+
+
+      curr_date = starts.getDate();
+      curr_month = starts.getMonth() + 1; //Months are zero based
+      curr_year = starts.getFullYear();
+      start_date = curr_date + "/" + curr_month + "/" + curr_year;
+
+      curr_date = ends.getDate();
+      curr_month = ends.getMonth() + 1; //Months are zero based
+      curr_year = ends.getFullYear();
+      end_date = curr_date + "/" + curr_month + "/" + curr_year;
+
+
+    // $('#start').html('start date: ' + start_date);
+    //  $('#end').html('end date: ' + end_date);
+
+      }
+    });
+    $( "#amount" ).val( $( "#slider-range-max" ).slider("value") );
 
 	//variables for postion and sizes
 	var margin = {top:15, right:0, bottom: 30, left:30},
@@ -59,7 +144,7 @@ var barVisualistion = function(data){
 
 	update();
 
-	slider();
+
 
 	function update(){
 
@@ -104,85 +189,4 @@ var barVisualistion = function(data){
 		.text("Frequency of earthquakes");
 
 	}//END OF UPDATE FUNCTION
-
-	function slider(){
-
-	var data_parsed = [];
-
-    for(i = 0; i < data.length; i++){
-      var quake = {}
-      quake["time"] = data[i].time;
-      quake["mag"] = data[i].mag;
-      data_parsed.push(quake);
-    }
-
-
-
-    var start = new Date(data_parsed[data_parsed.length - 1].time);
-    var end = new Date(data_parsed[0].time);
-
-    var curr_date = start.getDate();
-    var curr_month = start.getMonth() + 1; //Months are zero based
-    var curr_year = start.getFullYear();
-    var start_date = curr_date + "/" + curr_month + "/" + curr_year;
-
-    curr_date = end.getDate();
-    curr_month = end.getMonth() + 1; //Months are zero based
-    curr_year = end.getFullYear();
-    var end_date = curr_date + "/" + curr_month + "/" + curr_year;
-
-
-    // $('#start').html('start date: ' + start_date);
-    //  $('#end').html('end date: ' + end_date);
-
-    var slide = 8;
-
-    $( "#slider-range-max" ).slider({
-
-      range: "max",
-      min: 1,
-      max: 7,
-      value: 7,
-      slide: function( event, ui ) {
-        var data_temp = [];
-        $( "#amount" ).val( ui.value );
-        slide = ui.value;
-        slide = -slide;
-
-        var dateTo = d3.time.day.offset(new Date(end), slide);
-        for(var i = 0; i < data_parsed.length; i++){
-            var testDate = new Date(data_parsed[i].time);
-            if (testDate >= dateTo){
-              data_temp.push(data_parsed[i]);
-            }
-          }
-
-          magnitude = mag_bar(data_temp);
-
-      display(magnitude);
-
-      var starts = new Date(data_temp[data_temp.length - 1].time);
-      var ends = new Date(data_temp[0].time);
-
-
-      curr_date = starts.getDate();
-      curr_month = starts.getMonth() + 1; //Months are zero based
-      curr_year = starts.getFullYear();
-      start_date = curr_date + "/" + curr_month + "/" + curr_year;
-
-      curr_date = ends.getDate();
-      curr_month = ends.getMonth() + 1; //Months are zero based
-      curr_year = ends.getFullYear();
-      end_date = curr_date + "/" + curr_month + "/" + curr_year;
-
-
-    // $('#start').html('start date: ' + start_date);
-    //  $('#end').html('end date: ' + end_date);
-
-      }
-    });
-    $( "#amount" ).val( $( "#slider-range-max" ).slider("value") );
-
-	}
-
 };
