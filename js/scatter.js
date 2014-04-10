@@ -2,7 +2,7 @@ var scatterVisualistion = function(data){
 	//variables for postion and sizes
 	var margin = {top:5, right:5, bottom: 5, left:5},
 	width = 500 - margin.right - margin.left,
-	height = 200 - margin.top - margin.bottom,
+	height = 190 - margin.top - margin.bottom,
 	padding = 40,
 	padding2 = 30,
 	minRadius = 0.3,
@@ -21,9 +21,11 @@ var scatterVisualistion = function(data){
 	var previous,
 	buttonHighlight = '#2E5879';
 
-	var svg = d3.select("#viz-b").append('svg')
-		.attr("width", width)
-		.attr("height", height);
+	var svg = d3.select("#viz-b").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	//the variables hold the different scale functions
 	var xScale = xScales(data);
@@ -97,17 +99,17 @@ var scatterVisualistion = function(data){
 	var update = function(data){	
 		//*******THE AXIS these are called once these are the initial axis ********/
 		svg.append("g")
-			.attr("class", "b-x b-axis")
+			.attr("class", "x axis")
 			.attr("transform", "translate(0," + (height - padding) + ")")
 			.call(xAxis);
 
 		svg.append("g")
-			.attr("class", "b-y b-axis")
+			.attr("class", "y axis")
 			.attr("transform", "translate(" + padding + ",0)")
 			.call(yAxis);
 
 		svg.append("text")
-			.attr("class", "b-label")
+			.attr("class", "label")
 			.attr("y", 0)
 			.attr("x", -150)
 			.attr("dy", ".85em")
@@ -115,7 +117,7 @@ var scatterVisualistion = function(data){
 			.text("depth of focus (km)");
 
 		svg.append("text")
-			.attr("class", "b-label")
+			.attr("class", "label")
 			.attr("x", width - 320)
 			.attr("y", height - 3)
 			.text("earthquake magitude");
