@@ -64,7 +64,7 @@ var scatterVisualistion = function(data){
 		return d3.svg.axis()
 			.scale(xScales(data))
 			.orient("bottom")
-			.ticks(5);
+			.ticks(9);
 	}
 
 	function yAxes(data){
@@ -164,12 +164,12 @@ var scatterVisualistion = function(data){
 				.remove();
 
 			//updates the axis
-			svg.select(".b-x.b-axis")
+			svg.select(".x.axis")
 				.transition()
 				.duration(1000)
 				.call(xAxis);
 
-			svg.select(".b-y.b-axis")
+			svg.select(".y.axis")
 				.transition()
 				.duration(1000)
 				.call(yAxis);
