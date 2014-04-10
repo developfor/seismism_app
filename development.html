@@ -27,14 +27,17 @@
 			<div class ="block-wrapper">	
 				<div class ="block-a">
 					<div class="info-text-top">
-						Last 7 Days
+						Total earthquakes in the past seven days:
 					</div>
 					<div class="prime-info-text-middle">
 						
 					</div>
-					<div class="info-text-bottom">Total Earthquakes
-					</div>
-					<div class="detail-info-text">Total earthquakes in the past 7 days.
+					<!-- <div class="info-text-bottom">Total Earthquakes
+					</div> -->
+					<div class="detail-info-text-block-a">
+						<p id="total-eq-since-title">Total earthquakes since:</p> 
+						<p><span id="total-eq-since"> </span>
+						(UTC)</p>
 					</div>
 				</div>
 				<div class ="block-b">
@@ -49,7 +52,20 @@
 				</div>
 			</div>
 
-			<div class ="block-twitter">
+			<div class ="block-lastest-quake">
+				<div class="lastest-quake-wrapper">
+			<!-- 		<h2>Location:</h2><p id=""> </p> 
+					<h2>Time:</h2><p id="latest-time-eq"> </p>  -->
+
+					<p class="latest-mag-text"><span class="key-eq">Location: </span><span id="latest-location-eq"> </span></p>
+					<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
+					<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
+					<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
+
+				</div>
+				<div class="latest-detail-info-text">The lastest significant earthquake.
+					</div>
+
 			</div>
 			<div class ="block-graph">
 			</div>

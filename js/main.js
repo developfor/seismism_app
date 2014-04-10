@@ -21,6 +21,10 @@
 				scatterVisualistion(dataset);
 				totalEarthquakes(dataset.length);
 				barVisualistion(dataset);
+
+				// Time of the last entry in the csv.
+				var lastEntry = dataset.slice(-1).pop().time
+				$("#total-eq-since").append(moment(lastEntry).format("MMM DD, YYYY @ h:mm A"));
 			}
 		});
 	};
