@@ -2,20 +2,20 @@
 	background: white;
 	position: relative;
 }
-.b-axis path,
-.b-axis line {
+.axis path,
+.axis line {
 	fill: none;
 	stroke: black;
 	shape-rendering: crispEdges;
 }
 
-.b-axis text {
+.axis text {
 	font-family: arial;
 	font-size: 10px;
 	font-weight: normal;
 }
 
-.b-label{
+.label{
 	font-size: 12px;
 }
 .b-buttons{

@@ -7,11 +7,11 @@ var barVisualistion = function(data){
 	//The number of earthquakes in the magnitude class
 	var mag_numbers = function(data){
 		var magnitudes = [
-		{"lower": 3,  "upper": 3.9, "name": "Minor","magnitude": "3 - 3.9" ,"numberOf": 0},
-		{"lower": 4,  "upper": 4.9, "name": "Light", "magnitude": "4 - 4.9" , "numberOf": 0},
-		{"lower": 5,  "upper": 5.9, "name": "Moderate", "magnitude": "5 - 5.9" , "numberOf": 0},
-		{"lower": 6,  "upper": 6.9, "name": "Strong", "magnitude": "6 - 6.9" , "numberOf": 0},
-		{"lower": 7,  "upper": 7.9, "name": "Major", "magnitude": "7 - 7.9" ,"numberOf": 0},
+		{"lower": 3,  "upper": 3.9, "name": "Minor","magnitude": "3-3.9" ,"numberOf": 0},
+		{"lower": 4,  "upper": 4.9, "name": "Light", "magnitude": "4-4.9" , "numberOf": 0},
+		{"lower": 5,  "upper": 5.9, "name": "Moderate", "magnitude": "5-5.9" , "numberOf": 0},
+		{"lower": 6,  "upper": 6.9, "name": "Strong", "magnitude": "6-6.9" , "numberOf": 0},
+		{"lower": 7,  "upper": 7.9, "name": "Major", "magnitude": "7-7.9" ,"numberOf": 0},
 		{"lower": 8,  "upper": 1000, "name": "Great", "magnitude": "8+" , "numberOf": 0}];
 
 		data.forEach(function(entry){
@@ -26,8 +26,8 @@ var barVisualistion = function(data){
 	};
 
 	//variables for postion and sizes
-	var margin = {top:15, right:0, bottom: 15, left:0},
-	width = 200 - margin.right - margin.left,
+	var margin = {top:15, right:0, bottom: 30, left:30},
+	width = 220 - margin.right - margin.left,
 	height = 350 - margin.top - margin.bottom,
 	padding = 10;
 
@@ -36,20 +36,32 @@ var barVisualistion = function(data){
 	var magnitude = mag_numbers(data);
 
 	var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+	.rangeRoundBands([0, width], .1);
 
 	var y = d3.scale.linear()
-    .range([height, 0]);
+	.range([height, 0]);
 
-	var svg = d3.select(".block-graph").append('svg')
-		.attr("width", width)
-		.attr("height", height);
+	var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("bottom")
+	.ticks(6);
+
+	var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left")
+	.ticks(6);
+
+	var svg = d3.select(".block-graph").append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	update();
 
 	function update(){
 
-		x.domain(magnitude.map(function(d) { return d.name; }));
+		x.domain(magnitude.map(function(d) { return d.magnitude; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
 		var rect = svg.selectAll(".graph-bar")
@@ -58,7 +70,7 @@ var barVisualistion = function(data){
 		rect.enter().append("rect")
 		.attr("class", "graph-bar");
 
-		rect.attr("x", function(d) { return x(d.name); })
+		rect.attr("x", function(d) { return x(d.magnitude); })
 		.attr("width", x.rangeBand())
 		.attr("y", function(d) { return y(d.numberOf); })
 		.attr("height", function(d) { return height - y(d.numberOf); })
@@ -68,6 +80,27 @@ var barVisualistion = function(data){
 		.transition()
 		.duration(2000)
 		.remove();
+
+		svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis)
+		.append("text")
+		.style("text-anchor", "start")
+		.attr("y", 28)
+		.text("earthquake magitude class");
+
+		svg.append("g")
+		.attr("class", "y axis")
+		.call(yAxis)
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 6)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.attr("background-color", "pink")
+		.text("Frequency of earthquakes");
+
 	}//END OF UPDATE FUNCTION
 
 };
