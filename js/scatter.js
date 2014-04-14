@@ -1,4 +1,4 @@
-var scatterVisualistion = function(data){
+var scatterVisualisation = function(data){
 	//variables for postion and sizes
 	var margin = {top:5, right:5, bottom: 5, left:5},
 	width = 500 - margin.right - margin.left,

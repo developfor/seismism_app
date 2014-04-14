@@ -15,12 +15,14 @@
 						datum["depth"] = entry.depth;
 						datum["mag"] = entry.mag;
 						datum["place"] = entry.place;
+						datum["id"] = entry.id;
 						dataset.push(datum);
 					}
 				});
-				scatterVisualistion(dataset);
+				scatterVisualisation(dataset);
 				totalEarthquakes(dataset.length);
-				barVisualistion(dataset);
+				barVisualisation(dataset);
+				mapVisualisation(dataset);
 
 				// Time of the last entry in the csv.
 				var lastEntry = dataset.slice(-1).pop().time

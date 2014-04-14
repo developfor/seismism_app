@@ -1,4 +1,4 @@
-var barVisualistion = function(data){
+var barVisualisation = function(data){
 	//function to calculate the number of earthquakes in each class of magnitude
 	//the return value is an array of objects
 	//The array has the lower and upper magnitudes for each class of magnitude
@@ -91,10 +91,9 @@ var barVisualistion = function(data){
 		.call(xAxis)
 		.selectAll("text")
 		.style("text-anchor", "end")
-		.attr("dx", "-.8em")
-		.attr("dy", ".15em")
+		.attr("dx", "-2em")
 		.attr("transform", function(d) {
-			return "rotate(-65)" 
+			return "translate(-10,5)rotate(-65)" 
 		})
 		.append("text")
 		.style("text-anchor", "start")
@@ -115,10 +114,8 @@ var barVisualistion = function(data){
 
 		var graphUpdate = function(){
 
-			console.log(magnitude[0].numberOf);
-
-					x.domain(magnitude.map(function(d) { return d.name; }));
-		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
+			x.domain(magnitude.map(function(d) { return d.name; }));
+			y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
 			var rect = svg.selectAll(".graph-bar")
 			.data(magnitude);
@@ -137,85 +134,85 @@ var barVisualistion = function(data){
 			.duration(2000)
 			.remove();
 
-						//updates the axis
+			//updates the axis
 			svg.select(".x.axis")
-				.transition()
-				.duration(1000)
-				.call(xAxis);
+			.transition()
+			.duration(1000)
+			.call(xAxis);
 
 			svg.select(".y.axis")
-				.transition()
-				.duration(1000)
-				.call(yAxis);
+			.transition()
+			.duration(1000)
+			.call(yAxis);
 
 		}
 
-			function slide(){
-		var data_parsed = [];
+		function slide(){
+			var data_parsed = [];
 
-		for(i = 0; i < data.length; i++){
-			var quake = {}
-			quake["time"] = data[i].time;
-			quake["mag"] = data[i].mag;
-			data_parsed.push(quake);
-		}
+			for(i = 0; i < data.length; i++){
+				var quake = {}
+				quake["time"] = data[i].time;
+				quake["mag"] = data[i].mag;
+				data_parsed.push(quake);
+			}
 
-		var start = new Date(data_parsed[data_parsed.length - 1].time);
-		var end = new Date(data_parsed[0].time);
+			var start = new Date(data_parsed[data_parsed.length - 1].time);
+			var end = new Date(data_parsed[0].time);
 
-		var curr_date = start.getDate();
-	    var curr_month = start.getMonth() + 1; //Months are zero based
-	    var curr_year = start.getFullYear();
-	    var start_date = curr_date + "/" + curr_month + "/" + curr_year;
+			var curr_date = start.getDate();
+		    var curr_month = start.getMonth() + 1; //Months are zero based
+		    var curr_year = start.getFullYear();
+		    var start_date = curr_date + "/" + curr_month + "/" + curr_year;
 
-	    curr_date = end.getDate();
-	    curr_month = end.getMonth() + 1; //Months are zero based
-	    curr_year = end.getFullYear();
-	    var end_date = curr_date + "/" + curr_month + "/" + curr_year;
+		    curr_date = end.getDate();
+		    curr_month = end.getMonth() + 1; //Months are zero based
+		    curr_year = end.getFullYear();
+		    var end_date = curr_date + "/" + curr_month + "/" + curr_year;
 
-	    var slide = 8;
+		    var slide = 8;
 
-	    $("#slider-range-max" ).slider({
-	    	range: "max",
-	    	min: 1,
-	    	max: 7,
-	    	value: 7,
-	    	slide: function( event, ui ) {
-	    		var data_temp = [];
-	    		$( "#amount" ).val( ui.value );
-	    		slide = ui.value;
-	    		slide = -slide;
+		    $("#slider-range-max" ).slider({
+		    	range: "max",
+		    	min: 1,
+		    	max: 7,
+		    	value: 7,
+		    	slide: function( event, ui ) {
+		    		var data_temp = [];
+		    		$( "#amount" ).val( ui.value );
+		    		slide = ui.value;
+		    		slide = -slide;
 
-	    		var dateTo = d3.time.day.offset(new Date(end), slide);
-	    		for(var i = 0; i < data_parsed.length; i++){
-	    			var testDate = new Date(data_parsed[i].time);
-	    			if (testDate >= dateTo){
-	    				data_temp.push(data_parsed[i]);
-	    			}
-	    		}
+		    		var dateTo = d3.time.day.offset(new Date(end), slide);
+		    		for(var i = 0; i < data_parsed.length; i++){
+		    			var testDate = new Date(data_parsed[i].time);
+		    			if (testDate >= dateTo){
+		    				data_temp.push(data_parsed[i]);
+		    			}
+		    		}
 
-	    		magnitude = mag_numbers(data_temp);
-	    		graphUpdate();
+		    		magnitude = mag_numbers(data_temp);
+		    		graphUpdate();
 
-	    		var starts = new Date(data_temp[data_temp.length - 1].time);
-	    		var ends = new Date(data_temp[0].time);
+		    		var starts = new Date(data_temp[data_temp.length - 1].time);
+		    		var ends = new Date(data_temp[0].time);
 
-	    		curr_date = starts.getDate();
-		      	curr_month = starts.getMonth() + 1; //Months are zero based
-		      	curr_year = starts.getFullYear();
-		      	start_date = curr_date + "/" + curr_month + "/" + curr_year;
+		    		curr_date = starts.getDate();
+			      	curr_month = starts.getMonth() + 1; //Months are zero based
+			      	curr_year = starts.getFullYear();
+			      	start_date = curr_date + "/" + curr_month + "/" + curr_year;
 
-		      	curr_date = ends.getDate();
-		      	curr_month = ends.getMonth() + 1; //Months are zero based
-		      	curr_year = ends.getFullYear();
-		      	end_date = curr_date + "/" + curr_month + "/" + curr_year;
-		      }
-		  });
-$( "#amount" ).val( $( "#slider-range-max" ).slider("value") );
+			      	curr_date = ends.getDate();
+			      	curr_month = ends.getMonth() + 1; //Months are zero based
+			      	curr_year = ends.getFullYear();
+			      	end_date = curr_date + "/" + curr_month + "/" + curr_year;
+			      }
+			  });
+		// $( "#amount" ).val( $( "#slider-range-max" ).slider("value") );
 	}//END OF SLIDE FUNCTION
 
-		graphUpdate();
-		slide();
+	graphUpdate();
+	slide();
 
 
 

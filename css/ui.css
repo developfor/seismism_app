@@ -96,16 +96,17 @@
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd;
+	border: 2px solid #1B3344;
 	color: #333333;
+	background-color: red;
 }
 .ui-widget-content a {
 	color: #333333;
 }
 .ui-widget-header {
-	border: 1px solid #e78f08;
-	background: #4682B4;
-	color: #ffffff;
+	border: 2px solid #e78f08;
+	background: #5E3724;
+	color: #5E3724;
 	font-weight: bold;
 }
 .ui-widget-header a {
@@ -118,7 +119,7 @@
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #cccccc;
-	background: #f6f6f6; 
+	background: #2E5879; 
 	font-weight: bold;
 	color: #1c94c4;
 }
@@ -134,9 +135,9 @@
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #fbcb09;
+	border: 3px solid #fbcb09;
 	font-weight: bold;
-	color: #c77405;
+	color: black;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
