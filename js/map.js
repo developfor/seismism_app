@@ -7,10 +7,6 @@ var mapVisualisation = function(data){
 	var magMin = d3.min(data, function(d){ return d.mag; });
 	var magMax = d3.max(data, function(d){ return d.mag; });
 
-	console.log("magMin: " + magMin);
-	console.log("magMax: " + magMax);
-
-
 	var margin = {top: 0, left: 0, bottom: 0, right: 0},
 	width = 480 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
@@ -75,8 +71,8 @@ var mapVisualisation = function(data){
 
 					map(mapData, minMag, maxMag);
 					clicking(mapData, minMag, maxMag);
-					listText(mapData);
-					overList(mapData)
+					// listText(mapData);
+					// overList(mapData)
 	
 			    } //END OF DATA ERROR ELSE
 			});  //END OF CSV
@@ -128,8 +124,8 @@ var clicking = function(data_parsed, minMag, maxMag){
 			}
 
 			map(datas, minMag, maxMag);
-			listText(datas);
-			overList(datas)
+			// listText(datas);
+			// overList(datas)
 		}
 
 		if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
@@ -163,8 +159,8 @@ var clicking = function(data_parsed, minMag, maxMag){
 			}
 			sort(datas);
 			map(datas, minMag, maxMag);
-			listText(datas);
-			overList(datas)
+			// listText(datas);
+			// overList(datas)
 		}
 		$('.button').css("opacity", "0.5");
 
@@ -191,7 +187,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 		.attr("cy", function(d) {
 			return projection([d.longitude, d.latitude])[1];
 		})
-		.style("z-index", "-2000")
 		.attr("id", function(d){ return d.id; });
 
 		circle.transition()
@@ -206,6 +201,9 @@ var clicking = function(data_parsed, minMag, maxMag){
 		.attr('r', '0')
 		.style('opacity', '0')
 		.remove();
+
+		listText(data);
+		overList(data);
 	}
 
 	function sort(qtable){
@@ -258,31 +256,65 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 			quakeTable.append(table);
 		});
-
 		// overList(data);
 	}
 
 	function overList(data){
-
-		var overId;
+		var overId,
+			temp;
 
 		$('.table').on('mouseover', function(){
+
+			$(this).css('background', 'white');
+
 			var testId = $(this).attr("class").split(' ')[1];
 			overId = d3.select('#' + testId);
-			overId.transition()
-				.duration(1000)
-				.style('fill', 'orange')
-				.style('opacity', '1')
-				.attr('r', '20')
-				.style('z-index', '100000');
-		}).on('mouseout', function(){
 
-			overId.transition()
-				.duration(1000)
-				.style('fill', function(d){ return color(d.mag);})
-				.attr('r', function(d){ return radius(d.mag)})
-				.attr('opacity', '0.4');
-		});
+			// console.log(d3.select('#' + testId).attr("cx"));
+			// 	var cx = overId[0][0]["cx"]["animVal"]["value"],
+			// 		cy = overId[0][0]["cy"]["animVal"]["value"];
+			// console.log("cy = " + cy + " cx = " + cx)
+
+			var cx = d3.select('#' + testId).attr("cx"),
+				cy = d3.select('#' + testId).attr("cy");
+
+			temp = svg.append("g")
+						.append('circle')
+						.attr("cx", cx)
+						.attr("cy", cy)
+						.style('fill', 'rgba(10, 150, 20, 0.5)')
+						.style('stroke-width', '1.5')
+						.style('stroke', 'red')
+						.attr('r', "20");
+								
+
+		}).on('mouseout', function(){
+					$(this).css('background', 'transparent');
+					temp.remove();
+		})
+
+
+		
+
+		// var overId;
+
+		// $('.table').on('mouseover', function(){
+		// 	var testId = $(this).attr("class").split(' ')[1];
+		// 	overId = d3.select('#' + testId);
+		// 	overId.transition()
+		// 		.duration(1000)
+		// 		.style('fill', 'orange')
+		// 		.style('opacity', '1')
+		// 		.attr('r', '20')
+		// 		.style('z-index', '100000');
+		// }).on('mouseout', function(){
+
+		// 	overId.transition()
+		// 		.duration(1000)
+		// 		.style('fill', function(d){ return color(d.mag);})
+		// 		.attr('r', function(d){ return radius(d.mag)})
+		// 		.attr('opacity', '0.4');
+		// });
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
