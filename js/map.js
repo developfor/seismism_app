@@ -4,6 +4,7 @@ var mapVisualisation = function(data){
 	rMax = 12,
 	expo = 1;
 
+
 	var margin = {top: 0, left: 0, bottom: 0, right: 0},
 	width = 480 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
@@ -12,6 +13,18 @@ var mapVisualisation = function(data){
 	.scale(75)
 	.rotate([210, 0])
 	.translate([width / 2, height / 2]);
+
+			var radius = d3.scale.linear()
+		.domain([0, 9])
+		.range([rMin, rMax]);
+
+		// var color = d3.scale.linear()
+		// .domain([minMag,maxMag])
+		// .range(["#FECF03", "#FF4603"]);
+
+		var color = d3.scale.linear()
+		.domain([0,9])
+		.range(["red", "blue"]);
 
 	var svg = d3.select("#viz-map").append("svg")
 	.attr("width", width)
@@ -57,6 +70,8 @@ var mapVisualisation = function(data){
 					map(mapData, minMag, maxMag);
 					clicking(mapData, minMag, maxMag);
 					listText(mapData);
+					overList(mapData)
+	
 			    } //END OF DATA ERROR ELSE
 			});  //END OF CSV
 
@@ -108,6 +123,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 			map(datas, minMag, maxMag);
 			listText(datas);
+			overList(datas)
 		}
 
 		if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
@@ -142,6 +158,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 			sort(datas);
 			map(datas, minMag, maxMag);
 			listText(datas);
+			overList(datas)
 		}
 		$('.button').css("opacity", "0.5");
 
@@ -153,18 +170,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 	//START OF MAP FUNCTION
 	function map(data, minMag, maxMag){
-
-		var radius = d3.scale.linear()
-		.domain([0, 9])
-		.range([rMin, rMax]);
-
-		// var color = d3.scale.linear()
-		// .domain([minMag,maxMag])
-		// .range(["#FECF03", "#FF4603"]);
-
-		var color = d3.scale.linear()
-		.domain([0,9])
-		.range(["red", "blue"]);
 
 		var circle = svg.selectAll("circle")   
 		.data(data);
@@ -179,13 +184,14 @@ var clicking = function(data_parsed, minMag, maxMag){
 		})
 		.attr("cy", function(d) {
 			return projection([d.longitude, d.latitude])[1];
-		});
+		})
+		.attr("id", function(d){ return d.id; });
 
 		circle.transition()
 		.duration(1000)
 		.style('opacity', "0.4")
-		.attr("r", function(d){ return radius(d.mag);})
-		.attr("id", function(d){ return d.id });
+		.attr("r", function(d){ return radius(d.mag);});
+
 
 		circle.exit()
 		.transition()
@@ -201,13 +207,20 @@ var clicking = function(data_parsed, minMag, maxMag){
 		});
 	}
 
+	function sortDate(qtable){
+		qtable.sort(function(a, b) {
+			return d3.descending(a.time, b.time);
+		});
+
+	}
+
 	function listText(data){
+
+		sortDate(data);
 
 		var quakeTable = $('#quake-table');
 
 		$(quakeTable).empty();
-
-		
 
 		data.forEach(function(entry){
 
@@ -236,6 +249,33 @@ var clicking = function(data_parsed, minMag, maxMag){
 			quakeTable.append(table);
 		});
 
+		// overList(data);
+	}
+
+	function overList(data){
+
+
+
+		var temp;
+
+
+		$('.table').on('mouseover', function(){
+			var testId = $(this).attr("class").split(' ')[1];
+			temp = d3.select('#' + testId);
+			temp.transition()
+				.duration(1000)
+				.style('fill', 'orange')
+				.style('opacity', '1')
+				.attr('r', '20');
+		}).on('mouseout', function(){
+
+			temp.transition()
+				.duration(1000)
+				.style('fill', function(d){ return color(d.mag);})
+				.attr('r', function(d){ return radius(d.mag)})
+				.attr('opacity', '0.4');
+
+		});
 		
 	}
 
