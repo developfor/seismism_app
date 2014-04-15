@@ -24,7 +24,7 @@ $.ajax({
     	
     	// console.log(time_eq);
     	// console.log(data.features[0].properties.felt);
-    	 console.log(data);
+    	 // console.log(data);
    
     }
 });

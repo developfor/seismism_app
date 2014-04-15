@@ -1,8 +1,14 @@
 var mapVisualisation = function(data){
 
-	var rMin = 1,
+	var rMin = 0.5,
 	rMax = 12,
 	expo = 1;
+
+	var magMin = d3.min(data, function(d){ return d.mag; });
+	var magMax = d3.max(data, function(d){ return d.mag; });
+
+	console.log("magMin: " + magMin);
+	console.log("magMax: " + magMax);
 
 
 	var margin = {top: 0, left: 0, bottom: 0, right: 0},
@@ -15,7 +21,7 @@ var mapVisualisation = function(data){
 	.translate([width / 2, height / 2]);
 
 			var radius = d3.scale.linear()
-		.domain([0, 9])
+		.domain([magMin, magMax])
 		.range([rMin, rMax]);
 
 		// var color = d3.scale.linear()
@@ -101,7 +107,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 		data_temp = [];
 		datas = [];
 
-		if (whichId === '0' || whichId === '4' || whichId === '6'){
+		if (whichId === '0' || whichId === '2' || whichId === '5'){
 
 			day = +whichId;
 			var dateTo = d3.time.day.offset(new Date(start),day);
@@ -185,6 +191,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 		.attr("cy", function(d) {
 			return projection([d.longitude, d.latitude])[1];
 		})
+		.style("z-index", "-2000")
 		.attr("id", function(d){ return d.id; });
 
 		circle.transition()
@@ -224,6 +231,9 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 		data.forEach(function(entry){
 
+			var time_eq = entry.time
+        var time_converted = moment(time_eq).format("MMM DD, YYYY @ h:mma");
+
 			var table = $('<div></div>');
 
 			var test = $('<h1></h1>').text("Magnitude: ");
@@ -239,7 +249,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 			table.append(test);
 
 			var test = $('<h1></h1>').text("Time: ");
-			var test2 = $('<span></span>').text(entry.time);
+			var test2 = $('<span></span>').text(time_converted);
 
 			test.append(test2);
 			table.append(test);
@@ -254,29 +264,25 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 	function overList(data){
 
-
-
-		var temp;
-
+		var overId;
 
 		$('.table').on('mouseover', function(){
 			var testId = $(this).attr("class").split(' ')[1];
-			temp = d3.select('#' + testId);
-			temp.transition()
+			overId = d3.select('#' + testId);
+			overId.transition()
 				.duration(1000)
 				.style('fill', 'orange')
 				.style('opacity', '1')
-				.attr('r', '20');
+				.attr('r', '20')
+				.style('z-index', '100000');
 		}).on('mouseout', function(){
 
-			temp.transition()
+			overId.transition()
 				.duration(1000)
 				.style('fill', function(d){ return color(d.mag);})
 				.attr('r', function(d){ return radius(d.mag)})
 				.attr('opacity', '0.4');
-
 		});
-		
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
