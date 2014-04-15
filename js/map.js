@@ -293,9 +293,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 					temp.remove();
 		})
 
-
-		
-
 		// var overId;
 
 		// $('.table').on('mouseover', function(){

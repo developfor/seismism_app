@@ -79,6 +79,7 @@ margin-bottom: 13.2px;
 }
 
 .block-graph{
+position: relative;
 background: pink;
 width: 230px;
 height: 400px;

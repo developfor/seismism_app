@@ -56,15 +56,9 @@ var barVisualisation = function(data){
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	
-
 	update(magnitude);
 
 	function update(magnitude){
-
-
-
-
 		x.domain(magnitude.map(function(d) { return d.name; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
@@ -145,6 +139,35 @@ var barVisualisation = function(data){
 			.duration(1000)
 			.call(yAxis);
 
+			d3.selectAll("rect")
+      .on("mouseover", function(d) {
+
+            //Get this bar's x/y values, then augment for the tooltip
+            var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
+					var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+              .style("left", xPosition + "px")
+              .style("top", yPosition + "px")           
+              .select("#value")
+              .text(d.numberOf);         
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+
+            d3.select(this)
+              .style("stroke-width", '3');
+
+           })
+           .on("mouseout", function() {
+           
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+            d3.select(this)
+              .style("stroke-width", '1');
+            
+           });
+
 		}
 
 		function slide(){
@@ -183,9 +206,13 @@ var barVisualisation = function(data){
 		    		slide = ui.value;
 		    		slide = -slide;
 
+		    		console.log(slide);
+
 		    		var dateTo = d3.time.day.offset(new Date(end), slide);
+
 		    		for(var i = 0; i < data_parsed.length; i++){
 		    			var testDate = new Date(data_parsed[i].time);
+
 		    			if (testDate >= dateTo){
 		    				data_temp.push(data_parsed[i]);
 		    			}
