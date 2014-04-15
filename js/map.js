@@ -107,6 +107,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 			}
 
 			map(datas, minMag, maxMag);
+			listText(datas);
 		}
 
 		if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
@@ -140,6 +141,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 			}
 			sort(datas);
 			map(datas, minMag, maxMag);
+			listText(datas);
 		}
 		$('.button').css("opacity", "0.5");
 
