@@ -1,17 +1,17 @@
 var mapVisualisation = function(data){
 
 	var rMin = 1,
-		rMax = 12,
-		expo = 1;
+	rMax = 12,
+	expo = 1;
 
-	var margin = {top: 5, left: 5, bottom: 5, right: 5},
-	width = 716 - margin.left - margin.right,
+	var margin = {top: 0, left: 0, bottom: 0, right: 0},
+	width = 480 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 
 	var projection = d3.geo.mercator()
-		.scale(75)
-		.rotate([210, 0])
-		.translate([width / 2.9, height / 1.3]);
+	.scale(75)
+	.rotate([210, 0])
+	.translate([width / 2, height / 2]);
 
 	var svg = d3.select("#viz-map").append("svg")
 	.attr("width", width)
@@ -37,27 +37,27 @@ var mapVisualisation = function(data){
 					console.log("there is an error " + error); 
 				} 
 				else {
-	
+
 					var mapData = [];
 
-						data.forEach(function(entry){
-							var mapQuake = {};
-							mapQuake["latitude"] = entry.latitude;
-							mapQuake["longitude"] = entry.longitude;
-							mapQuake["mag"] = entry.mag;
-							mapQuake["id"] = entry.id;
-							mapQuake["time"] = entry.time;
-							mapQuake['place'] = entry.place;
-							mapData.push(mapQuake);
+					data.forEach(function(entry){
+						var mapQuake = {};
+						mapQuake["latitude"] = entry.latitude;
+						mapQuake["longitude"] = entry.longitude;
+						mapQuake["mag"] = entry.mag;
+						mapQuake["id"] = entry.id;
+						mapQuake["time"] = entry.time;
+						mapQuake['place'] = entry.place;
+						mapData.push(mapQuake);
+					});
 
+					var minMag = d3.min(mapData, function(d){return d.mag; });
+					var maxMag = d3.max(mapData, function(d){ return d.mag; });
 
-						});
-
-					map(mapData);
-					clicking(mapData);
-
+					map(mapData, minMag, maxMag);
+					clicking(mapData, minMag, maxMag);
+					listText(mapData);
 			    } //END OF DATA ERROR ELSE
-
 			});  //END OF CSV
 
 			svg.selectAll("path")
@@ -72,115 +72,105 @@ var mapVisualisation = function(data){
 
 
 
-var clicking = function(data_parsed){
+var clicking = function(data_parsed, minMag, maxMag){
 
-		console.log(data_parsed[data.length - 1])
+	var start = new Date(data_parsed[data.length - 1].time),
+	end = new Date(data_parsed[0].time);
 
+	var day = 0,
+	magnitude = 1.0,
+	mags = "one";
 
+	$('.button').on('click', function(){
+		var whichId = this.id,
+		data_temp = [];
+		datas = [];
 
-	     var start = new Date(data_parsed[data.length - 1].time),
-     end = new Date(data_parsed[0].time);
+		if (whichId === '0' || whichId === '4' || whichId === '6'){
 
+			day = +whichId;
+			var dateTo = d3.time.day.offset(new Date(start),day);
 
+			for(var i = 0; i < data_parsed.length; i++){
 
-     var day = 0,
-     magnitude = 1.0,
-     mags = "one";
+				var testDate = new Date(data_parsed[i].time);
+				if (testDate >= dateTo){
 
-      $('.button').on('click', function(){
-        var whichId = this.id,
-        data_temp = [];
-        datas = [];
+					data_temp.push(data_parsed[i]);
+				}
+			}
+			for(var i = 0; i < data_temp.length; i++){
+				if (data_temp[i].mag >= magnitude){
 
-        if (whichId === '0' || whichId === '4' || whichId === '6'){
+					datas.push(data_temp[i]);
+				}
+			}
 
-          day = +whichId;
-          var dateTo = d3.time.day.offset(new Date(start),day);
+			map(datas, minMag, maxMag);
+		}
 
+		if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
+			mags = whichId;
+			switch(whichId)
+			{
+				case 'one':
+				magnitude = 1.0;
+				break;
+				case 'four':
+				magnitude = 4.5;
+				break;
+				case 'five':
+				magnitude = 5.5;
+				break;
+			}
 
+			var dateTo = d3.time.day.offset(new Date(start),day);
 
+			for(var i = 0; i < data_parsed.length; i++){
+				var testDate = new Date(data_parsed[i].time);
+				if (testDate >= dateTo){
+					data_temp.push(data_parsed[i]);
+				}
+			}
 
+			for(var i = 0; i < data_temp.length; i++){            
+				if (data_temp[i].mag >= magnitude){           
+					datas.push(data_temp[i]);
+				}
+			}
+			sort(datas);
+			map(datas, minMag, maxMag);
+		}
+		$('.button').css("opacity", "0.5");
 
-          for(var i = 0; i < data_parsed.length; i++){
+		$('#'+ day.toString()).css("opacity", '1');
+		$('#' + mags).css('opacity', '1');
 
-            var testDate = new Date(data_parsed[i].time);
-
-
-            if (testDate >= dateTo){
-
-              data_temp.push(data_parsed[i]);
-            }
-          }
-          for(var i = 0; i < data_temp.length; i++){
-
-            
-            if (data_temp[i].mag >= magnitude){
-            
-              datas.push(data_temp[i]);
-            }
-
-          }
-
-          map(datas);
-        }
-
-        if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
-          mags = whichId;
-          switch(whichId)
-          {
-            case 'one':
-              magnitude = 1.0;
-              break;
-            case 'four':
-              magnitude = 4.5;
-              break;
-            case 'five':
-              magnitude = 5.5;
-              break;
-          }
-
-          var dateTo = d3.time.day.offset(new Date(start),day);
-
-          for(var i = 0; i < data_parsed.length; i++){
-            var testDate = new Date(data_parsed[i].time);
-            if (testDate >= dateTo){
-              data_temp.push(data_parsed[i]);
-            }
-          }
-
-          for(var i = 0; i < data_temp.length; i++){            
-            if (data_temp[i].mag >= magnitude){           
-              datas.push(data_temp[i]);
-            }
-          }
-          sort(datas);
-          map(datas);
-        }
-         $('.button').css("opacity", "0.5");
-
-        $('#'+ day.toString()).css("opacity", '1');
-        $('#' + mags).css('opacity', '1');
-   
-      });
-};
+	});
+}; //END OF CLICKING FUNCTION
 
 	//START OF MAP FUNCTION
-	function map(data){
+	function map(data, minMag, maxMag){
 
-		var radius = d3.scale.pow().exponent(expo)
-			.domain([0, d3.max(data, function(d){ return d.mag; })])
-			.range([rMin, rMax]);
+		var radius = d3.scale.linear()
+		.domain([0, 9])
+		.range([rMin, rMax]);
+
+		// var color = d3.scale.linear()
+		// .domain([minMag,maxMag])
+		// .range(["#FECF03", "#FF4603"]);
 
 		var color = d3.scale.linear()
-					.domain([d3.min(data, function(d){ return d.mag; }),d3.max(data, function(d){ return d.mag; })])
-					.range(["#FECF03", "#FF4603"]);
-  
+		.domain([0,9])
+		.range(["red", "blue"]);
 
 		var circle = svg.selectAll("circle")   
 		.data(data);
 
 		circle.enter()
-		.append("circle");
+		.append("circle")
+		.style("fill", function(d){ return color(d.mag); })
+		.style("opacity", '0');
 
 		circle.attr("cx", function(d) {            
 			return projection( [d.longitude, d.latitude])[0];
@@ -189,18 +179,78 @@ var clicking = function(data_parsed){
 			return projection([d.longitude, d.latitude])[1];
 		});
 
-		circle.style("fill", function(d){ return color(d.mag); })
+		circle.transition()
+		.duration(1000)
 		.style('opacity', "0.4")
 		.attr("r", function(d){ return radius(d.mag);})
 		.attr("id", function(d){ return d.id });
 
-
-		circle.exit().remove();
+		circle.exit()
+		.transition()
+		.duration(1000)
+		.attr('r', '0')
+		.style('opacity', '0')
+		.remove();
 	}
 
 	function sort(qtable){
-  qtable.sort(function(a, b) {
-        return d3.descending(a.mag, b.mag);
-    });
-}
+		qtable.sort(function(a, b) {
+			return d3.descending(a.mag, b.mag);
+		});
+	}
+
+	function listText(data){
+
+		var quakeTable = $('#quake-table');
+
+		$(quakeTable).empty();
+
+		
+
+		data.forEach(function(entry){
+
+			var table = $('<div></div>');
+
+			var test = $('<h1></h1>').text("Magnitude: ");
+			var test2 = $('<span></span>').text(entry.mag);
+
+			test.append(test2);
+			table.append(test);
+
+			var test = $('<h1></h1>').text("Place: ");
+			var test2 = $('<span></span>').text(entry.place);
+
+			test.append(test2);
+			table.append(test);
+
+			var test = $('<h1></h1>').text("Time: ");
+			var test2 = $('<span></span>').text(entry.time);
+
+			test.append(test2);
+			table.append(test);
+
+			table.addClass("table " + entry.id);
+
+			quakeTable.append(table);
+		});
+
+		
+	}
+
+	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
+    $("#quake-table").niceScroll({horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

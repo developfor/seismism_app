@@ -1,5 +1,6 @@
 #viz-map svg{
 	background-color: #2E5879;
+	float: left;
 }
 
 #map-path{
@@ -7,8 +8,8 @@
 }
 
 #mag-buttons, #date-buttons {
-	float: left;
 	clear: both;
+	float: left;
 }
 #mag-buttons, #date-buttons h1{
 	font-size: 12px;
@@ -41,3 +42,22 @@
 {
 	opacity: 1;
 } 
+
+#quake-table{
+	margin: 5px;
+	float: left;
+	width: 222px;
+	height: 310px;
+	overflow: hidden;
+}
+
+#quake-table h1{
+	font-size: 12px;
+}
+
+#quake-table span{
+	color: #5D3724;
+}
+.table{
+	margin-bottom: 4px;
+}
