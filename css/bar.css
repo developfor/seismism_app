@@ -2,14 +2,19 @@
 	fill: steelblue;
 }
 
-#slider-range-max{
-	width: 130px;
+#slides{
+  width: 146px;
+  margin-left: 47px;
 }
 
-#amount{
-  width: 10px;
+#slides #amount{
+  padding: 2px;
+  color: red;
 }
 
+#slides p{
+  padding: 3px;
+}
 #tooltip {
   position: absolute;
   width: 114px;

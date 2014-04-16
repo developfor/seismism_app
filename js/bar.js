@@ -128,33 +128,20 @@ var barVisualisation = function(data){
 			d3.selectAll("rect")
 			.on("mouseover", function(d) {
 
-	            //Get this bar's x/y values, then augment for the tooltip
-	            // var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
-	            // var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
-
 	            //Update the tooltip position and value
-	            d3.select("#tooltip")
-	            // .style("left", xPosition + "px")
-	            // .style("top", yPosition + "px")           
+	            d3.select("#tooltip")        
 	            	.select("#value")
 	            	.text(d.numberOf);
 	           
 	            d3.select("#earthquake-type")
-	            .text(d.name);         
+	            	.text(d.name);         
 	            //Show the tooltip
 	            d3.select("#tooltip").classed("hidden", false);
 
-	            // d3.select(this)
-	            // .style("stroke-width", '3');
-
 		        })
 			.on("mouseout", function() {
-
 	            //Hide the tooltip
 	            d3.select("#tooltip").classed("hidden", true);
-	            d3.select(this)
-	            .style("stroke-width", '1');
-	            
 		    });
 
 		}//END OF GRAPHUPDATE FUNCTION
@@ -191,7 +178,6 @@ var barVisualisation = function(data){
 		    	value: 7,
 		    	slide: function( event, ui ) {
 		    		var data_temp = [];
-		    		// $( "#amount" ).val( ui.value );
 
 		    		$("#amount").html(ui.value);
 		    		if(ui.value === 1){
@@ -203,7 +189,6 @@ var barVisualisation = function(data){
 		    		slide = ui.value;
 
 		    		slide = -slide;
-
 
 		    		var dateTo = d3.time.day.offset(new Date(end), slide);
 
