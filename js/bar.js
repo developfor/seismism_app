@@ -191,13 +191,19 @@ var barVisualisation = function(data){
 		    	value: 7,
 		    	slide: function( event, ui ) {
 		    		var data_temp = [];
-		    		$( "#amount" ).val( ui.value );
+		    		// $( "#amount" ).val( ui.value );
+
+		    		$("#amount").html(ui.value);
+		    		if(ui.value === 1){
+		    			$("#days").html(" Day")
+		    		}else{
+		    			$("#days").html(" Days")
+		    		}
 		    	
 		    		slide = ui.value;
 
 		    		slide = -slide;
 
-		    		console.log(slide);
 
 		    		var dateTo = d3.time.day.offset(new Date(end), slide);
 

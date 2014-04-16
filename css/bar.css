@@ -6,6 +6,10 @@
 	width: 130px;
 }
 
+#amount{
+  width: 10px;
+}
+
 #tooltip {
   position: absolute;
   width: 114px;
