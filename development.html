@@ -22,108 +22,103 @@
 		<div class="wrapper-title">
 			<h1>seismism</h1> 
 			<p>The Earthquake Monitor Dashboard<p>
-			</div>
 		</div>
+	</div>
 
-		<div class ="wrapper">
-			<div class ="block-wrapper">	
-				<div class ="block-a">
-					<div class="info-text-top">
-						Total earthquakes in the past seven days:
-					</div>
-					<div class="prime-info-text-middle">
-						
-					</div>
-					<!-- <div class="info-text-bottom">Total Earthquakes
-				</div> -->
+	<div class ="wrapper">
+		<div class ="block-wrapper">	
+			<div class ="block-a">
+				<div class="info-text-top">
+					Total earthquakes in the past seven days:
+				</div>
+				
+				<div class="prime-info-text-middle"></div>
+					
 				<div class="detail-info-text-block-a">
 					<p id="total-eq-since-title">Total earthquakes since:</p> 
 					<p><span id="total-eq-since"> </span>
 						(UTC)</p>
-					</div>
+				</div>
+			</div>
+
+			<div class ="block-b">
+				<div id = "viz-b"></div>
+				<div class = "b-buttons">
+					<h1 class = 'b-button' id = "mag1">+0 mag</h1>
+					<h1 class = 'b-button' id = "mag4">+4.5 mag </h1>
+					<h1 class = 'b-button' id = "mag5">+5.5 mag </h1>
+				</div>
+			</div>	
+
+			<div class ="block-map">
+				<div id = "viz-map"></div>
+
+				<div id = "quake-table"></div>
+
+				<div id = "date-buttons">
+					<ul class="button-group even-3">
+						<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
+						<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
+						<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
+					<ul>
 				</div>
 
-				<div class ="block-b">
-					<div id = "viz-b"></div>
-					<div class = "b-buttons">
-						<h1 class = 'b-button' id = "mag1">+0 mag</h1>
-						<h1 class = 'b-button' id = "mag4">+4.5 mag </h1>
-						<h1 class = 'b-button' id = "mag5">+5.5 mag </h1>
-					</div>
-				</div>	
+				<div id = "mag-buttons">
+					<ul class="button-group even-3">
+						<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
+						<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
+						<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
+					</ul>
+				</div>
 
-				<div class ="block-map">
-					<div id = "viz-map">
-					</div>
+			</div>
+		</div> <!-- END OF block-wrapper -->
 
-					<div id = "quake-table"></div>
+		<div class ="block-lastest-quake">
+			<div class="lastest-quake-wrapper">
 
-					<div id = "date-buttons">
-						<ul class="button-group even-3">
-							<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
-							<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
-							<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
-							<ul>
-							</div>
+				<p class="latest-mag-text"><span class="key-eq">Location: </span><span id="latest-location-eq"> </span></p>
+				<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
+				<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
+				<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
 
-							<div id = "mag-buttons">
-								<ul class="button-group even-3">
-									<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
-									<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
-									<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
-								</ul>
-							</div>
+			</div>
+			<div class="latest-detail-info-text">The lastest significant earthquake.</div>
 
-						</div>
-					</div>
+		</div> <!-- END OF block-lastest-quake -->
 
-					<div class ="block-lastest-quake">
-						<div class="lastest-quake-wrapper">
-			<!-- 		<h2>Location:</h2><p id=""> </p> 
-			<h2>Time:</h2><p id="latest-time-eq"> </p>  -->
+		<div class ="block-graph">
+			<div id = "viz-graph"></div>
+			<div id="tooltip" class="hidden">
+	        <p><strong>Number of Earthquakes: </strong><span id="value">100</span></p>
+	      </div>
+			<div id = "slides">
+				<p>
+					<label for="amount">For the Last </label>
+					<input type="text" id="amount" />
+					<label for="amount"> days</label>
+				</p>
+				<div id="slider-range-max"></div>
+			</div>
+		</div> <!-- END OF block-graph -->
+	</div> <!-- END OF wrapper -->
 
-			<p class="latest-mag-text"><span class="key-eq">Location: </span><span id="latest-location-eq"> </span></p>
-			<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
-			<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
-			<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
+	<script src = "js/vendor/d3.v3.min.js"></script>
+	<script src="js/vendor/topojson.v0.min.js"></script>
+	<script src = "js/vendor/jquery-1.10.2.min.js"></script>
+	<script src = "js/vendor/jquery-ui-1.10.3.js"></script>
+	<script src = "js/vendor/jquery.ui.touch-punch.min.js"></script>
+	<script src = "js/vendor/moment.min.js"></script>
 
-		</div>
-		<div class="latest-detail-info-text">The lastest significant earthquake.</div>
+	<script src = "js/vendor/jquery.nicescroll.js"></script>
 
-	</div>
-
-	<div class ="block-graph">
-		<div id = "viz-graph"></div>
-		<div id="tooltip" class="hidden">
-        <p><strong>Number of Earthquakes: </strong><span id="value">100</span></p>
-      </div>
-		<div id = "slides">
-			<p>
-				<label for="amount">For the Last </label>
-				<input type="text" id="amount" />
-				<label for="amount"> days</label>
-			</p>
-			<div id="slider-range-max"></div>
-		</div>
-	</div>
-</div>
-
-<script src = "js/vendor/d3.v3.min.js"></script>
-<script src="js/vendor/topojson.v0.min.js"></script>
-<script src = "js/vendor/jquery-1.10.2.min.js"></script>
-<script src = "js/vendor/jquery-ui-1.10.3.js"></script>
-<script src = "js/vendor/jquery.ui.touch-punch.min.js"></script>
-<script src = "js/vendor/moment.min.js"></script>
-
-<script src = "js/vendor/jquery.nicescroll.js"></script>
-
-<script src = "js/plug.js"></script>
-<script src = "js/bar.js"></script>
-<script src = "js/scatter.js"></script>
-<script src = "js/total.js"></script>
-<script src = "js/map.js"></script>
-<script src = "js/main.js"></script>
-<script src = "js/feed_significant.js"></script>
+	<script src = "js/plug.js"></script>
+	<script src = "js/bar.js"></script>
+	<script src = "js/scatter.js"></script>
+	<script src = "js/total.js"></script>
+	<script src = "js/map.js"></script>
+	<script src = "js/main.js"></script>
+	<script src = "js/feed_significant.js"></script>
 
 </body>
 

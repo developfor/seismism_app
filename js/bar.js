@@ -62,23 +62,6 @@ var barVisualisation = function(data){
 		x.domain(magnitude.map(function(d) { return d.name; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
-		// var rect = svg.selectAll(".graph-bar")
-		// .data(magnitude);
-
-		// rect.enter().append("rect")
-		// .attr("class", "graph-bar");
-
-		// rect.attr("x", function(d) { return x(d.name); })
-		// .attr("width", x.rangeBand())
-		// .attr("y", function(d) { console.log(d.numberOf); return y(d.numberOf); })
-		// .attr("height", function(d) { return height - y(d.numberOf); })
-		// .attr('fill', 'steelblue');
-
-		// rect.exit()
-		// .transition()
-		// .duration(2000)
-		// .remove();
-
 		svg.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
@@ -140,35 +123,35 @@ var barVisualisation = function(data){
 			.call(yAxis);
 
 			d3.selectAll("rect")
-      .on("mouseover", function(d) {
+			.on("mouseover", function(d) {
 
-            //Get this bar's x/y values, then augment for the tooltip
-            var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
-					var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+	            //Get this bar's x/y values, then augment for the tooltip
+	            var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
+	            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
 
-            //Update the tooltip position and value
-            d3.select("#tooltip")
-              .style("left", xPosition + "px")
-              .style("top", yPosition + "px")           
-              .select("#value")
-              .text(d.numberOf);         
-            //Show the tooltip
-            d3.select("#tooltip").classed("hidden", false);
+	            //Update the tooltip position and value
+	            d3.select("#tooltip")
+	            .style("left", xPosition + "px")
+	            .style("top", yPosition + "px")           
+	            .select("#value")
+	            .text(d.numberOf);         
+	            //Show the tooltip
+	            d3.select("#tooltip").classed("hidden", false);
 
-            d3.select(this)
-              .style("stroke-width", '3');
+	            d3.select(this)
+	            .style("stroke-width", '3');
 
-           })
-           .on("mouseout", function() {
-           
-            //Hide the tooltip
-            d3.select("#tooltip").classed("hidden", true);
-            d3.select(this)
-              .style("stroke-width", '1');
-            
-           });
+		        })
+			.on("mouseout", function() {
 
-		}
+	            //Hide the tooltip
+	            d3.select("#tooltip").classed("hidden", true);
+	            d3.select(this)
+	            .style("stroke-width", '1');
+	            
+		    });
+
+		}//END OF GRAPHUPDATE FUNCTION
 
 		function slide(){
 			var data_parsed = [];
@@ -234,15 +217,12 @@ var barVisualisation = function(data){
 			      	curr_year = ends.getFullYear();
 			      	end_date = curr_date + "/" + curr_month + "/" + curr_year;
 			      }
-			  });
-		// $( "#amount" ).val( $( "#slider-range-max" ).slider("value") );
-	}//END OF SLIDE FUNCTION
+		  	});
 
-	graphUpdate();
-	slide();
+		}//END OF SLIDE FUNCTION
 
-
-
+		graphUpdate();
+		slide();
 	}//END OF UPDATE FUNCTION
 
 
