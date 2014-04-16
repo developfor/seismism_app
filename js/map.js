@@ -243,10 +243,14 @@ var mapVisualisation = function(data){
 
 		$('.table').on('mouseover', function(){
 
-			$(this).css('background', 'white');
+			// console.log($(this).css('backgroundColor'))
+
+			// $(this).css('background', 'white');
 
 			var testId = $(this).attr("class").split(' ')[1];
 			overId = d3.select('#' + testId);
+
+			$(this).attr('id', 'test');
 
 			var cx = d3.select('#' + testId).attr("cx"),
 				cy = d3.select('#' + testId).attr("cy");
@@ -260,8 +264,9 @@ var mapVisualisation = function(data){
 						.style('stroke', 'red')
 						.attr('r', "20");
 		}).on('mouseout', function(){
-					$(this).css('background', 'transparent');
+					// $(this).css('background', 'transparent');
 					temp.remove();
+					$(this).removeAttr('id', 'test');
 		})
 	}
 

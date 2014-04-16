@@ -62,3 +62,19 @@
 	margin-bottom: 4px;
 	cursor: pointer;
 }
+
+.table:nth-child(2n)
+{
+    background-color: #E0E0E0;
+}
+
+#test{
+	background-color: green;
+}
+/*tr:nth-child(2n)
+{
+    background-color: #E0E0E0;
+}*/
+
+
+

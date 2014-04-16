@@ -5,9 +5,10 @@ var scatterVisualisation = function(data){
 	height = 190 - margin.top - margin.bottom,
 	padding = 40,
 	padding2 = 30,
-	minRadius = 0.3,
+	minRadius = 1,
 	maxRadius = 7,
-	yMultiply = 0.3;
+	yMultiply = 0.3
+	xAxisStart = 1;
 
 	//variables for data
 	var mag1 = [],
@@ -38,7 +39,7 @@ var scatterVisualisation = function(data){
 	//*******SCALING FUNCITONS************
 	function xScales(data){
 		return d3.scale.linear()
-			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
+			.domain([d3.min(data, function(d) { return +d.mag - xAxisStart; }), d3.max(data, function(d) { return +d.mag; })])
 			.range([padding, width - padding]);
 	}	
 
@@ -194,17 +195,20 @@ var scatterVisualisation = function(data){
    				.css('color', 'white');
 
    				if(picked === "mag1"){
-   					minRadius = 0.3;
+   					minRadius = 1;
    					maxRadius = 7;
+   					xAxisStart = 1;
    					graphUpdate(mag1);
 
    				}else if(picked === "mag4"){
-   					minRadius = 1;
+   					minRadius = 2;
    					maxRadius = 8;
+   					xAxisStart = 0.5;
    					graphUpdate(mag4);
    				}else if(picked=== "mag5"){
    					minRadius = 4;
    					maxRadius = 12;
+   					xAxisStart = 0.5;
    					graphUpdate(mag5);
    				}
    			}
