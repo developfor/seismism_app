@@ -7,6 +7,7 @@
 #slides{
   width: 146px;
   margin-left: 47px;
+  float: left;
 }
 
 #slides #amount{
@@ -16,6 +17,54 @@
 
 #slides p{
   padding: 3px;
+}
+
+.info-button{
+  clear: both;
+  float: left;
+  padding: 4px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+
+#info-text{
+  display: none;
+  width: 90%;
+  height: auto;
+  margin-left: 5%;
+  background-color: black;
+  color: white;
+  position: absolute;
+   left:0px;
+  top: 20px;
+    -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  opacity:0.9;
+filter:alpha(opacity=90); /* For IE8 and earlier */
+}
+
+#info-text table{
+  margin: 6px;
+}
+
+#info-text table td,th{
+  padding: 8px;
+}
+
+#info-text p{
+  font-size: 14px;
+  padding: 4px;
+}
+
+/*#info-text .close p{
+  font-size: 14px;
+}*/
+
+.source p{
+  padding: 4px;
+  font-size: 10px;
 }
 #tooltip {
   position: absolute;

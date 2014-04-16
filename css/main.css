@@ -179,13 +179,6 @@ bottom: 50px;
 left: 20px;
 }
 
-
-
-
-
-
-
-
 .detail-info-text-block-a{
 color: #FFF;
 background-color: #1B3344;
@@ -218,6 +211,7 @@ font-weight: bold;
 position: absolute;
 bottom: 0;
 }
+
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 

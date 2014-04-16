@@ -218,10 +218,20 @@ var barVisualisation = function(data){
 			      }
 		  	});
 	
-		}//END OF SLIDE FUNCTION
+		};//END OF SLIDE FUNCTION
+
+		var infoTest = function(){
+			$('.info-button').on('mouseover', function(){
+				$('#info-text').show();
+			}).on('mouseout', function(){
+				$('#info-text').hide();
+			});
+
+		};
 
 		graphUpdate();
 		slide();
+		infoTest();
 	}//END OF UPDATE FUNCTION
 
 
