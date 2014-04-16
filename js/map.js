@@ -16,15 +16,11 @@ var mapVisualisation = function(data){
 	.rotate([210, 0])
 	.translate([width / 2, height / 2]);
 
-			var radius = d3.scale.linear()
+	var radius = d3.scale.linear()
 		.domain([magMin, magMax])
 		.range([rMin, rMax]);
 
-		// var color = d3.scale.linear()
-		// .domain([minMag,maxMag])
-		// .range(["#FECF03", "#FF4603"]);
-
-		var color = d3.scale.linear()
+	var color = d3.scale.linear()
 		.domain([0,9])
 		.range(["red", "blue"]);
 
@@ -32,7 +28,6 @@ var mapVisualisation = function(data){
 	.attr("width", width)
 	.attr("height", height)
 	.append("g")
-	// .attr("transform", "translate(-200,-20)");
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var path = d3.geo.path()
@@ -66,13 +61,8 @@ var mapVisualisation = function(data){
 						mapData.push(mapQuake);
 					});
 
-					var minMag = d3.min(mapData, function(d){return d.mag; });
-					var maxMag = d3.max(mapData, function(d){ return d.mag; });
-
-					map(mapData, minMag, maxMag);
-					clicking(mapData, minMag, maxMag);
-					// listText(mapData);
-					// overList(mapData)
+					map(mapData);
+					clicking(mapData);
 	
 			    } //END OF DATA ERROR ELSE
 			});  //END OF CSV
@@ -87,91 +77,81 @@ var mapVisualisation = function(data){
 		}//END OF MAP ELSE ERROR
 	});  //END OF MAP
 
+	var clicking = function(data_parsed){
 
+		var start = new Date(data_parsed[data.length - 1].time),
+		end = new Date(data_parsed[0].time);
 
-var clicking = function(data_parsed, minMag, maxMag){
+		var day = 0,
+		magnitude = 1.0,
+		mags = "one";
 
-	var start = new Date(data_parsed[data.length - 1].time),
-	end = new Date(data_parsed[0].time);
+		$('.button').on('click', function(){
+			var whichId = this.id,
+			data_temp = [];
+			datas = [];
 
-	var day = 0,
-	magnitude = 1.0,
-	mags = "one";
+			if (whichId === '0' || whichId === '2' || whichId === '5'){
 
-	$('.button').on('click', function(){
-		var whichId = this.id,
-		data_temp = [];
-		datas = [];
+				day = +whichId;
+				var dateTo = d3.time.day.offset(new Date(start),day);
 
-		if (whichId === '0' || whichId === '2' || whichId === '5'){
+				for(var i = 0; i < data_parsed.length; i++){
 
-			day = +whichId;
-			var dateTo = d3.time.day.offset(new Date(start),day);
+					var testDate = new Date(data_parsed[i].time);
+					if (testDate >= dateTo){
 
-			for(var i = 0; i < data_parsed.length; i++){
-
-				var testDate = new Date(data_parsed[i].time);
-				if (testDate >= dateTo){
-
-					data_temp.push(data_parsed[i]);
+						data_temp.push(data_parsed[i]);
+					}
 				}
-			}
-			for(var i = 0; i < data_temp.length; i++){
-				if (data_temp[i].mag >= magnitude){
+				for(var i = 0; i < data_temp.length; i++){
+					if (data_temp[i].mag >= magnitude){
 
-					datas.push(data_temp[i]);
+						datas.push(data_temp[i]);
+					}
 				}
+				map(datas);
 			}
 
-			map(datas, minMag, maxMag);
-			// listText(datas);
-			// overList(datas)
-		}
+			if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
+				mags = whichId;
 
-		if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
-			mags = whichId;
-			switch(whichId)
-			{
-				case 'one':
-				magnitude = 1.0;
-				break;
-				case 'four':
-				magnitude = 4.5;
-				break;
-				case 'five':
-				magnitude = 5.5;
-				break;
-			}
-
-			var dateTo = d3.time.day.offset(new Date(start),day);
-
-			for(var i = 0; i < data_parsed.length; i++){
-				var testDate = new Date(data_parsed[i].time);
-				if (testDate >= dateTo){
-					data_temp.push(data_parsed[i]);
+				if(whichId === 'one'){
+					magnitude = 1.0
+				}else if(whichId === 'four'){
+					magnitude = 4.5;
+				}else if(whichId === 'five'){
+					magnitude = 5.5;
 				}
-			}
 
-			for(var i = 0; i < data_temp.length; i++){            
-				if (data_temp[i].mag >= magnitude){           
-					datas.push(data_temp[i]);
+				var dateTo = d3.time.day.offset(new Date(start),day);
+
+				for(var i = 0; i < data_parsed.length; i++){
+					var testDate = new Date(data_parsed[i].time);
+					if (testDate >= dateTo){
+						data_temp.push(data_parsed[i]);
+					}
 				}
+
+				for(var i = 0; i < data_temp.length; i++){            
+					if (data_temp[i].mag >= magnitude){           
+						datas.push(data_temp[i]);
+					}
+				}
+				sort(datas);
+				map(datas);
+
 			}
-			sort(datas);
-			map(datas, minMag, maxMag);
-			// listText(datas);
-			// overList(datas)
-		}
-		$('.button').css("opacity", "0.5");
+			$('.button').css("opacity", "0.5");
 
-		$('#'+ day.toString()).css("opacity", '1');
-		$('#' + mags).css('opacity', '1');
+			$('#'+ day.toString()).css("opacity", '1');
+			$('#' + mags).css('opacity', '1');
 
-	});
-}; //END OF CLICKING FUNCTION
+		});
+	}; //END OF CLICKING FUNCTION
 
 	//START OF MAP FUNCTION
-	function map(data, minMag, maxMag){
+	function map(data){
 
 		var circle = svg.selectAll("circle")   
 		.data(data);
@@ -216,7 +196,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 		qtable.sort(function(a, b) {
 			return d3.descending(a.time, b.time);
 		});
-
 	}
 
 	function listText(data){
@@ -230,7 +209,7 @@ var clicking = function(data_parsed, minMag, maxMag){
 		data.forEach(function(entry){
 
 			var time_eq = entry.time
-        var time_converted = moment(time_eq).format("MMM DD, YYYY @ h:mma");
+        	var time_converted = moment(time_eq).format("MMM DD, YYYY @ h:mma");
 
 			var table = $('<div></div>');
 
@@ -256,7 +235,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 
 			quakeTable.append(table);
 		});
-		// overList(data);
 	}
 
 	function overList(data){
@@ -270,11 +248,6 @@ var clicking = function(data_parsed, minMag, maxMag){
 			var testId = $(this).attr("class").split(' ')[1];
 			overId = d3.select('#' + testId);
 
-			// console.log(d3.select('#' + testId).attr("cx"));
-			// 	var cx = overId[0][0]["cx"]["animVal"]["value"],
-			// 		cy = overId[0][0]["cy"]["animVal"]["value"];
-			// console.log("cy = " + cy + " cx = " + cx)
-
 			var cx = d3.select('#' + testId).attr("cx"),
 				cy = d3.select('#' + testId).attr("cy");
 
@@ -286,48 +259,13 @@ var clicking = function(data_parsed, minMag, maxMag){
 						.style('stroke-width', '1.5')
 						.style('stroke', 'red')
 						.attr('r', "20");
-								
-
 		}).on('mouseout', function(){
 					$(this).css('background', 'transparent');
 					temp.remove();
 		})
-
-		// var overId;
-
-		// $('.table').on('mouseover', function(){
-		// 	var testId = $(this).attr("class").split(' ')[1];
-		// 	overId = d3.select('#' + testId);
-		// 	overId.transition()
-		// 		.duration(1000)
-		// 		.style('fill', 'orange')
-		// 		.style('opacity', '1')
-		// 		.attr('r', '20')
-		// 		.style('z-index', '100000');
-		// }).on('mouseout', function(){
-
-		// 	overId.transition()
-		// 		.duration(1000)
-		// 		.style('fill', function(d){ return color(d.mag);})
-		// 		.attr('r', function(d){ return radius(d.mag)})
-		// 		.attr('opacity', '0.4');
-		// });
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
     $("#quake-table").niceScroll({horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 };

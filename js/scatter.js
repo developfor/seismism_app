@@ -44,7 +44,11 @@ var scatterVisualisation = function(data){
 
 	function yScales(data){
 		return d3.scale.linear()
-			.domain([d3.min(data, function(d) { return +d.depth; }), d3.max(data, function(d) { return +d.depth; })])
+			.domain([d3.min(data, function(d) {
+				if(+d.depth < 0){ 
+				return +d.depth; 
+				} else { return 0;}
+				}), d3.max(data, function(d) { return +d.depth; })])
 			.range([height - padding, padding * yMultiply]);
 	}
 
