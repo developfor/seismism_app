@@ -122,24 +122,30 @@ var barVisualisation = function(data){
 			.duration(1000)
 			.call(yAxis);
 
+			// $( "#amount" ).val( "7");
+			// $( "#amount" ).text( "7");
+
 			d3.selectAll("rect")
 			.on("mouseover", function(d) {
 
 	            //Get this bar's x/y values, then augment for the tooltip
-	            var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
-	            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+	            // var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
+	            // var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
 
 	            //Update the tooltip position and value
 	            d3.select("#tooltip")
-	            .style("left", xPosition + "px")
-	            .style("top", yPosition + "px")           
-	            .select("#value")
-	            .text(d.numberOf);         
+	            // .style("left", xPosition + "px")
+	            // .style("top", yPosition + "px")           
+	            	.select("#value")
+	            	.text(d.numberOf);
+	           
+	            d3.select("#earthquake-type")
+	            .text(d.name);         
 	            //Show the tooltip
 	            d3.select("#tooltip").classed("hidden", false);
 
-	            d3.select(this)
-	            .style("stroke-width", '3');
+	            // d3.select(this)
+	            // .style("stroke-width", '3');
 
 		        })
 			.on("mouseout", function() {
@@ -186,7 +192,9 @@ var barVisualisation = function(data){
 		    	slide: function( event, ui ) {
 		    		var data_temp = [];
 		    		$( "#amount" ).val( ui.value );
+		    	
 		    		slide = ui.value;
+
 		    		slide = -slide;
 
 		    		console.log(slide);
@@ -218,7 +226,7 @@ var barVisualisation = function(data){
 			      	end_date = curr_date + "/" + curr_month + "/" + curr_year;
 			      }
 		  	});
-
+	
 		}//END OF SLIDE FUNCTION
 
 		graphUpdate();
