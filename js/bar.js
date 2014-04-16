@@ -24,11 +24,11 @@ var barVisualisation = function(data){
 		return magnitudes
 	};
 
-		//variables for postion and sizes
-		var margin = {top:15, right:0, bottom: 50, left:30},
-		width = 220 - margin.right - margin.left,
-		height = 340 - margin.top - margin.bottom,
-		padding = 10;
+	//variables for postion and sizes
+	var margin = {top:15, right:0, bottom: 50, left:30},
+	width = 220 - margin.right - margin.left,
+	height = 340 - margin.top - margin.bottom,
+	padding = 10;
 
 	//call the mag_numbers function and store the return value in the variable
 	//the variable holds the array of objects with the number of each earthquake by class

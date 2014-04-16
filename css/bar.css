@@ -1,6 +1,8 @@
 .graph-bar{
 	fill: steelblue;
+  cursor: pointer;
 }
+
 
 #slides{
   width: 146px;
