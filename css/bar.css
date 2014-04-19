@@ -1,8 +1,14 @@
 .graph-bar{
-	/*fill: steelblue;*/
   fill: #00BAFF;
   cursor: pointer;
+    -webkit-transition: fill 0.4s; /* For Safari 3.1 to 6.0 */
+  transition: fill 0.4s;
+}
 
+.graph-bar:hover{
+  fill: #4682B4;
+  -webkit-transition: fill 0.4s; /* For Safari 3.1 to 6.0 */
+  transition: fill 0.4s;
 }
 
 .block-graph{
@@ -10,10 +16,11 @@
 }
 
 #slides{
-width: 185px;
+width: 160px;
 margin: 0 auto;
-text-align: center;
-margin-top: 5px;
+text-align: left;
+float: left;
+margin-left: 10px;
 }
 
 #slides #amount{
@@ -22,23 +29,38 @@ margin-top: 5px;
 
 #slides p{
   padding: 3px;
-  font-size: 12px;
+ font-size: 10px;
   color: white;
+  font-weight: bold
 }
 
 #slider-range-max{
 margin-top: 5px;
-
+width: 145px;
+margin-left: 5px;
 }
 
-.info-button{
-  clear: both;
+/*.info-button{
   float: left;
   padding: 4px;
   background-color: lightblue;
   cursor: pointer;
+}*/
+.info-button {
+cursor: pointer;
+float: left;
+background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 50px auto;
+height: 22px;
+width: 22px;
+text-indent: -9999px;
+position: absolute;
+bottom: 10px;
+right: 10px;
 }
-
+.info-button:hover{
+background-position: -28px -0.5px;
+}
 
 #info-text{
   display: none;
@@ -49,30 +71,35 @@ margin-top: 5px;
   color: white;
   position: absolute;
   left:0px;
-  top: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  opacity:0.85;
-  filter:alpha(opacity=85); /* For IE8 and earlier */
+  top: 10px;
+  background: rgba(0, 0, 0, 0.85);
 }
 
 #info-text table{
-  margin: 6px;
+  margin: 0 auto;
 }
 
 #info-text table td,th{
-  padding: 8px;
+  font-size: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid #888888;
 }
 
 #info-text p{
-  font-size: 14px;
-  padding: 4px;
+  font-size: 12px;
+  padding: 10px;
 }
 
-/*#info-text .close p{
-  font-size: 14px;
-}*/
+.slider-area {
+width: 100%;
+background: #2A2A2A;
+height: 55px;
+padding-top: 5px;
+margin-top: 5px;
+}
 
 .source p{
   padding: 4px;
@@ -80,18 +107,15 @@ margin-top: 5px;
 }
 #tooltip {
   position: absolute;
-  width: 114px;
+  width: 120px;
   height: auto;
-  left:106px;
-  top: 5px;
-  padding: 2px;
-  background-color: white;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  right:10px;
+  top: 10px;
+  padding: 5px;
+  background-color: black;
+  color: #FFF;
+   background: rgba(0, 0, 0, 0.85);
+
   pointer-events: none;
 }
 

@@ -62,7 +62,7 @@ var scatterVisualisation = function(data){
 	function colorScales(data){
 		return d3.scale.linear()
 			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-			.range(["green", "yellow"]);
+			.range(["#008000", "#FFF700"]);
 	}
 
 	function xAxes(data){

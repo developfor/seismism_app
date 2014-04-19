@@ -22,7 +22,7 @@ var mapVisualisation = function(data){
 
 	var color = d3.scale.linear()
 		.domain([0,9])
-		.range(["red", "blue"]);
+		.range(["#008000", "#FFF700"]);
 
 	var svg = d3.select("#viz-map").append("svg")
 	.attr("width", width)
@@ -171,7 +171,7 @@ var mapVisualisation = function(data){
 
 		circle.transition()
 		.duration(1000)
-		.style('opacity', "0.4")
+		.style('opacity', "0.8")
 		.attr("r", function(d){ return radius(d.mag);});
 
 

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bar.css">
 	<link rel="stylesheet" type="text/css" href="css/map.css">
 
-	<title>seismism - The Earthquake Monitoring Dashboard</title>
+	<title>seismism - The Earthquake Monitor Dashboard</title>
 
 </head>
 
@@ -21,7 +21,7 @@
 	<div class="title">
 		<div class="wrapper-title">
 			<h1>seismism</h1> 
-			<p>The Earthquake Monitoring Dashboard<p>
+			<p>The Earthquake Monitor Dashboard<p>
 		</div>
 	</div>
 
@@ -81,24 +81,36 @@
 				<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
 				<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
 				<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
+				<div id="info-text-latest">
+				
+					<p>Earthquake Magnitude Classes</p>
+
+					<p class = "source">source: UPSeis</p>
+
+			</div>  <!-- END OF info-text -->
+
 
 			</div>
-			<div class="latest-detail-info-text">The lastest significant earthquake.</div>
+			<div class="latest-detail-info-text"><p>The lastest significant earthquake.<p>
+			<div class="info-button-latest">i</div>
+			</div>
+
 
 		</div> <!-- END OF block-lastest-quake -->
 
 		<div class ="block-graph">
 			<div id = "viz-graph"></div>
 			<div id="tooltip" class="hidden">
-	        <p><strong>Number of <span id = "earthquake-type">100</span> Earthquakes: </strong><span id="value">100</span></p>
+	        <p><strong>Number of <span id = "earthquake-type"></span> Earthquakes: </strong><span id="value"></span></p>
 	      </div>
-
-	      <div class = "info-button">i</div>
+	    <div class="slider-area">      
 			<div id = "slides">
 				<p>Earthquakes in the last <span id = "amount">7</span><span id = "days"> days.</span></p>
 				<div id="slider-range-max"></div>
-			</div>
+			</div><div class = "info-button">i</div>
 
+			<div id="info-button"></div>
+		</div>
 			<div id="info-text">
 				
 					<p>Earthquake Magnitude Classes</p>
@@ -138,9 +150,8 @@
 						</tbody>
 					</table>
 
-					<p class = "source">source: UPSeis<p>
+					<p class = "source">source: UPSeis</p>
 
-					<!-- <p class = "close">X</p> -->
 		
 			</div>  <!-- END OF info-text -->
 

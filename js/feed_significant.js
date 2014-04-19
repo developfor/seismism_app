@@ -1,3 +1,6 @@
+$(function() {
+
+
 var jsonurl = "data/significant_week.json";
 
 $.ajax({ 
@@ -25,9 +28,23 @@ $.ajax({
     	// console.log(time_eq);
     	// console.log(data.features[0].properties.felt);
     	 // console.log(data);
+
+           var infoTest = function(){
+            $('.info-button-latest').on('mouseover', function(){
+                $('#info-text-latest').show();
+            }).on('mouseout', function(){
+                $('#info-text-latest').hide();
+            });
+        }
+            infoTest();
+
+
    
     }
+
+    
+
 });
 
-
+});
 

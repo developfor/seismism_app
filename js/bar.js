@@ -27,7 +27,7 @@ var barVisualisation = function(data){
 	//variables for postion and sizes
 	var margin = {top:15, right:0, bottom: 50, left:35},
 	width = 220 - margin.right - margin.left,
-	height = 340 - margin.top - margin.bottom,
+	height = 330 - margin.top - margin.bottom,
 	padding = 10;
 
 	//call the mag_numbers function and store the return value in the variable
@@ -181,9 +181,9 @@ var barVisualisation = function(data){
 
 		    		$("#amount").html(ui.value);
 		    		if(ui.value === 1){
-		    			$("#days").html(" Day")
+		    			$("#days").html(" day.")
 		    		}else{
-		    			$("#days").html(" Days")
+		    			$("#days").html(" days.")
 		    		}
 		    	
 		    		slide = ui.value;

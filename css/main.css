@@ -112,11 +112,11 @@ margin-bottom: 2px;
 #latest-mag-eq{
 	font-size: 50px;
 	font-weight: bold;
-	color: #00BAFF;
+	color: #F8BD00;
 }
 
 .latest-mag-text{
-	color: #00BAFF;
+color: #F8BD00;
 	font-size: 12px;
 	margin-bottom: 7px;
 }
@@ -124,7 +124,7 @@ margin-bottom: 2px;
 	font-size: 12px;
 	position: absolute;
 	bottom: 25px;
-	color: #00BAFF;
+	color: #F8BD00;
 }
 
 .key-eq{
@@ -144,6 +144,41 @@ position: absolute;
 bottom: 0;
 }
 
+.info-button-latest {
+cursor: pointer;
+float: left;
+background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 50px auto;
+height: 22px;
+width: 22px;
+text-indent: -9999px;
+position: absolute;
+bottom: 4px;
+right: 10px;
+}
+.info-button-latest:hover{
+background-position: -28px -0.5px;
+}
+
+#info-text-latest{
+  /*display: none;*/
+  width: 210px;
+  height: auto;
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left:0px;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#info-text-latest p{
+  font-size: 12px;
+  padding: 10px;
+}
+
+
 
 .block-map{
 background-color: #2A2A2A;
@@ -160,7 +195,7 @@ margin: 10px;
 }
 
 .prime-info-text-middle{
-	color: #fff;
+	color: #00BAFF;
 font-size: 90px;
 text-align: center;
 line-height: 230px;
