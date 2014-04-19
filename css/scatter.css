@@ -28,14 +28,21 @@
 }
 
 .b-buttons h1{
-	float: left;
-	cursor: pointer;
-	margin: 5px;
-	padding: 5px;
-	background-color: white;
+float: left;
+	background-color: #2E5879;
+cursor: pointer;
+padding: 5px;
+height: 26px;
+border-right: 1px solid #2A2A2A;
+width: 70px;
+text-align: center;
+line-height: 25px;
+color: white;
+font-size: 13px;
+font-weight: bold;
 }
 
 #mag1{
-	background-color: #2E5879;
-	color: white;
+	background-color: #F8BD00;
+	color: #2A2A2A;
 }

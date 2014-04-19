@@ -20,7 +20,7 @@ var scatterVisualisation = function(data){
 
 	//used to checked which button has been clicked. Used in on click function 
 	var previous,
-	buttonHighlight = '#2E5879';
+	buttonHighlight = '#F8BD00';
 
 	var svg = d3.select("#viz-b").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -189,11 +189,11 @@ var scatterVisualisation = function(data){
    		$('.b-button').on('click', function(){
    			var picked = this.id;
    			if(picked != previous){
-   				$('#mag1, #mag4, #mag5').css('background-color', 'white')
-   				.css('color', 'black');
+   				$('#mag1, #mag4, #mag5').css('background-color', '#2E5879')
+   				.css('color', 'white');
 
    				$(this).css('background-color', buttonHighlight)
-   				.css('color', 'white');
+   				.css('color', '#2A2A2A');
 
    				if(picked === "mag1"){
    					minRadius = 1;
