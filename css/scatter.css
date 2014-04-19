@@ -1,11 +1,13 @@
 #viz-b{
-	background: white;
+	/*background: white;*/
 	position: relative;
+	fill: white;
 }
+
 .axis path,
 .axis line {
 	fill: none;
-	stroke: black;
+	stroke: white;
 	shape-rendering: crispEdges;
 }
 
@@ -13,6 +15,7 @@
 	font-family: arial;
 	font-size: 10px;
 	font-weight: normal;
+	fill: white;
 }
 
 .label{
@@ -20,6 +23,8 @@
 }
 .b-buttons{
 	width: 100%;
+	background-color: #2A2A2A;
+	height: 36px;
 }
 
 .b-buttons h1{

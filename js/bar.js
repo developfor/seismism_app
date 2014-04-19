@@ -25,7 +25,7 @@ var barVisualisation = function(data){
 	};
 
 	//variables for postion and sizes
-	var margin = {top:15, right:0, bottom: 50, left:30},
+	var margin = {top:15, right:0, bottom: 50, left:35},
 	width = 220 - margin.right - margin.left,
 	height = 340 - margin.top - margin.bottom,
 	padding = 10;

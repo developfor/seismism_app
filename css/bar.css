@@ -1,8 +1,13 @@
 .graph-bar{
-	fill: steelblue;
+	/*fill: steelblue;*/
+  fill: #4FC9C9;
   cursor: pointer;
+
 }
 
+.block-graph{
+  background-color: #474747;
+}
 
 #slides{
   width: 146px;

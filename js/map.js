@@ -12,7 +12,7 @@ var mapVisualisation = function(data){
 	height = 300 - margin.top - margin.bottom;
 
 	var projection = d3.geo.mercator()
-	.scale(75)
+	.scale(77)
 	.rotate([210, 0])
 	.translate([width / 2, height / 2]);
 
@@ -271,6 +271,6 @@ var mapVisualisation = function(data){
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
-    $("#quake-table").niceScroll({horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
+    $("#quake-table").niceScroll({autohidemode:false, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
 
 };

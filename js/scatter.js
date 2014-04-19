@@ -1,6 +1,6 @@
 var scatterVisualisation = function(data){
 	//variables for postion and sizes
-	var margin = {top:5, right:5, bottom: 5, left:5},
+	var margin = {top:5, right:5, bottom: 5, left:15},
 	width = 500 - margin.right - margin.left,
 	height = 190 - margin.top - margin.bottom,
 	padding = 40,
@@ -62,7 +62,7 @@ var scatterVisualisation = function(data){
 	function colorScales(data){
 		return d3.scale.linear()
 			.domain([d3.min(data, function(d) { return +d.mag; }), d3.max(data, function(d) { return +d.mag; })])
-			.range(["red", "orange"]);
+			.range(["green", "yellow"]);
 	}
 
 	function xAxes(data){
@@ -115,8 +115,8 @@ var scatterVisualisation = function(data){
 
 		svg.append("text")
 			.attr("class", "label")
-			.attr("y", 0)
-			.attr("x", -150)
+			.attr("y", -5)
+			.attr("x", -140)
 			.attr("dy", ".85em")
 			.attr("transform", "rotate(-90)")
 			.text("depth of focus (km)");
@@ -146,7 +146,7 @@ var scatterVisualisation = function(data){
 				.style("opacity", "0")
 				.attr("r", "0");
 
-			circle.style("fill", "#ff5500")
+			circle.style("fill", "green")
 				.transition()
 				.duration(1000)
 				.attr("cx", function(d) {
@@ -159,7 +159,8 @@ var scatterVisualisation = function(data){
 					return rScale(d.mag);
 				})
 				.style("fill", function(d) { return colorScale(d.mag); })
-				.style("opacity", "0.5");
+				// opacity of dots
+				.style("opacity", "0.8");
 
 			circle.exit()
 				.transition()

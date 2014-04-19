@@ -26,7 +26,7 @@ html, body{
 
 .title {
 margin-top: 0px;
-background-color: #2E5879;
+background-color: #474747;
 height: 50px;
 color: #FFF;
 }
@@ -56,7 +56,7 @@ display: inline;
 float: left;
 }
 .block-a{
-background-color: #2E5879;
+background-color: #474747;
 width: 230px;
 height: 230px;
 margin-top: 13.2px;
@@ -68,7 +68,7 @@ position: relative;
 }
 
 .block-b{
-background: #008B16;
+background: #474747;
 width: 473px;
 height: 230px;
 margin-top: 13.2px;
@@ -88,7 +88,7 @@ float: left;
 }
 
 .block-lastest-quake{
-background: #FFA573;
+background: #474747;
 width: 230px;
 height: 165px;
 margin-top: 13.2px;
@@ -114,19 +114,19 @@ margin-bottom: 2px;
 #latest-mag-eq{
 	font-size: 50px;
 	font-weight: bold;
-	color: #5E3724;
+	color: #00BAFF;
 }
 
 .latest-mag-text{
-		color: #5E3724;
-font-size: 12px;
+	color: #00BAFF;
+	font-size: 12px;
 	margin-bottom: 7px;
 }
 .latest-mag-text-mag{
 	font-size: 12px;
 	position: absolute;
 	bottom: 25px;
-	color: #5E3724;
+	color: #00BAFF;
 }
 
 .key-eq{
@@ -135,7 +135,7 @@ font-size: 12px;
 
 .latest-detail-info-text{
 color: #FFF;
-background-color: #5E3724;
+background-color: #2A2A2A;
 font-size: 10px;
 padding-left: 10px;
 height: 30px;
@@ -148,7 +148,7 @@ bottom: 0;
 
 
 .block-map{
-background: #FFC0CB;
+background-color: #2A2A2A;
 width: 716px;
 height: 335px;
 clear: both;
@@ -181,7 +181,7 @@ left: 20px;
 
 .detail-info-text-block-a{
 color: #FFF;
-background-color: #1B3344;
+background-color: #2A2A2A;
 font-size: 10px;
 padding-left: 10px;
 height: 50px;
