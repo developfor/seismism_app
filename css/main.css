@@ -161,7 +161,7 @@ background-position: -28px -0.5px;
 }
 
 #info-text-latest{
-  /*display: none;*/
+  display: none;
   width: 210px;
   height: auto;
   margin-left: 10px;
