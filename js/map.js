@@ -260,9 +260,9 @@ var mapVisualisation = function(data){
 						.attr("cx", cx)
 						.attr("cy", cy)
 						.style('fill', 'rgba(248, 189, 0, 0.5)')
-						.style('stroke-width', '1.5')
-						.style('stroke', 'red')
-						.attr('r', "10");
+						.style('stroke-width', '2')
+						.style('stroke', 'yellow')
+						.attr('r', "20");
 		}).on('mouseout', function(){
 					// $(this).css('background', 'transparent');
 					temp.remove();
@@ -271,6 +271,6 @@ var mapVisualisation = function(data){
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
-    $("#quake-table").niceScroll({autohidemode:false,cursorwidth:"8px",cursorborderradius:"0px", cursorfixedheight: 70, railpadding:{top:0,right:1,left:0,bottom:0}, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
+    // $("#quake-table").niceScroll({autohidemode:false,cursorwidth:"8px",cursorborderradius:"0px", cursorfixedheight: 70, railpadding:{top:0,right:1,left:0,bottom:0}, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10",boxzoom:true});
 
 };

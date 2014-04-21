@@ -1,15 +1,17 @@
 .graph-bar{
   fill: #00BAFF;
   cursor: pointer;
-    -webkit-transition: fill 0.4s; /* For Safari 3.1 to 6.0 */
-  transition: fill 0.4s;
+   /*-webkit-transition: fill 0.4s; */
+  /*transition: fill 0.4s;*/
 }
 
+/*
 .graph-bar:hover{
   fill: #4682B4;
-  -webkit-transition: fill 0.4s; /* For Safari 3.1 to 6.0 */
+  -webkit-transition: fill 0.4s; 
   transition: fill 0.4s;
 }
+*/
 
 .block-graph{
   background-color: #474747;

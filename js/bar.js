@@ -128,7 +128,7 @@ var barVisualisation = function(data){
 
 			d3.selectAll("rect")
 			.on("mouseover", function(d) {
-
+				$(this).css("fill", "#4682B4");
 	            //Update the tooltip position and value
 	            d3.select("#tooltip")        
 	            	.select("#value")
@@ -142,6 +142,7 @@ var barVisualisation = function(data){
 		        })
 			.on("mouseout", function() {
 	            //Hide the tooltip
+	            $(this).css("fill", "#00BAFF");
 	            d3.select("#tooltip").classed("hidden", true);
 		    });
 
