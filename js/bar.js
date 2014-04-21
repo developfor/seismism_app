@@ -43,7 +43,8 @@ var barVisualisation = function(data){
 	var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom")
-	.ticks(6);
+	.ticks(6)
+	.tickSize(6, 0);
 
 	var yAxis = d3.svg.axis()
 	.scale(y)

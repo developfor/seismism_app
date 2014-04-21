@@ -8,7 +8,7 @@ var scatterVisualisation = function(data){
 	minRadius = 1,
 	maxRadius = 7,
 	yMultiply = 0.3
-	xAxisStart = 1;
+	xAxisStart = 0.1;
 
 	//variables for data
 	var mag1 = [],
@@ -69,7 +69,9 @@ var scatterVisualisation = function(data){
 		return d3.svg.axis()
 			.scale(xScales(data))
 			.orient("bottom")
-			.ticks(9);
+			.tickSize(8, 0);
+
+
 	}
 
 	function yAxes(data){
@@ -127,6 +129,8 @@ var scatterVisualisation = function(data){
 			.attr("y", height - 3)
 			.text("earthquake magitude");
 
+
+
 		//this function visualises the initial data and all updates
 		//including updating the axis.
 		var graphUpdate = function(data){
@@ -162,6 +166,9 @@ var scatterVisualisation = function(data){
 				// opacity of dots
 				.style("opacity", "0.8");
 
+
+
+
 			circle.exit()
 				.transition()
 				.duration(1000)
@@ -179,6 +186,8 @@ var scatterVisualisation = function(data){
 				.transition()
 				.duration(1000)
 				.call(yAxis);
+
+
    		};//END OF GRAPHUPDATE
 
    		//call graphUpdate on initial update call
@@ -198,18 +207,18 @@ var scatterVisualisation = function(data){
    				if(picked === "mag1"){
    					minRadius = 1;
    					maxRadius = 7;
-   					xAxisStart = 1;
+   					xAxisStart = 0.1;
    					graphUpdate(mag1);
 
    				}else if(picked === "mag4"){
    					minRadius = 2;
    					maxRadius = 8;
-   					xAxisStart = 0.5;
+   					xAxisStart = 0.1;
    					graphUpdate(mag4);
    				}else if(picked=== "mag5"){
    					minRadius = 4;
    					maxRadius = 12;
-   					xAxisStart = 0.5;
+   					xAxisStart = 0.2;
    					graphUpdate(mag5);
    				}
    			}
