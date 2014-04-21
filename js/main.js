@@ -24,6 +24,10 @@
 				barVisualisation(dataset);
 				mapVisualisation(dataset);
 
+
+
+
+
 				// Time of the last entry in the csv.
 				var lastEntry = dataset.slice(-1).pop().time
 				$("#total-eq-since").append(moment(lastEntry).format("MMM DD, YYYY @ h:mm A"));

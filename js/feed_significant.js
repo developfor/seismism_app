@@ -28,13 +28,34 @@ $.ajax({
     	// console.log(time_eq);
     	// console.log(data.features[0].properties.felt);
     	 // console.log(data);
+         var toggle = 0;
 
            var infoTest = function(){
-            $('.info-button-latest').on('mouseover', function(){
+            $('.info-button-latest').on('click', function(){
+                if(toggle === 0){
                 $('#info-text-latest').show();
-            }).on('mouseout', function(){
+                toggle = 1;
+            } else if(toggle === 1){
                 $('#info-text-latest').hide();
+                toggle = 0;
+            }
+            // }).on('mouseout', function(){
+            //     $('#info-text-latest').hide();
             });
+
+
+           
+
+                
+                // $('body').on('click', function(){
+                //    if (toggle === 1){ 
+                //     $('#info-text-latest').hide();
+                //     toggle = 0;
+                //    }
+                // });
+
+    
+            
         }
             infoTest();
 

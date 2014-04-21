@@ -51,25 +51,26 @@
 			</div>	
 
 			<div class ="block-map">
-				<div id = "viz-map"></div>
+				<div class ="map-button-box">
+					<div id = "viz-map"></div>
 
-				<div id = "quake-table"></div>
+					<div id = "date-buttons">
+						<ul class="button-group even-3">
+							<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
+							<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
+							<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
+						<ul>
+					</div>
 
-				<div id = "date-buttons">
-					<ul class="button-group even-3">
-						<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
-						<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
-						<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
-					<ul>
+					<div id = "mag-buttons">
+						<ul class="button-group even-3">
+							<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
+							<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
+							<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
+						</ul>
+					</div>
 				</div>
-
-				<div id = "mag-buttons">
-					<ul class="button-group even-3">
-						<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
-						<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
-						<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
-					</ul>
-				</div>
+			<div id = "quake-table"></div>
 
 			</div>
 		</div> <!-- END OF block-wrapper -->

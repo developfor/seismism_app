@@ -8,8 +8,8 @@ var mapVisualisation = function(data){
 	var magMax = d3.max(data, function(d){ return d.mag; });
 
 	var margin = {top: 0, left: 0, bottom: 0, right: 0},
-	width = 480 - margin.left - margin.right,
-	height = 300 - margin.top - margin.bottom;
+	width = 481 - margin.left - margin.right,
+	height = 275 - margin.top - margin.bottom;
 
 	var projection = d3.geo.mercator()
 	.scale(77)
@@ -259,10 +259,10 @@ var mapVisualisation = function(data){
 						.append('circle')
 						.attr("cx", cx)
 						.attr("cy", cy)
-						.style('fill', 'rgba(10, 150, 20, 0.5)')
+						.style('fill', 'rgba(248, 189, 0, 0.5)')
 						.style('stroke-width', '1.5')
 						.style('stroke', 'red')
-						.attr('r', "20");
+						.attr('r', "10");
 		}).on('mouseout', function(){
 					// $(this).css('background', 'transparent');
 					temp.remove();
@@ -271,6 +271,6 @@ var mapVisualisation = function(data){
 	}
 
 	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
-    $("#quake-table").niceScroll({autohidemode:false, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
+    $("#quake-table").niceScroll({autohidemode:false,cursorwidth:"8px",cursorborderradius:"0px", cursorfixedheight: 70, railpadding:{top:0,right:1,left:0,bottom:0}, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10"});
 
 };
