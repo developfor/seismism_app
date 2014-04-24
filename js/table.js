@@ -4,13 +4,21 @@ var tableVisualisation = function(data){
 		var dataset = [];
 		data.forEach(function(entry){	
 			var parsedTime = moment(entry.time).format("MMM DD, YYYY @ h:mma");
+			var country = entry.place.split(',')[1];
+			var location = entry.place.split(',')[0];
+			
+			if (country === undefined || location === undefined){
+				var thisPlace = entry.place;
+			} else{
+				var thisPlace = country + ", " + location;
+			}
 
 			var datum = {};
 			datum["time"] = parsedTime;
 			datum["latitude"] = entry.latitude;
 			datum["longitude"] = entry.longitude;
 			datum["mag"] = entry.mag;
-			datum["place"] = entry.place;
+			datum["place"] = thisPlace;
 			dataset.push(datum);
 		});
 		tableSort(dataset);
@@ -34,11 +42,13 @@ var tableVisualisation = function(data){
 			col = $('<td></td>').text(entry.mag);
 			row.append(col);
 
+			col = $('<td></td>').text(entry.place);
+			row.append(col);
+
 			col = $('<td></td>').text(entry.latitude + ", " + entry.longitude);
 			row.append(col);
 
-			col = $('<td></td>').text(entry.place);
-			row.append(col);
+
 
 			table.append(row);
 		})
@@ -47,8 +57,14 @@ var tableVisualisation = function(data){
 	};
 
 	var sort = function(qtable, sortParameter){
+
+
 		qtable.sort(function(a, b) {
-			return d3.descending(a[sortParameter], b[sortParameter]);
+			if(sortParameter === 'place'){
+				return d3.ascending(a[sortParameter], b[sortParameter]);
+			} else {
+				return d3.descending(a[sortParameter], b[sortParameter]);
+			}
 		});
 	};
 

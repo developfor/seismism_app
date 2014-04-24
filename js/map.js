@@ -39,10 +39,6 @@ var mapVisualisation = function(data){
 		if (error){
 			console.log("error loading map json: " + error);
 		} else {
-
-					
-	
-
 			svg.selectAll("path")
 			.data(topojson.object(topology, topology.objects.countries)
 				.geometries)
