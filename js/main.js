@@ -1,7 +1,7 @@
 (function(window, document, undefined){
 	var dataVisualisation = function(){
 
-		d3.csv("data/all_week.json", function(error, data){
+		d3.csv("data/all_week.csv", function(error, data){
 			if(error){
 				console.log("there is an error " + error);
 			} else {
@@ -23,10 +23,7 @@
 				totalEarthquakes(dataset.length);
 				barVisualisation(dataset);
 				mapVisualisation(dataset);
-
-
-
-
+				tableVisualisation(dataset);
 
 				// Time of the last entry in the csv.
 				var lastEntry = dataset.slice(-1).pop().time

@@ -41,7 +41,7 @@ var mapVisualisation = function(data){
 		} else {
 
 			//START OF TSV 
-			d3.csv("data/all_week.php", function(error, data) {
+			d3.csv("data/all_week.csv", function(error, data) {
 
 				if (error) { 
 					console.log("there is an error " + error); 

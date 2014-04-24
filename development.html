@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/ui.css">
 	<link rel="stylesheet" type="text/css" href="css/bar.css">
 	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<link rel="stylesheet" type="text/css" href="css/table.css">
+	<link rel="stylesheet" type="text/css" href="css/scroll.css">
 
 	<title>seismism - The Earthquake Monitor Dashboard</title>
 
@@ -157,6 +159,23 @@
 			</div>  <!-- END OF info-text -->
 
 		</div> <!-- END OF block-graph -->
+
+		<div id = "block-table">
+			<div id = "main-table">
+				<div id = "table-head">
+					<table>
+						<tr>
+							<th>Time</th>
+							<th>Magnitude</th>
+							<th>Place</th>
+						</tr>
+					</table>
+				</div>
+				<div class = 'scroll-pane'>
+					<div id = "table-body"></div>     
+				</div>
+			</div>
+		</div>
 	</div> <!-- END OF wrapper -->
 
 	<script src = "js/vendor/d3.v3.min.js"></script>
@@ -167,6 +186,9 @@
 	<script src = "js/vendor/moment.min.js"></script>
 
 	<script src = "js/vendor/jquery.nicescroll.js"></script>
+	<script type="text/javascript" src="js/vendor/mousewheel.js"></script>
+	<script type="text/javascript" src="js/vendor/wheelintent.js"></script>
+	<script type="text/javascript" src="js/vendor/scroll-pane.js"></script>
 
 	<script src = "js/plug.js"></script>
 	<script src = "js/bar.js"></script>
@@ -175,6 +197,7 @@
 	<script src = "js/map.js"></script>
 	<script src = "js/main.js"></script>
 	<script src = "js/feed_significant.js"></script>
+	<script src = "js/table.js"></script>
 
 </body>
 
