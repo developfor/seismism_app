@@ -40,32 +40,8 @@ var mapVisualisation = function(data){
 			console.log("error loading map json: " + error);
 		} else {
 
-			//START OF TSV 
-			d3.csv("data/all_week.csv", function(error, data) {
-
-				if (error) { 
-					console.log("there is an error " + error); 
-				} 
-				else {
-
-					var mapData = [];
-
-					data.forEach(function(entry){
-						var mapQuake = {};
-						mapQuake["latitude"] = entry.latitude;
-						mapQuake["longitude"] = entry.longitude;
-						mapQuake["mag"] = entry.mag;
-						mapQuake["id"] = entry.id;
-						mapQuake["time"] = entry.time;
-						mapQuake['place'] = entry.place;
-						mapData.push(mapQuake);
-					});
-
-					map(mapData);
-					clicking(mapData);
+					
 	
-			    } //END OF DATA ERROR ELSE
-			});  //END OF CSV
 
 			svg.selectAll("path")
 			.data(topojson.object(topology, topology.objects.countries)
@@ -74,6 +50,9 @@ var mapVisualisation = function(data){
 			.append("path")
 			.attr("d", path)
 			.attr("id", "map-path");
+
+			map(data);
+			clicking(data);
 		}//END OF MAP ELSE ERROR
 	});  //END OF MAP
 

@@ -1,83 +1,80 @@
 var tableVisualisation = function(data){
 
-	var makeTable = function(data){
+	var init = function(data){
+		var dataset = [];
+		data.forEach(function(entry){	
+			var parsedTime = moment(entry.time).format("MMM DD, YYYY @ h:mma");
 
-		  var cTable = $('#table-body');
-
-  $(cTable).empty()
-
-  var table = $('<table></table>');
-
-  data.forEach(function(entry){
-    var row = $('<tr></tr>');
-
-    var col = $('<td></td>').text(moment(entry.time).format("MMM DD, YYYY @ h:mma"));
-      row.append(col);
-
-      col = $('<td></td>').text(entry.mag);
-      row.append(col);
-
-      col = $('<td></td>').text(entry.place);
-      row.append(col);
-
-    table.append(row);
-
-})
-
-cTable.append(table);
-
-
-
-
-		// var cTable = $('#block-quake-table');
-
-		// $(cTable).empty()
-
-		// var table = $('<table></table>');
-
-		// var row = $('<tr></tr>');
-
-		// var col = $('<th></th>').text(headings[0]);
-		// row.append(col);
-
-		// var col = $('<th></th>').text(headings[1]);
-		// row.append(col);
-
-		// var col = $('<th></th>').text(headings[2]);
-		// row.append(col);
-
-		// table.append(row);
-
-		// data.forEach(function(entry){
-
-		// 	var row = $('<tr></tr>');
-		// 	var col = $('<td></td>').addClass('one').text(moment(entry.time).format("MMM DD, YYYY @ h:mma"));
-		// 	row.append(col);
-
-		// 	var col = $('<td></td>').addClass('one').text(entry.mag);
-		// 	row.append(col);
-
-		// 	col = $('<td></td>').addClass('two').text(entry.place);
-		// 	row.append(col);
-
-
-
-		// 	table.append(row);
-
-		// });
-
-		// cTable.append(table);
-
-
-		//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
-    // $("#block-quake-table").niceScroll({autohidemode:false,cursorwidth:"8px",cursorborderradius:"0px", cursorfixedheight: 70, railpadding:{top:0,right:1,left:0,bottom:0}, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10",boxzoom:true});
-
-
-		
-
+			var datum = {};
+			datum["time"] = parsedTime;
+			datum["latitude"] = entry.latitude;
+			datum["longitude"] = entry.longitude;
+			datum["mag"] = entry.mag;
+			datum["place"] = entry.place;
+			dataset.push(datum);
+		});
+		tableSort(dataset);
+		makeTable(dataset);
 	};
 
+	var makeTable = function(data){
 
-	makeTable(data)
-	
+		var cTable = $('#table-body');
+
+		$(cTable).empty()
+
+		var table = $('<table></table>');
+
+		data.forEach(function(entry){
+			var row = $('<tr></tr>');
+
+			var col = $('<td></td>').text(entry.time);
+			row.append(col);
+
+			col = $('<td></td>').text(entry.mag);
+			row.append(col);
+
+			col = $('<td></td>').text(entry.latitude + ", " + entry.longitude);
+			row.append(col);
+
+			col = $('<td></td>').text(entry.place);
+			row.append(col);
+
+			table.append(row);
+		})
+
+		cTable.append(table);
+	};
+
+	var sort = function(qtable, sortParameter){
+		qtable.sort(function(a, b) {
+			return d3.descending(a[sortParameter], b[sortParameter]);
+		});
+	};
+
+	var tableSort = function(data){
+
+		// var current = 'table-time'; table-mag
+
+		var previous = 'table-time';
+
+		$('.table-sort').on('click', function(){
+			var current = this.id;
+			if(current != previous){
+				$('.table-sort').css('background-color', '#474747');
+				$('#' + this.id).css('background-color', '#2E5879');
+			
+				var sortBy = $(this).attr('id').split('-')[1];
+
+				sort(data, sortBy);
+				makeTable(data);
+
+				previous = current;
+			}
+
+		});
+	}
+
+	init(data);
+
 };
