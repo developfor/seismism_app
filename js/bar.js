@@ -25,7 +25,7 @@ var barVisualisation = function(data){
 	};
 
 	//variables for postion and sizes
-	var margin = {top:15, right:0, bottom: 50, left:35},
+	var margin = {top:15, right:0, bottom: 50, left:55},
 	width = 220 - margin.right - margin.left,
 	height = 330 - margin.top - margin.bottom,
 	padding = 10;
@@ -83,7 +83,7 @@ var barVisualisation = function(data){
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 6)
+		.attr("y", -40)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.attr("background-color", "pink")

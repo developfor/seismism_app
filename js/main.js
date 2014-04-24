@@ -1,7 +1,7 @@
 (function(window, document, undefined){
 	var dataVisualisation = function(){
 
-		d3.csv("data/all_week.csv", function(error, data){
+		d3.csv("data/all_week.json", function(error, data){
 			if(error){
 				console.log("there is an error " + error);
 			} else {
