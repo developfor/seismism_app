@@ -12,7 +12,6 @@ var tableVisualisation = function(data){
 			} else{
 				var thisPlace = country + ", " + location;
 			}
-
 			var datum = {};
 			datum["time"] = parsedTime;
 			datum["latitude"] = entry.latitude;
@@ -48,30 +47,30 @@ var tableVisualisation = function(data){
 			col = $('<td></td>').text(entry.latitude + ", " + entry.longitude);
 			row.append(col);
 
-
-
 			table.append(row);
 		})
 
 		cTable.append(table);
 	};
 
+	// var sort = function(qtable, sortParameter){
+	// 	qtable.sort(function(a, b) {
+	// 		if(sortParameter === 'place'){
+	// 			return d3.ascending(a[sortParameter], b[sortParameter]);
+	// 		} else {
+	// 			return d3.descending(a[sortParameter], b[sortParameter]);
+	// 		}
+	// 	});
+	// };
+
 	var sort = function(qtable, sortParameter){
-
-
 		qtable.sort(function(a, b) {
-			if(sortParameter === 'place'){
-				return d3.ascending(a[sortParameter], b[sortParameter]);
-			} else {
-				return d3.descending(a[sortParameter], b[sortParameter]);
-			}
+			
+				return d3.descending(b[sortParameter], a[sortParameter] );
 		});
 	};
 
 	var tableSort = function(data){
-
-		// var current = 'table-time'; table-mag
-
 		var previous = 'table-time';
 
 		$('.table-sort').on('click', function(){
@@ -90,7 +89,5 @@ var tableVisualisation = function(data){
 
 		});
 	}
-
 	init(data);
-
 };

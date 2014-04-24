@@ -7,7 +7,7 @@
 			} else {
 				var dataset = [];
 				data.forEach(function(entry){
-					if(entry.mag >= 0  && entry.type === "earthquake"){
+					if(entry.mag > 0  && entry.type === "earthquake"){
 						var datum = {};
 						datum["time"] = entry["time"];
 						datum["latitude"] = entry.latitude;

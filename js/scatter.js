@@ -8,7 +8,7 @@ var scatterVisualisation = function(data){
 	minRadius = 1,
 	maxRadius = 7,
 	yMultiply = 0.3
-	xAxisStart = 0.1;
+	xAxisStart = 0.5;
 
 	//variables for data
 	var mag1 = [],
@@ -65,7 +65,8 @@ var scatterVisualisation = function(data){
 		return d3.svg.axis()
 			.scale(xScales(data))
 			.orient("bottom")
-			.tickSize(8, 0);
+			.ticks(7)
+			.tickSize(8, 1);
 
 
 	}
@@ -210,7 +211,7 @@ var scatterVisualisation = function(data){
    				}else if(picked === "mag4"){
    					minRadius = 2;
    					maxRadius = 8;
-   					xAxisStart = 0.1;
+   					xAxisStart = 0.2;
    					graphUpdate(mag4);
    				}else if(picked=== "mag5"){
    					minRadius = 4;
