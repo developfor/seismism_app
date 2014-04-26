@@ -1,5 +1,8 @@
 var tableVisualisation = function(data){
 
+	var canAnimate = 1;
+	
+
 	var init = function(data){
 		var dataset = [];
 		data.forEach(function(entry){	
@@ -26,67 +29,90 @@ var tableVisualisation = function(data){
 
 	var makeTable = function(data){
 
+		console.time("Array initialize");
 		var cTable = $('#table-body');
 
 		$(cTable).empty()
 
-		var table = $('<table></table>');
+		var table = '<table>'
 
 		data.forEach(function(entry){
-			var row = $('<tr></tr>');
+			var row = '<tr>' ;
+        
+        // create a new Label Text
+            row += '<td>' + entry.time  + '</td>';
+            row += '<td>' + entry.mag + '</td>';  
+            row += '<td>' + entry.place + '</td>';  
+            row += '<td>' + entry.latitude + ", " + entry.longitude + '</td>';  
+    	row +='</tr>';
+    	table += row;
 
-			var col = $('<td></td>').text(entry.time);
-			row.append(col);
+    });
+		table += '</table>'
 
-			col = $('<td></td>').text(entry.mag);
-			row.append(col);
+		// data.forEach(function(entry){
+		// 	var row = $('<tr></tr>');
 
-			col = $('<td></td>').text(entry.place);
-			row.append(col);
+		// 	var col = $('<td></td>').text(entry.time);
+		// 	row.append(col);
 
-			col = $('<td></td>').text(entry.latitude + ", " + entry.longitude);
-			row.append(col);
+		// 	col = $('<td></td>').text(entry.mag);
+		// 	row.append(col);
 
-			table.append(row);
-		})
+		// 	col = $('<td></td>').text(entry.place);
+		// 	row.append(col);
+
+		// 	col = $('<td></td>').text(entry.latitude + ", " + entry.longitude);
+		// 	row.append(col);
+
+		// 	table.append(row);
+		// })
 
 		cTable.append(table);
+		canAnimate = 1;
+		console.timeEnd("Array initialize");
 	};
 
-	// var sort = function(qtable, sortParameter){
-	// 	qtable.sort(function(a, b) {
-	// 		if(sortParameter === 'place'){
-	// 			return d3.ascending(a[sortParameter], b[sortParameter]);
-	// 		} else {
-	// 			return d3.descending(a[sortParameter], b[sortParameter]);
-	// 		}
-	// 	});
-	// };
-
-	var sort = function(qtable, sortParameter){
-		qtable.sort(function(a, b) {
-			
-				return d3.descending(b[sortParameter], a[sortParameter] );
+	var sort = function(qtable, sortParameter, direction){
+		qtable.sort(function(a, b) {			
+				return d3[direction](a[sortParameter], b[sortParameter]);
 		});
+
+	
 	};
 
 	var tableSort = function(data){
-		var previous = 'table-time';
+		var previous = 'table-time',
+		whichDirection = "descending",
+		directionArray = ["descending", "ascending"],
+		directionSwitch = 0;
+		
+
 
 		$('.table-sort').on('click', function(){
-			var current = this.id;
-			if(current != previous){
-				$('.table-sort').css('background-color', '#474747');
-				$('#' + this.id).css('background-color', '#2E5879');
-			
+
+			if (canAnimate === 1){
+				canAnimate = 0;
+				var current = this.id;
 				var sortBy = $(this).attr('id').split('-')[1];
+				if(current != previous){
+					$('.table-sort').css('background-color', '#474747');
+					$('#' + this.id).css('background-color', '#2E5879');
+					sort(data, sortBy, whichDirection);
+					makeTable(data);
+					previous = current;
+					// canAnimate = 1;
 
-				sort(data, sortBy);
-				makeTable(data);
+				} else{
+					directionSwitch = 1 - directionSwitch;
+					whichDirection = directionArray[directionSwitch];
+					sort(data, sortBy, whichDirection);
+					makeTable(data);
+					// canAnimate = 1;
 
-				previous = current;
+				}
 			}
-
+			
 		});
 	}
 	init(data);
