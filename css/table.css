@@ -25,14 +25,11 @@
     font-size: 12px;
     color:black;
 }
-#datatable-wrapper tr:nth-child(2n)
+#datatable-wrapper.table tr:nth-child(2n)
 {
     background-color: #E0E0E0;
 }
-#datatable-wrapper tr:hover
-{
-    background-color: #F8BD00;
-}
+
 #datatable-wrapper td, #datatable-wrapper th
 {
     text-align: center;
