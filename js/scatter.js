@@ -8,7 +8,7 @@ var scatterVisualisation = function(data){
 	minRadius = 1,
 	maxRadius = 7,
 	yMultiply = 0.3
-	xAxisStart = 0.5;
+	xAxisStart = 0.1;
 
 	//variables for data
 	var mag1 = [],
@@ -19,7 +19,7 @@ var scatterVisualisation = function(data){
 	data5 = 5.5;
 
 	//used to checked which button has been clicked. Used in on click function 
-	var previous,
+	var previous = "mag1",
 	buttonHighlight = '#F8BD00';
 
 	var svg = d3.select("#viz-b").append("svg")
