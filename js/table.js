@@ -24,9 +24,39 @@ var tableVisualisation = function(data){
 		makeTable(dataset);
 	};
 
+	var makeTableCircles = function(data){
+		
+		var width = 50,
+		height = 50
+		scaleRangeMin = 2,
+		scaleRangeMax = 16;
+
+		var mags = function(d) {return d.mag; },
+        d3Min = d3.min(data, mags),
+        d3Max = d3.max(data, mags);
+
+		var radius = d3.scale.pow()
+					.exponent(1).domain([d3Min, d3Max])
+					.range([2, 16]);
+
+		var color = d3.scale.linear()
+    			.domain([d3Min, d3Max])
+    			.range(["#008000", "#FFF700"]);
+
+		var svg = d3.selectAll(".circle-table")
+		.data(data)
+		.append("svg:svg")
+		.attr('width', width)
+		.attr('height', height);
+
+		svg.append("circle")
+		.attr("r", function(d){return radius(d.mag);})
+		.attr("cx", width/2)
+		.attr("cy", height/2)
+		.attr("fill", function(d){ return color(d.mag)});
+	};
+
 	var makeTable = function(data){
-
-
 
 		var cBody = $('#table-body-id');
 
@@ -42,64 +72,7 @@ var tableVisualisation = function(data){
 
 		});
 
-
-		var width = 50,
-		height = 50;
-
-
-		var svg = d3.selectAll(".circle-table")
-      .data(data)
-    .append("svg:svg")
-    .attr('width', width)
-          .attr('height', height);
-
-          svg.append("circle")
-          .attr("r", function(d){return d.mag * 3;})
-          .attr("cx", width/2)
-          .attr("cy", height/2)
-          .attr("fill", "green")
-
-
-
-       // var circile = svg.selectAll("circle")
-       // 		.data
-       //    .enter()
-       //    .append("circle")
-       //    .attr("r", "4")
-          
-
-   //        var circle = svg.selectAll("circle")
-
-
-			// circle.enter()
-			// 	.append("circle");
-			
-
-			// circle.style("fill", "green")
-			// 	.attr("r", "6");
-       
-
-
-
-		// 		var margin = {top:5, right:5, bottom: 5, left:5},
-		// 	width = 200 - margin.right - margin.left,
-		// 	height = 200 - margin.top - margin.bottom;
-
-		// var svg = d3.selectAll(".circle-table").append("svg")
-  //           .attr("width", width + margin.left + margin.right)
-  //           .attr("height", height + margin.top + margin.bottom)
-  //           .append("g")
-  //           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  //          var circle = svg.selectAll("circle")
-		// 		.data(data);
-
-		// 	circle.enter()
-		// 		.append("circle");
-			
-
-		// 	circle.style("fill", "green")
-		// 		.attr("r", "6");
+		makeTableCircles(data);
 
 		$('#table-id').dataTable({
 			"sScrollY": "220px",
@@ -108,8 +81,6 @@ var tableVisualisation = function(data){
 			"bFilter": false,
 			"bLengthChange": false
 		});
-
-
 	};
 
 	init(data);
