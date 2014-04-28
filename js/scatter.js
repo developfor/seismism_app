@@ -45,7 +45,7 @@ var scatterVisualisation = function(data){
 
 	function yScales(data){
 		return d3.scale.linear()
-			.domain([0, d3.max(data, function(d) { return +d.depth; })])
+			.domain([-16, d3.max(data, function(d) { return +d.depth; })])
 			.range([height - padding, padding * yMultiply]);
 	}
 
@@ -66,9 +66,7 @@ var scatterVisualisation = function(data){
 			.scale(xScales(data))
 			.orient("bottom")
 			.ticks(7)
-			.tickSize(8, 1);
-
-
+			.tickSize(8, 0);
 	}
 
 	function yAxes(data){
@@ -76,7 +74,7 @@ var scatterVisualisation = function(data){
 			.scale(yScales(data))
 			.orient("left")
 			.ticks(5)
-			.tickSize(8, 0);
+			.tickSize(5, 0);
 	}
 
 	//********END OF SCALING FUNCTIONS
@@ -102,6 +100,67 @@ var scatterVisualisation = function(data){
 
 	//update creates and updates the graph
 	var update = function(data){	
+
+		//this function visualises the initial data and all updates
+		//including updating the axis.
+		var graphUpdate = function(data){
+			//update the scales with the new data
+			xScale = xScales(data);
+			yScale = yScales(data);
+			rScale = rScales(data);
+			colorScale = colorScales(data);
+			xAxis = xAxes(data);
+			yAxis = yAxes(data);
+
+
+
+			var circle = svg.selectAll("circle")
+				.data(data);
+
+			circle.enter()
+				.append("circle")
+				.style("opacity", "0")
+				.attr("r", "0");
+
+			circle.style("fill", "green")
+				.transition()
+				.duration(1000)
+				.attr("cx", function(d) {
+					return xScale(d.mag);
+				})
+				.attr("cy", function(d) {
+					return yScale(d.depth);
+				})
+				.attr("r", function(d){
+					return rScale(d.mag);
+				})
+				.style("fill", function(d) { return colorScale(d.mag); })
+				// opacity of dots
+				.style("opacity", "0.8");
+
+			circle.exit()
+				.transition()
+				.duration(1000)
+				.attr("r", "0")
+				.style("opacity", "0")
+				.remove();
+
+			//updates the axis
+			svg.select(".x.axis")
+				.transition()
+				.duration(1000)
+				.call(xAxis);
+
+			svg.select(".y.axis")
+				.transition()
+				.duration(1000)
+				.call(yAxis);
+
+   		};//END OF GRAPHUPDATE
+
+   		//call graphUpdate on initial update call
+   		graphUpdate(data);
+
 		//*******THE AXIS these are called once these are the initial axis ********/
 		svg.append("g")
 			.attr("class", "x axis")
@@ -128,68 +187,6 @@ var scatterVisualisation = function(data){
 			.text("earthquake magitude");
 
 
-
-		//this function visualises the initial data and all updates
-		//including updating the axis.
-		var graphUpdate = function(data){
-			//update the scales with the new data
-			xScale = xScales(data);
-			yScale = yScales(data);
-			rScale = rScales(data);
-			colorScale = colorScales(data);
-			xAxis = xAxes(data);
-			yAxis = yAxes(data);
-
-			var circle = svg.selectAll("circle")
-				.data(data);
-
-			circle.enter()
-				.append("circle")
-				.style("opacity", "0")
-				.attr("r", "0");
-
-			circle.style("fill", "green")
-				.transition()
-				.duration(1000)
-				.attr("cx", function(d) {
-					return xScale(d.mag);
-				})
-				.attr("cy", function(d) {
-					return yScale(d.depth);
-				})
-				.attr("r", function(d){
-					return rScale(d.mag);
-				})
-				.style("fill", function(d) { return colorScale(d.mag); })
-				// opacity of dots
-				.style("opacity", "0.8");
-
-
-
-
-			circle.exit()
-				.transition()
-				.duration(1000)
-				.attr("r", "0")
-				.style("opacity", "0")
-				.remove();
-
-			//updates the axis
-			svg.select(".x.axis")
-				.transition()
-				.duration(1000)
-				.call(xAxis);
-
-			svg.select(".y.axis")
-				.transition()
-				.duration(1000)
-				.call(yAxis);
-
-
-   		};//END OF GRAPHUPDATE
-
-   		//call graphUpdate on initial update call
-   		graphUpdate(data);
    		//calls graphUpdate when buttons are clicked
    		//checks the id of the clicked DOM element and uses that
    		//to work out which array of data is passed to graphUpdate.
