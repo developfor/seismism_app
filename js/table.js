@@ -79,7 +79,8 @@ var tableVisualisation = function(data){
 			"sPaginationType": "full_numbers",
 			"iDisplayLength": 100,
 			"bFilter": false,
-			"bLengthChange": false
+			"bLengthChange": false,
+			"aaSorting": [[ 4, "desc" ]]
 		});
 	};
 
