@@ -52,7 +52,7 @@ var tableVisualisation = function(data){
 		//the range is two colors
 		var color = d3.scale.linear()
     			.domain([d3Min, d3Max])
-    			.range(["#008000", "#FFF700"]);
+    			.range(["#00BAFF", "#2B4051"]);
 
     	//selects the span in the magnitude column in datatable
     	//the data is attached to it and a width and height given
