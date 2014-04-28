@@ -63,31 +63,7 @@ var barVisualisation = function(data){
 		x.domain(magnitude.map(function(d) { return d.name; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
 
-		svg.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis)
-		.selectAll("text")
-		.style("text-anchor", "end")
-		.attr("dx", "-2em")
-		.attr("transform", function(d) {
-			return "translate(-10,5)rotate(-65)" 
-		})
-		.append("text")
-		.style("text-anchor", "start")
-		.attr("y", 28)
-		.text("earthquake magitude class");
 
-		svg.append("g")
-		.attr("class", "y axis")
-		.call(yAxis)
-		.append("text")
-		.attr("transform", "rotate(-90)")
-		.attr("y", -40)
-		.attr("dy", ".71em")
-		.style("text-anchor", "end")
-		.attr("background-color", "pink")
-		.text("Frequency of earthquakes");
 
 
 		var graphUpdate = function(){
@@ -234,6 +210,33 @@ var barVisualisation = function(data){
 		graphUpdate();
 		slide();
 		infoTest();
+
+		//The axis are added at the end so they are on top of the bars
+		svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("dx", "-2em")
+		.attr("transform", function(d) {
+			return "translate(-10,5)rotate(-65)" 
+		})
+		.append("text")
+		.style("text-anchor", "start")
+		.attr("y", 28)
+		.text("earthquake magitude class");
+
+		svg.append("g")
+		.attr("class", "y axis")
+		.call(yAxis)
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", -40)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.attr("background-color", "pink")
+		.text("Frequency of earthquakes");
 	}//END OF UPDATE FUNCTION
 
 
