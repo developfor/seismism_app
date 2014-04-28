@@ -1,4 +1,4 @@
-table
+#datatable-wrapper table
 {
     border: 0;
     padding: 0;
@@ -7,7 +7,7 @@ table
     width: 100%;
     background-color: white;
 }
-th
+#datatable-wrapper th
 {
     padding: 5px; 
     font-weight:bold;
@@ -18,44 +18,39 @@ th
     text-align: center;
     
 }
-td
+#datatable-wrapper td
 {
     padding: 5px;
     line-height: 18px;
     font-size: 12px;
     color:black;
 }
-tr:nth-child(2n)
+#datatable-wrapper tr:nth-child(2n)
 {
     background-color: #E0E0E0;
 }
-tr:hover
+#datatable-wrapper tr:hover
 {
     background-color: #F8BD00;
 }
-td, th
+#datatable-wrapper td, #datatable-wrapper th
 {
     text-align: center;
 }
-th:first-child, td:first-child
+#datatable-wrapper th:first-child, #datatable-wrapper td:first-child
 {
-	/*width: 20%;*/
 	border-right: 1px solid #777777;
   
 }
 
-td:first-child + td, th:first-child + th
+#datatable-wrapper td:first-child + td, #datatable-wrapper th:first-child + th
 {
-	/*width: 20%;*/
 	border-right: 1px solid #777777;
-  
 }
 
-td:first-child + td + td, th:first-child + th + th
+#datatable-wrapper td:first-child + td + td, #datatable-wrapper th:first-child + th + th
 {
-	/*width: 30%;*/
 	border-right: 1px solid #777777;
-  
 }
 
 
