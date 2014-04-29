@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/scatter.css">
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link rel="stylesheet" type="text/css" href="css/bar.css">
+	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<link rel="stylesheet" type="text/css" href="css/table.css">
+	<link rel="stylesheet" type="text/css" href="css/scroll.css">
+	<!-- for map begin -->
+	<link rel="stylesheet" type="text/css" href="js/vendor/leaflet/leaflet.css">
+	<!-- for map end -->
+
+	<title>seismism - The Earthquake Monitor Dashboard</title>
+
+</head>
+
+<body>
+
+	<div class="title">
+		<div class="wrapper-title">
+			<h1>seismism</h1> 
+			<p>The Earthquake Monitor Dashboard<p>
+		</div>
+	</div>
+
+	<div class ="wrapper">
+		<div class ="block-wrapper">	
+			<div class ="block-a">
+				<!-- <div class="info-text-top">
+					Total earthquakes in the past seven days:
+				</div>
+				
+				<div class="prime-info-text-middle"></div>
+					
+				<div class="detail-info-text-block-a">
+					<p id="total-eq-since-title">Total earthquakes since:</p> 
+					<p><span id="total-eq-since"> </span>
+						(UTC)</p>
+				</div> -->
+			</div>
+
+			<div class ="block-b">
+				<!-- <div id = "viz-b"></div>
+				<div class = "b-buttons">
+					<h1 class = 'b-button' id = "mag1">+0 mag</h1>
+					<h1 class = 'b-button' id = "mag4">+4.5 mag </h1>
+					<h1 class = 'b-button' id = "mag5">+5.5 mag </h1>
+				</div> -->
+			</div>	
+
+			<div class ="block-map">
+				<div class ="map-button-box">
+					<div id = "viz-map"></div>
+
+					<!-- <div id = "date-buttons">
+						<ul class="button-group even-3">
+							<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
+							<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
+							<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
+						<ul>
+					</div>
+
+					<div id = "mag-buttons">
+						<ul class="button-group even-3">
+							<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
+							<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
+							<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
+						</ul>
+					</div> -->
+				</div>
+			<!-- <div id = "quake-table"></div> -->
+
+			</div>
+		</div> <!-- END OF block-wrapper -->
+
+		<div class ="block-lastest-quake">
+			<div class="lastest-quake-wrapper">
+
+			<!-- 	<p class="latest-mag-text"><span class="key-eq">Location: </span><span id="latest-location-eq"> </span></p>
+				<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
+				<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
+				<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
+				<div id="info-text-latest">
+				
+					<p>Earthquake Magnitude Classes</p>
+
+					<p class = "source">source: UPSeis</p> 
+
+			</div> -->
+			 <!-- END OF info-text -->
+
+
+			</div>
+			<!-- <div class="latest-detail-info-text">
+				<p>The lastest significant earthquake.<p>
+			<div class="info-button-latest">i</div>
+			</div> -->
+
+
+		</div> <!-- END OF block-lastest-quake -->
+
+		<div class ="block-graph">
+			<!-- <div id = "viz-graph"></div>
+			<div id="tooltip" class="hidden">
+	        <p><strong>Number of <span id = "earthquake-type"></span> Earthquakes: </strong><span id="value"></span></p>
+	      </div> -->
+	    <div class="slider-area">      
+	<!-- 		<div id = "slides">
+				<p>Earthquakes in the last <span id = "amount">7</span><span id = "days"> days.</span></p>
+				<div id="slider-range-max"></div>
+			</div><div class = "info-button">i</div> -->
+
+			<div id="info-button"></div>
+		</div>
+			<div id="info-text">
+				
+					<p>Earthquake Magnitude Classes</p>
+
+					<table>
+						<thead>
+							<tr>
+								<th>Class</th>
+								<th>Magnitude</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Minor</td>
+								<td>3 - 3.9</td>
+							</tr>
+							<tr>
+								<td>Light</td>
+								<td>4 - 4.9</td>
+							</tr>
+							<tr>
+								<td>Moderate</td>
+								<td>5 - 5.9</td>
+							</tr>
+							<tr>
+								<td>Strong</td>
+								<td>6 - 6.9</td>
+							</tr>
+							<tr>
+								<td>Major</td>
+								<td>7 - 7.9</td>
+							</tr>
+							<tr>
+								<td>Great</td>
+								<td>8 or more</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class = "source">source: UPSeis</p>
+			</div>  <!-- END OF info-text -->
+
+		</div> <!-- END OF block-graph -->
+
+		<div id = "block-table">
+		<!-- 	<div id = "datatable-wrapper">
+
+					<table id = "table-id">
+						<thead>
+							<tr>
+								<th id = "table-time" class = "table-sort" >Time</th>
+								<th id = "table-mag" class = "table-sort" >Magnitude</th>
+								<th id = "table-place" class = "table-sort">Place</th>
+								<th>Lat/Long</th>
+							</tr>
+						</thead>
+					
+						<tbody id = "table-body-id">
+
+						</tbody>
+					</table>
+				</div> -->
+					<!-- The table body is created in javascript in the table.js file and uses
+						datatables.js -->
+		</div>
+	</div> <!-- END OF wrapper -->
+
+	<script src = "js/vendor/d3.v3.min.js"></script>
+	<script src="js/vendor/topojson.v0.min.js"></script>
+	<script src = "js/vendor/jquery-1.10.2.min.js"></script>
+	<script src = "js/vendor/jquery-ui-1.10.3.js"></script>
+	<script src = "js/vendor/jquery.ui.touch-punch.min.js"></script>
+	<script src = "js/vendor/moment.min.js"></script>
+
+	<script src = "js/vendor/jquery.nicescroll.js"></script>
+	<script src = "js/vendor/jquery.dataTables.js"></script>
+
+<!-- for map begin -->
+	<script src = "js/vendor/leaflet/leaflet.js"></script>
+    
+
+<!-- for map end -->
+
+
+	<script src = "js/plug.js"></script>
+	<script src = "js/bar.js"></script>
+	<script src = "js/scatter.js"></script>
+	<script src = "js/total.js"></script>
+	<script src = "js/map.js"></script>
+	<script src = "js/main.js"></script>
+	<script src = "js/feed_significant.js"></script>
+	<script src = "js/table.js"></script>
+
+</body>
+
+</html>

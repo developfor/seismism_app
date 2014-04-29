@@ -1,6 +1,8 @@
-#viz-map svg{
+#viz-map{
 	background-color: #474747;
 	float: left;
+	width: 100%;
+	height: 335px;
 }
 
 
