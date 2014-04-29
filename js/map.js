@@ -61,7 +61,7 @@ mapData.forEach(function(location) {
 
 
     var magCircle = mData.mag 
-    var svgCircle = '<div><svg width="12" height="12"> <circle r="'+ 4 +'" cx="6" cy="6" style="fill: #e5d6ac; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #EE2D5A ;"></circle></svg></div>'
+    var svgCircle = '<svg width="12" height="12"> <circle r="'+ 4 +'" cx="6" cy="6" style="fill: #e5d6ac; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #EE2D5A ;"></circle></svg>'
 
  var vbIcon = L.divIcon({
 	className: 'svg-marker',
