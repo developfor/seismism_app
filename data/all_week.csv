@@ -1,5 +1,5 @@
 time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type
-2014-04-08T20:41:13.023Z,38.5072,-118.1252,0,1.46,ml,9,188.76,0.18,,nn,nn00443170,2014-04-08T20:43:15.000Z,"43km E of Hawthorne, Nevada",earthquake
+2014-04-08T20:41:13.023Z,38.5072,-118.1252,0,1.46,ml,9,188.76,9.18,,nn,nn00443170,2014-04-08T20:43:15.000Z,"43km E of Hawthorne, Nevada",earthquake
 2014-04-08T20:34:35.200Z,38.8308,-122.811,2.1,0.8,Md,,46.8,0.00898315,0.01,nc,nc72196070,2014-04-08T20:36:17.631Z,"7km W of Cobb, California",earthquake
 2014-04-08T19:57:09.500Z,35.667,-118.477,11.8,1.4,Ml,14,79.2,0.00898315,0.23,ci,ci15487345,2014-04-08T19:59:37.286Z,"4km SSW of Wofford Heights, California",earthquake
 2014-04-08T19:55:43.700Z,31.64,-116.4051667,13.48,3.01,ml,8,190,0.3169,0.06,ci,ci15487337,2014-04-08T20:38:03.492Z,"17km ESE of Maneadero, Mexico",earthquake

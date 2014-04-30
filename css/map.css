@@ -10,6 +10,13 @@
  	width: 481px;
 }
 
+
+/*img.leaflet-tile { -webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+filter: grayscale(100%);
+}*/
+
+
 #map-path{
 	fill: white;
 }
@@ -58,29 +65,38 @@ margin-right: -1px;
 	opacity: 1;
 } 
 
-#quake-table{
-	/*margin: 5px;*/
-	/*float: left;*/
-	width: 235px;
-	height: 335px;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-/*	overflow-x: hidden;
-	overflow-y: hidden;	*/
-
-
+#quake-details{
+	visibility: hidden;
+	width: 215px;
+	float: left;
+	padding: 10px;
+	height: 110px;
 }
 
-#quake-table h1{
+/*#quake-details h1{
 	font-size: 12px;
 	font-weight: bold;
-}
 
-#quake-table span{
+}*/
+
+/*#quake-details span{
 	color: #2E5879;
 	font-weight: normal;
+}*/
+
+
+.map-mag-text{
+color: #F8BD00;
+font-size: 12px;
+margin-bottom: 7px;
 }
-.table{
+
+.map-key-eq{
+	color: #FFF;
+}
+
+
+/*.table{
 	cursor: pointer;
 	padding: 5px;
 	background-color: white;
@@ -93,7 +109,7 @@ margin-right: -1px;
 
 #test{
 	background-color: #F8BD00;
-}
+}*/
 
 
 /*tr:nth-child(2n)
