@@ -25,8 +25,8 @@ console.log(map.getBounds());
 
 // add an OpenStreetMap tile layer
 
-L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+// L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	// continuousWorld: 'true',
 	minZoom: 1,
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -64,31 +64,26 @@ mapData.forEach(function(location) {
 
 	var svgCircle;
 	if(mData.mag < 1){
-	svgCircle = '<svg width="14" height="14"> <circle r="3" cx="7" cy="7" style="fill: #76B700; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #76B700 ;"></circle></svg>'
+	svgCircle = '<div class="mag-circle-1"></div>'
 	}else if (mData.mag >= 1 && mData.mag < 2){
-	svgCircle = '<svg width="14" height="14"> <circle r="3.5" cx="7" cy="7" style="fill: #76B700; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #76B700 ;"></circle></svg>'
+	svgCircle = '<div class="mag-circle-1"></div>'
 	}else if (mData.mag >= 2 && mData.mag < 3){
-	svgCircle = '<svg width="14" height="14"> <circle r="4" cx="7" cy="7" style="fill: #008000; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #008000;"></circle></svg>'
-	}else if (mData.mag >= 3 && mData.mag < 4){
-	svgCircle = '<svg width="14" height="14"> <circle r="4.5" cx="7" cy="7" style="fill: #008000; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #008000 ;"></circle></svg>'
-	}else if (mData.mag >= 4 && mData.mag < 5){
-	svgCircle = '<svg width="14" height="14"> <circle r="5" cx="7" cy="7" style="fill: #008000; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #008000;"></circle></svg>'
+	svgCircle = '<div class="mag-circle-2"></div>'
+	}else if (mData.mag >= 3 && mData.mag < 5){
+	svgCircle = '<div class="mag-circle-3"></div>'
 	}else if (mData.mag >= 5 && mData.mag < 6){
-	svgCircle = '<svg width="14" height="14"> <circle r="5.5" cx="7" cy="7" style="fill: #F60; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #F60;"></circle></svg>'
-	}else if (mData.mag >= 6 && mData.mag < 7){
-	svgCircle = '<svg width="14" height="16"> <circle r="6" cx="7" cy="7" style="fill: #F60; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #F60 ;"></circle></svg>'
-	}else if (mData.mag >= 7 && mData.mag < 8){
-	svgCircle = '<svg width="16" height="16"> <circle r="7" cx="8" cy="8" style="fill: #F60; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #F60 ;"></circle></svg>'
-	}else if (mData.mag > 8){
-	svgCircle = '<svg width="20" height="20"> <circle r="8" cx="10" cy="10" style="fill: #F60; fill-opacity: 0.5; stroke-width: 1.5px; stroke: #F60;"></circle></svg>'
+	svgCircle = '<div class="mag-circle-4"></div>'
+	}else if (mData.mag >= 6 ){
+	svgCircle = '<div class="mag-circle-5"></div>'
 	}
-
 
     
 
  var vbIcon = L.divIcon({
 	className: 'svg-marker',
-    html: svgCircle
+    html: svgCircle,
+    // iconSize: [8, 8],
+    // iconAnchor:[0,0]
 	});
 
 var marker = new L.marker([mData["latitude"], long],{icon: vbIcon}).addTo(map);
@@ -120,14 +115,18 @@ marker.on('click', function(){
         long += 360;
     	}
  // <svg width="24" height="24"> <circle r="8" cx="12" cy="12" style="fill: #F60; fill-opacity: 0; stroke-width: 3px; stroke: #EE2D5A;"></circle></svg>
-    	var markSVGCircle = '<div style="z-index:10000 !important;"">howdy</div>'
+    	var markSVGCircle = '<div class="mag-circle-selected"></div>'
     	// var markSVGCircle = 'howdy'
 		var markIcon = L.divIcon({
-					 className: 'svg-marker',
-    				 html: markSVGCircle
+					 className: 'markIcon',
+    				 html: markSVGCircle,
+    				 iconSize: [10, 10],
+    				 iconAnchor:[11,11]
 					});
 
-		newMarker = new L.marker([mData.latitude, long],{icon: markIcon}).addTo(map);
+		   newMarker = new L.marker([mData.latitude, long],{icon: markIcon}).addTo(map);
+	
+		 // newMarker = new L.marker([mData.latitude, long]).addTo(map);
 		});
 		
 
