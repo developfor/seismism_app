@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Moment Date Tests</title>
+	
+
+</head>
+
+<body>
+
+	<div id = "content"></div>
+
+<script src = "jquery.js"></script>
+<script src = "moment.js"></script>	
+
+<script type="text/javascript">
+	
+	var init = function(){
+		 // var now = new Date();
+		 // var dayWrapper = moment(now);
+
+		 // var dateFormated = dayWrapper.format();
+
+		 // //console.log(dateFormated);
+
+		 // var year = dayWrapper.get('year');
+
+
+		 // var subtract = dayWrapper.subtract('days', 7).format();
+
+		 // console.log("now: " + dateFormated + " 7 days ago: " + subtract);
+
+
+		 var anotherDate = new Date("2014-01-01");
+		 var anotherDateWrapper = moment(anotherDate);
+
+		 var dateFormated = anotherDateWrapper.format();
+
+		 var subtract = anotherDateWrapper.subtract('days', 7).format();
+
+		 console.log("now: " + dateFormated + " 7 days ago: " + subtract);
+
+		 $('#content').html("this: " + subtract + " is 7 days before ")
+		 .append('<br />this: ' + dateFormated);
+
+	
+	};
+
+	init();
+</script>
+</body>
+
+
+</html>

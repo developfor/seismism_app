@@ -1,16 +1,20 @@
 var mapVisualisation = function(data){
-console.log(data);
+ // console.log(data);
 var mapData = data;
 var newMarker;
 
 var map = L.map('viz-map',{zoomControl:false, keyboard: true});
-
-
+// .valueOf()
+var lastEntryTime = moment.utc(data[1]["time"]);
+console.log(lastEntryTime);
 	 
+var lastEntryTime2 = moment.utc(data[1]["time"]).subtract('days', 2);
+console.log(lastEntryTime2);
+
 
 var lonLat = new L.LatLng(15.62303, 154.3359375);
 map.setView(lonLat, 1);
-console.log(map.getBounds())
+// console.log(map.getBounds())
 
  // map.fitBounds([79.17133464081945, 380.390625],[-70.37785394109224, 42.1875]);
 // map.panTo(new L.LatLng(16.97274, 208.47656));
