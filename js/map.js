@@ -1,15 +1,19 @@
 var mapVisualisation = function(data){
+	"use strict";
  // console.log(data);
 var mapData = data;
 var newMarker;
 
 var map = L.map('viz-map',{zoomControl:false, keyboard: true});
 // .valueOf()
-var lastEntryTime = moment.utc(data[1]["time"]);
-console.log(lastEntryTime);
+var lastEntryTime2days = moment.utc(data[0]["time"]).subtract('days', 2).valueOf();
+var lastEntryTime4days = moment.utc(data[0]["time"]).subtract('days', 4).valueOf();
+
+	console.log(lastEntryTime2days + "frist");
 	 
-var lastEntryTime2 = moment.utc(data[1]["time"]).subtract('days', 2);
-console.log(lastEntryTime2);
+// var lastEntryTime2 = moment.utc(data[1]["time"]).subtract('days', 2);
+// console.log(lastEntryTime2);
+
 
 
 var lonLat = new L.LatLng(15.62303, 154.3359375);
@@ -65,27 +69,42 @@ mapData.forEach(function(location) {
     // var num = 4;
     // console.log(d3.select("viz-map").append("svg").attr("width",200).attr("height",200))
 
-
+    var magClasses = '',
+    	timeClasses = '',
+   		eqDate = moment.utc(mData.time).valueOf();
 	var svgCircle;
+
 	if(mData.mag < 1){
-	svgCircle = '<div class="mag-circle-1"></div>'
 	}else if (mData.mag >= 1 && mData.mag < 2){
-	svgCircle = '<div class="mag-circle-1"></div>'
+		magClasses += 'mag-circle-1';
 	}else if (mData.mag >= 2 && mData.mag < 3){
-	svgCircle = '<div class="mag-circle-2"></div>'
+		magClasses += 'mag-circle-2';
 	}else if (mData.mag >= 3 && mData.mag < 5){
-	svgCircle = '<div class="mag-circle-3"></div>'
+		magClasses += 'mag-circle-3';
 	}else if (mData.mag >= 5 && mData.mag < 6){
-	svgCircle = '<div class="mag-circle-4"></div>'
+		magClasses += 'mag-circle-4';
 	}else if (mData.mag >= 6 ){
-	svgCircle = '<div class="mag-circle-5"></div>'
+		magClasses += 'mag-circle-5';
 	}
+
+	if(eqDate > lastEntryTime2days){
+		console.log(' two-days')
+		timeClasses += 'two-days'
+	}else if( eqDate > lastEntryTime4days && eqDate < lastEntryTime2days){
+		timeClasses += 'four-days'
+		console.log('four-days')
+	}else{
+		timeClasses += 'seven-days'
+		console.log('seven-days')
+	}
+
+	svgCircle = "svg-marker " + magClasses + " " + timeClasses
 
     
 
  var vbIcon = L.divIcon({
-	className: 'svg-marker',
-    html: svgCircle,
+	className: svgCircle
+    // html: svgCircle,
     // iconSize: [8, 8],
     // iconAnchor:[0,0]
 	});
@@ -95,10 +114,8 @@ var marker = new L.marker([mData["latitude"], long],{icon: vbIcon}).addTo(map);
 // var newMarker;
 marker.on('click', function(){
 
-
- console.log(location);
 		if(typeof newMarker != "undefined"){
-			console.log('hi')
+
 			 map.removeLayer(newMarker);
 		}
 	
@@ -118,9 +135,7 @@ marker.on('click', function(){
 		if (long < 0) {
         long += 360;
     	}
- // <svg width="24" height="24"> <circle r="8" cx="12" cy="12" style="fill: #F60; fill-opacity: 0; stroke-width: 3px; stroke: #EE2D5A;"></circle></svg>
     	var markSVGCircle = '<div class="mag-circle-selected"></div>'
-    	// var markSVGCircle = 'howdy'
 		var markIcon = L.divIcon({
 					 className: 'markIcon',
     				 html: markSVGCircle,
@@ -129,15 +144,21 @@ marker.on('click', function(){
 					});
 
 		   newMarker = new L.marker([mData.latitude, long],{icon: markIcon}).addTo(map);
-	
-		 // newMarker = new L.marker([mData.latitude, long]).addTo(map);
 		});
-		
 
+	
 });
 
 
-
+$("#two-days-ago").click(function() {
+		$("#eq-time-styles").empty().append(".four-days, .seven-days{display:none;} ");
+	});
+$("#four-days-ago").click(function() {
+		$("#eq-time-styles").empty().append(".seven-days{display:none;}");
+	});
+$("#seven-days-ago").click(function() {
+		$("#eq-time-styles").empty();
+	});
 
 };
 
