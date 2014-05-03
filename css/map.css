@@ -25,7 +25,7 @@
 }
 
 #two-days-ago{
-cursor: pointer;
+
 }
 /*img.leaflet-tile { -webkit-filter: grayscale(100%);
 -moz-filter: grayscale(100%);
@@ -37,14 +37,15 @@ filter: grayscale(100%);
 	fill: white;
 }
 
-.mag-circle-2{
+
+.mag-circle-0{
 	z-index: 0;
 	width:8px !important;
 	height:8px !important;
-	background-color: rgba(0, 128, 0, 0.3);
+	background-color: rgba(118, 183, 0, 0.3);
 	border-style: solid;
     border-width: 2px;
-    border-color: rgb(0, 128, 0);
+    border-color: rgb(118, 183, 0);
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
 	border-radius: 40px; 
@@ -59,6 +60,20 @@ filter: grayscale(100%);
 	border-style: solid;
     border-width: 2px;
     border-color: rgb(118, 183, 0);
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+	border-radius: 40px; 
+	-khtml-border-radius: 40px;
+}
+
+.mag-circle-2{
+	z-index: 0;
+	width:8px !important;
+	height:8px !important;
+	background-color: rgba(0, 128, 0, 0.3);
+	border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 128, 0);
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
 	border-radius: 40px; 
@@ -105,6 +120,19 @@ filter: grayscale(100%);
 	border-radius: 40px; 
 	-khtml-border-radius: 40px;
 }
+.mag-circle-6{
+	z-index: 0;
+	width:8px !important;
+	height:8px !important;
+	background-color: rgba(153, 0, 255, 0.3);
+	border-style: solid;
+    border-width: 2px;
+    border-color: rgb(153, 0, 255);
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+	border-radius: 40px; 
+	-khtml-border-radius: 40px;
+}
 
 .mag-circle-selected{
 	z-index: 1000;
@@ -132,9 +160,32 @@ filter: grayscale(100%);
 	transition: border-color 0.5s;
 }*/
 
+.map-time-button-selected{
+	color: yellow;
+	cursor: pointer;
+}
+
+.map-time-button-not-selected{
+	color: white;
+	cursor: pointer;
+}
+
+.map-mag-button-selected{
+	color: yellow;
+	cursor: pointer;
+}
+
+.map-mag-button-not-selected{
+	color: white;
+	cursor: pointer;
+}
+
+
+
+
 #mag-buttons, #date-buttons {
-	clear: both;
-	float: left;
+	/*clear: both;
+	float: left;*/
 }
 
 #mag-buttons, #date-buttons h1{

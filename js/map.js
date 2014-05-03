@@ -9,7 +9,7 @@ var map = L.map('viz-map',{zoomControl:false, keyboard: true});
 var lastEntryTime2days = moment.utc(data[0]["time"]).subtract('days', 2).valueOf();
 var lastEntryTime4days = moment.utc(data[0]["time"]).subtract('days', 4).valueOf();
 
-	console.log(lastEntryTime2days + "frist");
+// console.log(lastEntryTime2days + "frist");
 	 
 // var lastEntryTime2 = moment.utc(data[1]["time"]).subtract('days', 2);
 // console.log(lastEntryTime2);
@@ -27,9 +27,9 @@ map.setMaxBounds([
     [-85.05112877980659, -54.84375]
 ]);
 
-map.on('dragend', function(e){
-console.log(map.getBounds());
-});
+// map.on('dragend', function(e){
+// console.log(map.getBounds());
+// });
 
 // add an OpenStreetMap tile layer
 
@@ -75,27 +75,30 @@ mapData.forEach(function(location) {
 	var svgCircle;
 
 	if(mData.mag < 1){
+		magClasses += 'mag-circle-1';
 	}else if (mData.mag >= 1 && mData.mag < 2){
 		magClasses += 'mag-circle-1';
 	}else if (mData.mag >= 2 && mData.mag < 3){
 		magClasses += 'mag-circle-2';
-	}else if (mData.mag >= 3 && mData.mag < 5){
+	}else if (mData.mag >= 3 && mData.mag < 4){
 		magClasses += 'mag-circle-3';
-	}else if (mData.mag >= 5 && mData.mag < 6){
+	}else if (mData.mag >= 4 && mData.mag < 5){
 		magClasses += 'mag-circle-4';
-	}else if (mData.mag >= 6 ){
+	}else if (mData.mag >= 5 && mData.mag < 6){
 		magClasses += 'mag-circle-5';
+	}else if (mData.mag >= 6 ){
+		magClasses += 'mag-circle-6';
 	}
 
 	if(eqDate > lastEntryTime2days){
-		console.log(' two-days')
+		// console.log(' two-days')
 		timeClasses += 'two-days'
 	}else if( eqDate > lastEntryTime4days && eqDate < lastEntryTime2days){
 		timeClasses += 'four-days'
-		console.log('four-days')
+		// console.log('four-days')
 	}else{
 		timeClasses += 'seven-days'
-		console.log('seven-days')
+		// console.log('seven-days')
 	}
 
 	svgCircle = "svg-marker " + magClasses + " " + timeClasses
@@ -104,9 +107,6 @@ mapData.forEach(function(location) {
 
  var vbIcon = L.divIcon({
 	className: svgCircle
-    // html: svgCircle,
-    // iconSize: [8, 8],
-    // iconAnchor:[0,0]
 	});
 
 var marker = new L.marker([mData["latitude"], long],{icon: vbIcon}).addTo(map);
@@ -150,6 +150,31 @@ marker.on('click', function(){
 });
 
 
+// intialize previousTime
+var previousTime = "seven-days-ago";
+$("#map-time-buttons .map-time-button").on('click', function(){
+	$('#'+ previousTime).removeClass("map-time-button-selected").addClass("map-time-button-not-selected" );
+	if (previousTime != this.id){
+		$('.mag-circle-selected').css('display','none');
+		$('#quake-details').css('visibility','hidden');
+	}
+	$(this).removeClass("map-time-button-not-selected").addClass("map-time-button-selected")
+	previousTime = this.id;
+});
+
+// intialize previousMag
+var previousMag = "map-plus-0-eq";
+$("#map-mag-buttons .map-mag-button").on('click', function(){
+	$('#'+ previousMag).removeClass("map-mag-button-selected").addClass("map-mag-button-not-selected" );
+	if (previousMag != this.id){
+		$('.mag-circle-selected').css('display','none');
+		$('#quake-details').css('visibility','hidden');
+	}
+	$(this).removeClass("map-mag-button-not-selected").addClass("map-mag-button-selected")
+	previousMag = this.id;
+});
+
+// block of code time days
 $("#two-days-ago").click(function() {
 		$("#eq-time-styles").empty().append(".four-days, .seven-days{display:none;} ");
 	});
@@ -160,5 +185,21 @@ $("#seven-days-ago").click(function() {
 		$("#eq-time-styles").empty();
 	});
 
+// block of code magnitude
+$("#map-plus-0-eq").click(function() {
+		$("#eq-mag-styles").empty();
+	});
+$("#map-plus-3-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2{display:none;}");
+	});
+$("#map-plus-4-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3{display:none;}");
+	});
+$("#map-plus-5-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3, .mag-circle-4{display:none;}");
+	});
+$("#map-plus-6-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3, .mag-circle-4, .mag-circle-5{display:none;}");
+	});
 };
 
