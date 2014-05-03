@@ -1,6 +1,6 @@
 var mapVisualisation = function(data){
 	"use strict";
- // console.log(data);
+console.log(data);
 var mapData = data;
 var newMarker;
 

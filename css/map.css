@@ -201,12 +201,13 @@
 	padding: 5px;
 	border-bottom: 1px solid rgb(42, 42, 42);
 	border-left: 1px solid rgb(42, 42, 42);
-	width: 135px;
-	height: 40.5px;
+	width: 139px;
+	height: 32px;
 	text-align: center;
 	line-height: 40.5px;
 	font-size: 12px;
 	font-weight: bold;
+
 }
 
 .map-mag-button-selected{
@@ -218,7 +219,7 @@
 	border-bottom: 1px solid rgb(42, 42, 42);
 	border-left: 1px solid rgb(42, 42, 42);
 	width: 105px;
-	height: 20px;
+	height: 15px;
 	text-align: center;
 	line-height: 20px;
 	font-size: 12px;
@@ -251,8 +252,8 @@
 	padding: 5px;
 	border-bottom: 1px solid rgb(42, 42, 42);
 	border-left: 1px solid rgb(42, 42, 42);
-	width: 135px;
-	height: 40.5px;
+	width: 139px;
+	height: 32px;
 	text-align: center;
 	line-height: 40.5px;
 	color: rgb(255, 255, 255);
@@ -268,7 +269,7 @@
 	border-bottom: 1px solid rgb(42, 42, 42);
 	border-left: 1px solid rgb(42, 42, 42);
 	width: 105px;
-	height: 20px;
+	height: 15px;
 	text-align: center;
 	line-height: 20px;
 	color: rgb(255, 255, 255);
