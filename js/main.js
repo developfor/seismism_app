@@ -19,11 +19,11 @@
 						dataset.push(datum);
 					}
 				});
-				// scatterVisualisation(dataset);
+				scatterVisualisation(dataset);
 				totalEarthquakes(dataset.length);
 				barVisualisation(dataset);
-				// mapVisualisation(dataset);
-				// tableVisualisation(dataset);
+				mapVisualisation(dataset);
+				tableVisualisation(dataset);
 
 				// Time of the last entry in the csv.
 				var lastEntry = dataset.slice(-1).pop().time
