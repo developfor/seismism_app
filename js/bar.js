@@ -27,7 +27,7 @@ var barVisualisation = function(data){
 	//variables for postion and sizes
 	var margin = {top:15, right:0, bottom: 50, left:55},
 	width = 220 - margin.right - margin.left,
-	height = 275 - margin.top - margin.bottom,
+	height = 300 - margin.top - margin.bottom,
 	padding = 10;
 
 	//call the mag_numbers function and store the return value in the variable
@@ -62,9 +62,6 @@ var barVisualisation = function(data){
 	function update(magnitude){
 		x.domain(magnitude.map(function(d) { return d.name; }));
 		y.domain([0, d3.max(magnitude, function(d) { return d.numberOf; })]);
-
-
-
 
 		var graphUpdate = function(){
 
@@ -255,7 +252,6 @@ var barVisualisation = function(data){
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
 		.selectAll("text")
-		.style("text-anchor", "end")
 		.attr("dx", "-2em")
 		.attr("transform", function(d) {
 			return "translate(-10,5)rotate(-65)" 
