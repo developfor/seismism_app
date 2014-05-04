@@ -28,19 +28,18 @@ $.ajax({
     	// console.log(time_eq);
     	// console.log(data.features[0].properties.felt);
     	 // console.log(data);
-         var toggle = 0;
+         // var toggle = 0;
 
            var infoTest = function(){
-            $('.info-button-latest').on('click', function(){
-                if(toggle === 0){
-                $('#info-text-latest').show();
-                toggle = 1;
-            } else if(toggle === 1){
-                $('#info-text-latest').hide();
-                toggle = 0;
-            }
-            // }).on('mouseout', function(){
-            //     $('#info-text-latest').hide();
+             $('.info-button-latest-mag').on('click', function(){
+                var thisID = this.id;
+                if(thisID === "info-button-latest"){
+                    $('#info-text-latest').show();
+                    $("#info-button-latest").css('background-position', '-28px -0.5px');
+                } else if(thisID === "info-text-latest-close"){
+                    $('#info-text-latest').hide();
+                     $("#info-button-latest").css('background-position', '0px -0.5px');
+                }
             });
 
 
