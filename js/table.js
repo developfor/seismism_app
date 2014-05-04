@@ -32,10 +32,10 @@ var tableVisualisation = function(data){
 	var makeTableCircles = function(data){
 		//variables to hold width and height.
 		//scaleRangeMin and scaleRangeMax are the radius min and max
-		var width = 50,
-		height = 50
+		var width = 30,
+		height = 30,
 		scaleRangeMin = 2,
-		scaleRangeMax = 20;
+		scaleRangeMax = 15;
 
 		//finds the minimum and maximum magnitude values
 		var mags = function(d) {return d.mag; },
@@ -84,7 +84,7 @@ var tableVisualisation = function(data){
 			//It is added on to with the time, magnitude, place and latitude
 			//the final element added is the </tr> tag
 			var row = '<tr>';
-			row += '<td>' + entry.time  + '</td>';
+			row += '<td>' + entry.time  + ' (UTC)' +'</td>';
 			//spans are added with a class- the first span holds the magnitude text
 			//the second span holds the d3 svg and is used in the makeTableCircles function
 			//the table-mag class styles the text so it sits well with the svg element

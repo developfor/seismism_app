@@ -1,251 +1,206 @@
 var mapVisualisation = function(data){
+	"use strict";
+console.log(data);
+var mapData = data;
+var newMarker;
 
-	var rMin = 0.5,
-	rMax = 12,
-	expo = 1;
+var map = L.map('viz-map',{zoomControl:false, keyboard: true});
+// .valueOf()
+var lastEntryTime2days = moment.utc(data[0]["time"]).subtract('days', 2).valueOf();
+var lastEntryTime4days = moment.utc(data[0]["time"]).subtract('days', 4).valueOf();
 
-	var magMin = d3.min(data, function(d){ return d.mag; });
-	var magMax = d3.max(data, function(d){ return d.mag; });
+// console.log(lastEntryTime2days + "frist");
+	 
+// var lastEntryTime2 = moment.utc(data[1]["time"]).subtract('days', 2);
+// console.log(lastEntryTime2);
 
-	var margin = {top: 0, left: 0, bottom: 0, right: 0},
-	width = 481 - margin.left - margin.right,
-	height = 275 - margin.top - margin.bottom;
 
-	var projection = d3.geo.mercator()
-	.scale(77)
-	.rotate([210, 0])
-	.translate([width / 2, height / 2]);
 
-	var radius = d3.scale.linear()
-		.domain([magMin, magMax])
-		.range([rMin, rMax]);
+var lonLat = new L.LatLng(15.62303, 154.3359375);
+map.setView(lonLat, 1);
+// console.log(map.getBounds())
 
-	var color = d3.scale.linear()
-		.domain([0,9])
-		.range(["#008000", "#FFF700"]);
+ // map.fitBounds([79.17133464081945, 380.390625],[-70.37785394109224, 42.1875]);
+// map.panTo(new L.LatLng(16.97274, 208.47656));
+map.setMaxBounds([
+    [84.9901001802348, 383.203125],
+    [-85.05112877980659, -54.84375]
+]);
 
-	var svg = d3.select("#viz-map").append("svg")
-	.attr("width", width)
-	.attr("height", height)
-	.append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// map.on('dragend', function(e){
+// console.log(map.getBounds());
+// });
 
-	var path = d3.geo.path()
-	.projection(projection);
+// add an OpenStreetMap tile layer
 
-	// START OF JSON DISPLAY MAP
-	d3.json("data/world_map.json", function(error, topology) {
+// L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	// continuousWorld: 'true',
+	minZoom: 1,
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+new L.control.zoom({position: 'topright'}).addTo(map);
 
-		if (error){
-			console.log("error loading map json: " + error);
-		} else {
-			svg.selectAll("path")
-			.data(topojson.object(topology, topology.objects.countries)
-				.geometries)
-			.enter()
-			.append("path")
-			.attr("d", path)
-			.attr("id", "map-path");
+// add a marker in the given location, attach some popup content to it and open the popup
+// L.marker([51.5, -0.09]).addTo(map)
+//     .bindPopup('A pretty CSS3 popup. <br> Easily customizable.');
 
-			map(data);
-			clicking(data);
-		}//END OF MAP ELSE ERROR
-	});  //END OF MAP
 
-	var clicking = function(data_parsed){
+// var totalMarkers = mapData.length;
+// for(var i = 0; i<totalMarkers; i++){
+//     var mData = mapData[i];
+//     if (mData.longitude < 0) {
+//         mData.longitude += 360;
+//     }
+//     L.marker([mData.latitude, mData.longitude]).addTo(map);
+// }
 
-		var start = new Date(data_parsed[data.length - 1].time),
-		end = new Date(data_parsed[0].time);
 
-		var day = 0,
-		magnitude = 1.0,
-		mags = "one";
 
-		$('.button').on('click', function(){
-			var whichId = this.id,
-			data_temp = [];
-			datas = [];
 
-			if (whichId === '0' || whichId === '2' || whichId === '5'){
+mapData.forEach(function(location) {
+	var mData = location,
+		long = parseFloat(mData.longitude),
+		lat = parseFloat(mData.latitude);
+    // console.log(location)
+    if (long < 0) {
+        long += 360;
+    }
+    // var num = 4;
+    // console.log(d3.select("viz-map").append("svg").attr("width",200).attr("height",200))
 
-				day = +whichId;
-				var dateTo = d3.time.day.offset(new Date(start),day);
+    var magClasses = '',
+    	timeClasses = '',
+   		eqDate = moment.utc(mData.time).valueOf();
+	var svgCircle;
 
-				for(var i = 0; i < data_parsed.length; i++){
+	if(mData.mag < 1){
+		magClasses += 'mag-circle-1';
+	}else if (mData.mag >= 1 && mData.mag < 2){
+		magClasses += 'mag-circle-1';
+	}else if (mData.mag >= 2 && mData.mag < 3){
+		magClasses += 'mag-circle-2';
+	}else if (mData.mag >= 3 && mData.mag < 4){
+		magClasses += 'mag-circle-3';
+	}else if (mData.mag >= 4 && mData.mag < 5){
+		magClasses += 'mag-circle-4';
+	}else if (mData.mag >= 5 && mData.mag < 6){
+		magClasses += 'mag-circle-5';
+	}else if (mData.mag >= 6 ){
+		magClasses += 'mag-circle-6';
+	}
 
-					var testDate = new Date(data_parsed[i].time);
-					if (testDate >= dateTo){
+	if(eqDate > lastEntryTime2days){
+		// console.log(' two-days')
+		timeClasses += 'two-days'
+	}else if( eqDate > lastEntryTime4days && eqDate < lastEntryTime2days){
+		timeClasses += 'four-days'
+		// console.log('four-days')
+	}else{
+		timeClasses += 'seven-days'
+		// console.log('seven-days')
+	}
 
-						data_temp.push(data_parsed[i]);
-					}
-				}
-				for(var i = 0; i < data_temp.length; i++){
-					if (data_temp[i].mag >= magnitude){
+	svgCircle = "svg-marker " + magClasses + " " + timeClasses
 
-						datas.push(data_temp[i]);
-					}
-				}
-				map(datas);
-			}
+    
 
-			if (whichId === 'one'  || whichId === 'four' || whichId === 'five'){
-				mags = whichId;
+ var vbIcon = L.divIcon({
+	className: svgCircle
+	});
 
-				if(whichId === 'one'){
-					magnitude = 1.0
-				}else if(whichId === 'four'){
-					magnitude = 4.5;
-				}else if(whichId === 'five'){
-					magnitude = 5.5;
-				}
+var marker = new L.marker([mData["latitude"], long],{icon: vbIcon}).addTo(map);
 
-				var dateTo = d3.time.day.offset(new Date(start),day);
+// var newMarker;
+marker.on('click', function(){
 
-				for(var i = 0; i < data_parsed.length; i++){
-					var testDate = new Date(data_parsed[i].time);
-					if (testDate >= dateTo){
-						data_temp.push(data_parsed[i]);
-					}
-				}
+		if(typeof newMarker != "undefined"){
 
-				for(var i = 0; i < data_temp.length; i++){            
-					if (data_temp[i].mag >= magnitude){           
-						datas.push(data_temp[i]);
-					}
-				}
-				sort(datas);
-				map(datas);
+			 map.removeLayer(newMarker);
+		}
+	
 
-			}
-			$('.button').css("opacity", "0.5");
+		 // var eqTime = moment(mData.time).format("MMM DD, YYYY @ h:mma");
+		 // console.log(mData.time);
+		$("#quake-details").css('visibility', 'visible');
+		$("#map-quake-time").empty().append(mData.time + " (UTC)");
+		$("#map-quake-mag").empty().append(mData.mag);
+		$("#map-quake-place").empty().append(mData.place);
+		$("#map-quake-depth").empty().append(mData.depth);
+		$("#map-quake-latitude").empty().append(mData.latitude);
+		$("#map-quake-longitude").empty().append(mData.longitude);
 
-			$('#'+ day.toString()).css("opacity", '1');
-			$('#' + mags).css('opacity', '1');
+		
 
+		var long = parseFloat(mData.longitude)
+		if (long < 0) {
+        long += 360;
+    	}
+    	var markSVGCircle = '<div class="mag-circle-selected"></div>'
+		var markIcon = L.divIcon({
+					 className: 'markIcon',
+    				 html: markSVGCircle,
+    				 iconSize: [10, 10],
+    				 iconAnchor:[11,11]
+					});
+
+		   newMarker = new L.marker([mData.latitude, long],{icon: markIcon}).addTo(map);
 		});
-	}; //END OF CLICKING FUNCTION
 
-	//START OF MAP FUNCTION
-	function map(data){
-
-		var circle = svg.selectAll("circle")   
-		.data(data);
-
-		circle.enter()
-		.append("circle")
-		.style("fill", function(d){ return color(d.mag); })
-		.style("opacity", '0');
-
-		circle.attr("cx", function(d) {            
-			return projection( [d.longitude, d.latitude])[0];
-		})
-		.attr("cy", function(d) {
-			return projection([d.longitude, d.latitude])[1];
-		})
-		.attr("id", function(d){ return d.id; });
-
-		circle.transition()
-		.duration(1000)
-		.style('opacity', "0.8")
-		.attr("r", function(d){ return radius(d.mag);});
+	
+});
 
 
-		circle.exit()
-		.transition()
-		.duration(1000)
-		.attr('r', '0')
-		.style('opacity', '0')
-		.remove();
-
-		listText(data);
-		overList(data);
+// intialize previousTime
+var previousTime = "seven-days-ago";
+$("#map-time-buttons .map-time-button").on('click', function(){
+	$('#'+ previousTime).removeClass("map-time-button-selected").addClass("map-time-button-not-selected" );
+	if (previousTime != this.id){
+		$('.mag-circle-selected').css('display','none');
+		$('#quake-details').css('visibility','hidden');
 	}
+	$(this).removeClass("map-time-button-not-selected").addClass("map-time-button-selected")
+	previousTime = this.id;
+});
 
-	function sort(qtable){
-		qtable.sort(function(a, b) {
-			return d3.descending(a.mag, b.mag);
-		});
+// intialize previousMag
+var previousMag = "map-plus-0-eq";
+$("#map-mag-buttons .map-mag-button").on('click', function(){
+	$('#'+ previousMag).removeClass("map-mag-button-selected").addClass("map-mag-button-not-selected" );
+	if (previousMag != this.id){
+		$('.mag-circle-selected').css('display','none');
+		$('#quake-details').css('visibility','hidden');
 	}
+	$(this).removeClass("map-mag-button-not-selected").addClass("map-mag-button-selected")
+	previousMag = this.id;
+});
 
-	function sortDate(qtable){
-		qtable.sort(function(a, b) {
-			return d3.descending(a.time, b.time);
-		});
-	}
+// block of code time days
+$("#two-days-ago").click(function() {
+		$("#eq-time-styles").empty().append(".four-days, .seven-days{display:none;} ");
+	});
+$("#four-days-ago").click(function() {
+		$("#eq-time-styles").empty().append(".seven-days{display:none;}");
+	});
+$("#seven-days-ago").click(function() {
+		$("#eq-time-styles").empty();
+	});
 
-	function listText(data){
-
-		sortDate(data);
-
-		var quakeTable = $('#quake-table');
-
-		$(quakeTable).empty();
-
-		data.forEach(function(entry){
-
-			var time_eq = entry.time
-        	var time_converted = moment(time_eq).format("MMM DD, YYYY @ h:mma");
-
-			var table = $('<div></div>');
-
-			var test = $('<h1></h1>').text("Magnitude: ");
-			var test2 = $('<span></span>').text(entry.mag);
-
-			test.append(test2);
-			table.append(test);
-
-			var test = $('<h1></h1>').text("Place: ");
-			var test2 = $('<span></span>').text(entry.place);
-
-			test.append(test2);
-			table.append(test);
-
-			var test = $('<h1></h1>').text("Time: ");
-			var test2 = $('<span></span>').text(time_converted);
-
-			test.append(test2);
-			table.append(test);
-
-			table.addClass("table " + entry.id);
-
-			quakeTable.append(table);
-		});
-	}
-
-	function overList(data){
-		var overId,
-			temp;
-
-		$('.table').on('mouseover', function(){
-
-			// console.log($(this).css('backgroundColor'))
-
-			// $(this).css('background', 'white');
-
-			var testId = $(this).attr("class").split(' ')[1];
-			overId = d3.select('#' + testId);
-
-			$(this).attr('id', 'test');
-
-			var cx = d3.select('#' + testId).attr("cx"),
-				cy = d3.select('#' + testId).attr("cy");
-
-			temp = svg.append("g")
-						.append('circle')
-						.attr("cx", cx)
-						.attr("cy", cy)
-						.style('fill', 'rgba(248, 189, 0, 0.5)')
-						.style('stroke-width', '2')
-						.style('stroke', 'yellow')
-						.attr('r', "20");
-		}).on('mouseout', function(){
-					// $(this).css('background', 'transparent');
-					temp.remove();
-					$(this).removeAttr('id', 'test');
-		})
-	}
-
-	//SETS UP THE SCROLLING FOR THE LIST OF EARTHQUAKES
-    // $("#quake-table").niceScroll({autohidemode:false,cursorwidth:"8px",cursorborderradius:"0px", cursorfixedheight: 70, railpadding:{top:0,right:1,left:0,bottom:0}, horizrailenabled:false, cursorcolor:"#282F35", cursorborder: "0px", background: "grey", cursorminheight: "10",boxzoom:true});
-
+// block of code magnitude
+$("#map-plus-0-eq").click(function() {
+		$("#eq-mag-styles").empty();
+	});
+$("#map-plus-3-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2{display:none;}");
+	});
+$("#map-plus-4-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3{display:none;}");
+	});
+$("#map-plus-5-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3, .mag-circle-4{display:none;}");
+	});
+$("#map-plus-6-eq").click(function() {
+		$("#eq-mag-styles").empty().append(".mag-circle-0, .mag-circle-1, .mag-circle-2, .mag-circle-3, .mag-circle-4, .mag-circle-5{display:none;}");
+	});
 };
+

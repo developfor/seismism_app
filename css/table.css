@@ -20,7 +20,7 @@
 }
 #datatable-wrapper td
 {
-    padding: 5px;
+    /*padding: 5px;*/
     line-height: 18px;
     font-size: 12px;
     color:black;
@@ -82,6 +82,7 @@ table.dataTable tfoot th {
     font-weight: bold;
     text-align: center;
 }
+
 
 table.dataTable td {
     padding: 3px 10px;
@@ -291,14 +292,9 @@ table.dataTable th:active {
 
 .table-mag{
     float: left;
-    margin-top: 20px;
+    margin-top: 9px;
     margin-left: 20px;
 }
-
-
-
-
-
 
 
 

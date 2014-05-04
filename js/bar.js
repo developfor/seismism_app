@@ -27,7 +27,7 @@ var barVisualisation = function(data){
 	//variables for postion and sizes
 	var margin = {top:15, right:0, bottom: 50, left:55},
 	width = 220 - margin.right - margin.left,
-	height = 330 - margin.top - margin.bottom,
+	height = 275 - margin.top - margin.bottom,
 	padding = 10;
 
 	//call the mag_numbers function and store the return value in the variable

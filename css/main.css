@@ -75,13 +75,14 @@ float: left;
 padding: 0;
 margin-right: 13.2px;
 margin-bottom: 13.2px;
+position: relative;
 }
 
 .block-graph{
 position: relative;
 background: pink;
 width: 230px;
-height: 400px;
+height: 375px;
 margin-top: 13.2px;
 float: left;
 }
@@ -184,8 +185,9 @@ background-position: -28px -0.5px;
 .block-map{
 background-color: #2A2A2A;
 width: 716px;
-height: 335px;
+height: 310px;
 clear: both;
+
 }
 
 .info-text-top{
