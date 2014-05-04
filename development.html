@@ -13,8 +13,19 @@
 	<link rel="stylesheet" type="text/css" href="css/map.css">
 	<link rel="stylesheet" type="text/css" href="css/table.css">
 	<link rel="stylesheet" type="text/css" href="css/scroll.css">
-
+<!-- for map begin -->
+	<link rel="stylesheet" type="text/css" href="js/vendor/leaflet/leaflet.css">
+	<!-- for map end -->
 	<title>seismism - The Earthquake Monitor Dashboard</title>
+
+
+	<style type="text/css" id="eq-time-styles">
+
+</style>
+<style type="text/css" id="eq-mag-styles">
+
+</style>
+
 
 </head>
 
@@ -53,29 +64,57 @@
 			</div>	
 
 			<div class ="block-map">
-				<div class ="map-button-box">
+				<div class ="map-container">
 					<div id = "viz-map"></div>
-
-					<div id = "date-buttons">
-						<ul class="button-group even-3">
-							<li class = "date-button small button" id = "0"><h1>Last 7 Days</h1></li>
-							<li class = "date-button small button" id = "2"><h1>Last 4 Days</h1></li>
-							<li class = "date-button small button" id = "5"><h1>Last 2 Days</h1></li>
-						<ul>
-					</div>
-
-					<div id = "mag-buttons">
-						<ul class="button-group even-3">
-							<li class = "mag-button small button alert" id = "one"><h1>Magnitude 1.0+</h1></li>
-							<li class = "mag-button small button alert" id = "four"><h1>Magnitude 4.5+</h1></li>
-							<li class = "mag-button small button alert" id = "five"><h1>Magnitude 5.5+</h1></li>
-						</ul>
-					</div>
 				</div>
-			<div id = "quake-table"></div>
+					<div class="map-header">
+					   <p>Filter earthqaukes by magnitude and days:</p>
+					</div>
+			<div class="button-container">
+				<div id="map-time-buttons">
+					<div id="seven-days-ago" class="map-time-button map-time-button-selected">7 days ago</div>
+					<div id="four-days-ago" class="map-time-button map-time-button-not-selected">4 days ago</div>
+					<div id="two-days-ago" class="map-time-button map-time-button-not-selected">2 days ago</div>	
+				</div>
+
+				<div id="map-mag-buttons">
+					<div id="map-plus-0-eq" class="map-mag-button map-mag-button-selected">+0 mag</div>
+					<div id="map-plus-3-eq" class="map-mag-button map-mag-button-not-selected">+3 mag</div>
+					<div id="map-plus-4-eq" class="map-mag-button map-mag-button-not-selected">+4 mag</div>
+					<div id="map-plus-5-eq" class="map-mag-button map-mag-button-not-selected">+5 mag</div>
+					<div id="map-plus-6-eq" class="map-mag-button map-mag-button-not-selected">+6 mag</div>
+				</div>
+
+			<div id="quake-details"> 
+				<p class="map-mag-text"><span class="map-key-eq">Earthquake Details:</span> </p> 
+				<p class="map-mag-text"><span class="map-key-eq">Time: </span><span id="map-quake-time"> 
+				</span></p>
+				<p class="map-mag-text"><span class="map-key-eq">Magnitude: </span><span id="map-quake-mag"> 
+				</span></p>
+				<p class="map-mag-text"><span class="map-key-eq">Place: </span><span id="map-quake-place"> 
+				</span></p>
+				<p class="map-mag-text"><span class="map-key-eq">Depth: </span><span id="map-quake-depth"> 
+				</span> km</p>
+
+				<p class="map-mag-text"><span class="map-key-eq">LatLong: </span><span id="map-quake-latitude"> 
+				</span>, <span id="map-quake-longitude"> 
+				</span></p>
+				
+				<div id="map-quake-latitude"></div>
+				<div id="map-quake-longitude"></div>
+
+			</div>
+			</div>
+
+
+
+
+
+
 
 			</div>
 		</div> <!-- END OF block-wrapper -->
+
 
 		<div class ="block-lastest-quake">
 			<div class="lastest-quake-wrapper">
@@ -83,8 +122,9 @@
 				<p class="latest-mag-text"><span class="key-eq">Location: </span><span id="latest-location-eq"> </span></p>
 				<p class="latest-mag-text"><span class="key-eq">Time: </span><span id="latest-time-eq"> </span> (UTC)</p>
 				<p class="latest-mag-text"><span class="key-eq">Report By: </span><span id="latest-felt-eq"> </span> people</p>
-				<p class="latest-mag-text-mag"><span id="latest-mag-eq"> </span> magnitude</p>
+				<p class="latest-mag-text-mag"><span class="key-eq">Magnitude:</span><span id="latest-mag-eq"> </span></p>
 				<div id="info-text-latest">
+					<div id="info-text-latest-close" class = "info-button-latest-mag">X</div>
 				
 					<p>Earthquake Magnitude Classes</p>
 
@@ -95,7 +135,7 @@
 
 			</div>
 			<div class="latest-detail-info-text"><p>The lastest significant earthquake.<p>
-			<div class="info-button-latest">i</div>
+			<div id="info-button-latest" class="info-button-latest-mag">i</div>
 			</div>
 
 
@@ -159,7 +199,7 @@
 
 		<div id = "block-table">
 			<div id = "datatable-wrapper">
-
+Earthquake List.
 					<table id = "table-id">
 						<thead>
 							<tr>
@@ -188,7 +228,9 @@
 
 	<script src = "js/vendor/jquery.nicescroll.js"></script>
 	<script src = "js/vendor/jquery.dataTables.js"></script>
-
+<!-- for map begin -->
+	<script src = "js/vendor/leaflet/leaflet.js"></script>
+<!-- for map end -->
 
 
 	<script src = "js/plug.js"></script>

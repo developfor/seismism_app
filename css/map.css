@@ -2,7 +2,11 @@
 	background-color: #474747;
 	float: left;
 	width: 100%;
+<<<<<<< HEAD
 	height: 335px;
+=======
+	height: 310px;
+>>>>>>> merge_map
 }
 
 
@@ -204,7 +208,11 @@
 	width: 139px;
 	height: 32px;
 	text-align: center;
+<<<<<<< HEAD
 	line-height: 40.5px;
+=======
+	line-height: 32px;
+>>>>>>> merge_map
 	font-size: 12px;
 	font-weight: bold;
 
@@ -230,12 +238,20 @@
 #map-mag-buttons{
 	float: left;
 	width: 75px;
+<<<<<<< HEAD
 	height: 20px;
+=======
+	/*height: 20px;*/
+>>>>>>> merge_map
 }
 #map-time-buttons{
 	float: left;
 	width: 150px;
+<<<<<<< HEAD
 	height: 20px;
+=======
+	/*height: 20px;*/
+>>>>>>> merge_map
 }
 
 .button-container{
@@ -246,8 +262,13 @@
 
 .map-time-button-not-selected{
 	float: left;
+<<<<<<< HEAD
 	/*background-color: rgb(46, 88, 121);*/
 	background-color: rgb(47, 122, 101);
+=======
+	/* background-color: rgb(46, 88, 121); */
+	background-color: rgb(0, 186, 255);
+>>>>>>> merge_map
 	cursor: pointer;
 	padding: 5px;
 	border-bottom: 1px solid rgb(42, 42, 42);
@@ -255,7 +276,11 @@
 	width: 139px;
 	height: 32px;
 	text-align: center;
+<<<<<<< HEAD
 	line-height: 40.5px;
+=======
+	line-height: 32px;
+>>>>>>> merge_map
 	color: rgb(255, 255, 255);
 	font-size: 12px;
 	font-weight: bold;
@@ -302,17 +327,29 @@ margin-right: -1px;
 
 #quake-details{
 	visibility: hidden;
+<<<<<<< HEAD
 	width: 215px;
 	float: left;
 	padding: 10px;
 	height: 110px;
+=======
+	width: 245px;
+	float: left;
+	padding: 10px;
+	height: 110px;
+	clear: both;
+>>>>>>> merge_map
 }
 
 
 .map-mag-text{
 color: #F8BD00;
 font-size: 12px;
+<<<<<<< HEAD
 margin-bottom: 7px;
+=======
+margin-bottom: 4px;
+>>>>>>> merge_map
 }
 
 .map-key-eq{

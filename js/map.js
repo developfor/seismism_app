@@ -120,9 +120,16 @@ marker.on('click', function(){
 		}
 	
 
+<<<<<<< HEAD
 		 var eqTime = moment(mData.time).format("MMM DD, YYYY @ h:mma");
 		$("#quake-details").css('visibility', 'visible');
 		$("#map-quake-time").empty().append(eqTime);
+=======
+		 // var eqTime = moment(mData.time).format("MMM DD, YYYY @ h:mma");
+		 // console.log(mData.time);
+		$("#quake-details").css('visibility', 'visible');
+		$("#map-quake-time").empty().append(mData.time + " (UTC)");
+>>>>>>> merge_map
 		$("#map-quake-mag").empty().append(mData.mag);
 		$("#map-quake-place").empty().append(mData.place);
 		$("#map-quake-depth").empty().append(mData.depth);

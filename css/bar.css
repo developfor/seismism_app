@@ -38,7 +38,7 @@ margin-left: 10px;
 
 #slider-range-max{
 margin-top: 5px;
-width: 145px;
+width: 150px;
 margin-left: 5px;
 }
 
@@ -101,6 +101,8 @@ background: #2A2A2A;
 height: 55px;
 padding-top: 5px;
 margin-top: 5px;
+bottom: 0px;
+position: absolute;
 }
 
 .source p{

@@ -25,6 +25,8 @@
 	width: 100%;
 	background-color: #2A2A2A;
 	height: 36px;
+	bottom: 0px;
+	position: absolute;
 }
 
 .b-buttons h1{
