@@ -199,13 +199,51 @@ var barVisualisation = function(data){
 		};//END OF SLIDE FUNCTION
 
 		var infoTest = function(){
-			$('.info-button').on('mouseover', function(){
-				$('#info-text').show();
-			}).on('mouseout', function(){
-				$('#info-text').hide();
-			});
 
-		};
+			//a dispatch table for the button clicks
+			//the key is the name of the command table entry
+			//functions are held as the value and passed back to a variable
+			var commandTable = {
+			    info_button_bar: function() { $('#info-text').toggle();},
+			    info_text_classes_close: function() { $('#info-text').hide();},
+			    1: function(){ $("#info-button-bar").css('background-position', '-28px -0.5px');},
+			    0: function(){ $("#info-button-bar").css('background-position', '0px -0.5px');} 
+			};
+			//keeps track if the info button is currently clicked
+			var clicked = 0;
+			//hover for the info button
+		   	$('#info-button-bar').hover( function(){
+		   		//if clicked === 0 then the info button is in a non-clicked state
+		   		//and so should change on hover over
+		   		if (clicked === 0){
+		      		$(this).css('background-position', '-28px -0.5px');
+		  		}
+		   	},
+		   	function(){
+		   		if(clicked === 0){
+		   			//the out state for the hover
+		      		$(this).css('background-position', '0px -0.5px');
+		  		}
+		   	});
+
+			$('.info-button').on('click', function(){
+				//change clicked to 1 or 0 depending on the state before
+				clicked = 1 - clicked;
+
+				//get the id of info button clicked
+				var thisId = this.id;
+				//convert the id so that it can work in the dispatch table
+				//dashes need to be underscors
+				var convertId = thisId.replace(/-/g,"_");
+				//call 
+				var toggleBox = commandTable[convertId];
+				var toggleInfo = commandTable[clicked];
+
+				toggleBox();
+				toggleInfo();
+
+			});
+		}; //END OF INFOTEST
 
 		graphUpdate();
 		slide();

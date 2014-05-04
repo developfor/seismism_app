@@ -48,7 +48,7 @@ margin-left: 5px;
   background-color: lightblue;
   cursor: pointer;
 }*/
-.info-button {
+#info-button-bar {
 cursor: pointer;
 float: left;
 background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
@@ -60,9 +60,9 @@ position: absolute;
 bottom: 10px;
 right: 10px;
 }
-.info-button:hover{
+/*#info-button-bar:hover{
 background-position: -28px -0.5px;
-}
+}*/
 
 #info-text{
   display: none;
