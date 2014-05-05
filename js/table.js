@@ -5,27 +5,34 @@ var tableVisualisation = function(data){
 	//The Place string is swapped so the Country or District is shown before the distance
 	var init = function(data){
 		var dataset = [];
+
 		data.forEach(function(entry){
-			//reformats the time data with moment.js	
-			entry.time = moment(entry.time).format("MMM DD, YYYY @ h:mma");
+				
+						var datum = {};
+						//reformats the time data with moment.js	
+						datum["time"] = moment(entry.time).format("MMM DD, YYYY @ h:mma");
+						datum["latitude"] = entry.latitude;
+						datum["longitude"] = entry.longitude;
+						datum["depth"] = entry.depth;
+						datum["mag"] = entry.mag;
 
-			//Splits the place data a the comma and stores the results in two variables
-			var country = entry.place.split(',')[1];
-			var location = entry.place.split(',')[0];
+						//Splits the place data a the comma and stores the results in two variables
+						var country = entry.place.split(',')[1];
+					 	var location = entry.place.split(',')[0];
+					 	//Checks is the place data is split by a comma
+						//if its not split then the entry stays the same
+						//If it is then the string after the comma is moved to the
+						//string before the comma
+					 	if (country === undefined || location === undefined){
+							datum["place"] = entry.place;
+						}else{
+							datum["place"] = country + ", " + location;
+						}
 
+						dataset.push(datum);
+				});
 
-			//Checks is the place data is split by a comma
-			//if its not split then the entry stays the same
-			//If it is then the string after the comma is moved to the
-			//string before the comma
-			if (country === undefined || location === undefined){
-				entry.place = entry.place;
-			} else{
-				entry.place = country + ", " + location;
-			}
-		});
-		//call the function that builds the table
-		makeTable(data);
+		makeTable(dataset);
 	};
 
 	//funciton to make the svg magnitude circles for the table
