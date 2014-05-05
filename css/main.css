@@ -146,7 +146,7 @@ position: absolute;
 bottom: 0;
 }
 
-#info-button-latest-toggle {
+#info-button-latest-toggle{
 cursor: pointer;
 float: left;
 background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
@@ -179,8 +179,6 @@ background-position: -28px -0.5px;
   font-size: 12px;
   padding: 10px;
 }
-
-
 
 .block-map{
 background-color: #2A2A2A;

@@ -20,14 +20,14 @@
 					}
 				});
 				scatterVisualisation(dataset);
-				totalEarthquakes(dataset.length);
+				totalEarthquakes(dataset);
 				barVisualisation(dataset);
 				mapVisualisation(dataset);
 				tableVisualisation(dataset);
 
 				// Time of the last entry in the csv.
-				var lastEntry = dataset.slice(-1).pop().time
-				 $("#total-eq-since").append(moment(lastEntry).format("MMM DD, YYYY @ h:mm A"));
+				// var lastEntry = dataset.slice(-1).pop().time
+				//  $("#total-eq-since").append(moment(lastEntry).format("MMM DD, YYYY @ h:mm A"));
 			}
 		});
 	};

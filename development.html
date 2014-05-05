@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/map.css">
 	<link rel="stylesheet" type="text/css" href="css/table.css">
 	<link rel="stylesheet" type="text/css" href="css/scroll.css">
+	<link rel="stylesheet" type="text/css" href="css/total.css">
 
 	<link rel="stylesheet" type="text/css" href="js/vendor/leaflet/leaflet.css">
 
@@ -39,8 +40,19 @@
 	</div>
 
 	<div class ="wrapper">
-		<div class ="block-wrapper">	
+		<div class ="block-wrapper">
+
 			<div class ="block-a">
+
+				<div id="info-text-total">
+					<div id="info-text-total-close" class = "info-button-total">X</div>
+				
+					<p>Earthquake Magnitude Classes</p>
+
+					<p class = "source"><a href="http://www.geo.mtu.edu/UPSeis/magnitude.html">source: UPSeis</a></p>
+
+				</div>  <!-- END OF info-text-total -->
+
 				<div class="info-text-top">
 					Total earthquakes in the past seven days:
 				</div>
@@ -51,7 +63,10 @@
 					<p id="total-eq-since-title">Total earthquakes since:</p> 
 					<p><span id="total-eq-since"> </span>
 						(UTC)</p>
+					<div id="info-button-total-toggle" class="info-button-total">i</div>
 				</div>
+
+
 			</div>
 
 			<div class ="block-b">
@@ -124,9 +139,7 @@
 
 					<p class = "source"><a href="http://www.geo.mtu.edu/UPSeis/magnitude.html">source: UPSeis</a></p>
 
-			</div>  <!-- END OF info-text -->
-
-
+				</div>  <!-- END OF info-text-latest -->
 			</div>
 			<div class="latest-detail-info-text"><p>The lastest significant earthquake.<p>
 			<div id="info-button-latest-toggle" class="info-button-latest">i</div>
