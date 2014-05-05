@@ -184,8 +184,7 @@ var scatterVisualisation = function(data){
 			.attr("class", "label")
 			.attr("x", width - 320)
 			.attr("y", height - 3)
-			.text("earthquake magitude");
-
+			.text("earthquake magnitude");
 
    		//calls graphUpdate when buttons are clicked
    		//checks the id of the clicked DOM element and uses that
