@@ -96,9 +96,10 @@ var tableVisualisation = function(data){
 			//the second span holds the d3 svg and is used in the makeTableCircles function
 			//the table-mag class styles the text so it sits well with the svg element
 			row += '<td><span class = "table-mag">' + entry.mag + '</span><span class = "circle-table"></span>' + '</td>';  
+			row += '<td>' + entry.depth + '</td>';
 			row += '<td>' + entry.place + '</td>';  
 			row += '<td>' + entry.latitude + ", " + entry.longitude + '</td>'; 
-
+			
 			row +='</tr>'; 
 			//row is appended to the table body
 			cBody.append(row);
@@ -115,7 +116,7 @@ var tableVisualisation = function(data){
 			"iDisplayLength": 100,
 			"bFilter": false,
 			"bLengthChange": false,
-			"aaSorting": [[ 4, "desc" ]]
+			"aaSorting": [[ 5, "desc" ]] //initial sorting descending by first column
 		});
 	};
 

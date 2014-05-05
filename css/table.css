@@ -50,6 +50,11 @@
 	border-right: 1px solid #777777;
 }
 
+#datatable-wrapper td:first-child + td + td  + td, #datatable-wrapper th:first-child + th + th +th
+{
+    border-right: 1px solid #777777;
+}
+
 
 
 
