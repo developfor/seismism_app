@@ -85,6 +85,11 @@ background-position: -28px -0.5px;
   padding: 10px;
 }
 
+#info-text-classes-close{
+  width: 30px;
+  cursor: pointer;
+}
+
 .slider-area {
 width: 100%;
 background: #2A2A2A;

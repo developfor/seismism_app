@@ -180,11 +180,18 @@ background-position: -28px -0.5px;
   padding: 10px;
 }
 
+#info-text-latest-close{
+  width: 30px;
+  cursor: pointer;
+}
+
+
 .block-map{
 background-color: #2A2A2A;
 width: 716px;
 height: 310px;
 clear: both;
+position: relative;
 
 }
 

@@ -242,6 +242,7 @@
 	float: left;
 	/*width: 235px;*/
 	height: 153px;
+	position: relative;
 }
 
 .map-time-button-not-selected{
@@ -320,6 +321,44 @@ margin-bottom: 4px;
 	color: #FFF;
 }
 
+#info-button-map-toggle{
+cursor: pointer;
+float: left;
+background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 50px auto;
+height: 22px;
+width: 22px;
+text-indent: -9999px;
+position: absolute;
+bottom: 4px;
+right: 10px;
+}
+/*#info-button-latest-toggle:hover{
+background-position: -28px -0.5px;
+}*/
 
+#info-text-map{
+  z-index: 1000;
+  display: none;
+  width: 230px;
+  height: 200px;
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left:0px;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#info-text-map p{
+  font-size: 12px;
+  padding: 20px 10px 10px 10px;
+}
+
+#info-text-map-close{
+  width: 30px;
+  cursor: pointer;
+}
 
 

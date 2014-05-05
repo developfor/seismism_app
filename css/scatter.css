@@ -48,3 +48,43 @@ font-weight: bold;
 	background-color: #F8BD00;
 	color: #2A2A2A;
 }
+
+#info-button-magnitude-toggle{
+cursor: pointer;
+float: left;
+background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 50px auto;
+height: 22px;
+width: 22px;
+text-indent: -9999px;
+position: absolute;
+bottom: 4px;
+right: 10px;
+}
+/*#info-button-latest-toggle:hover{
+background-position: -28px -0.5px;
+}*/
+
+#info-text-magnitude{
+  z-index: 1000;
+  display: none;
+  width: 440px;
+  height: 160px;
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left:0px;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#info-text-magnitude p{
+  font-size: 12px;
+  padding: 20px 10px 10px 10px;
+}
+
+#info-text-magnitude-close{
+  width: 30px;
+  cursor: pointer;
+}
