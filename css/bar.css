@@ -48,7 +48,7 @@ margin-left: 5px;
   background-color: lightblue;
   cursor: pointer;
 }*/
-#info-button-bar {
+#info-button-classes-toggle {
 cursor: pointer;
 float: left;
 background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
@@ -64,7 +64,7 @@ right: 10px;
 background-position: -28px -0.5px;
 }*/
 
-#info-text{
+#info-text-classes{
   display: none;
   width: 90%;
   height: auto;
@@ -77,11 +77,11 @@ background-position: -28px -0.5px;
   background: rgba(0, 0, 0, 0.85);
 }
 
-#info-text table{
+#info-text-classes table{
   margin: 0 auto;
 }
 
-#info-text table td,th{
+#info-text-classes table td,th{
   font-size: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -90,7 +90,7 @@ background-position: -28px -0.5px;
   border-bottom: 1px solid #888888;
 }
 
-#info-text p{
+#info-text-classes p{
   font-size: 12px;
   padding: 10px;
 }

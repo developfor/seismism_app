@@ -146,7 +146,7 @@ position: absolute;
 bottom: 0;
 }
 
-#info-button-latest {
+#info-button-latest-toggle {
 cursor: pointer;
 float: left;
 background: url("../images/info-button.png")no-repeat scroll rgba(0, 0, 0, 0);
@@ -158,9 +158,9 @@ position: absolute;
 bottom: 4px;
 right: 10px;
 }
-#info-button-latest:hover{
+/*#info-button-latest-toggle:hover{
 background-position: -28px -0.5px;
-}
+}*/
 
 #info-text-latest{
   display: none;

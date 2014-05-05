@@ -20,21 +20,21 @@ $.ajax({
         $("#latest-mag-eq").append(mag_eq);
         $("#latest-felt-eq").append(felt_eq);
 
-        var infoTest = function(){
+        var infoText = function(){
 
             //a dispatch table for the button clicks
             //the key is the name of the command table entry
             //functions are held as the value and passed back to a variable
             var commandTable = {
-                info_button_latest: function() { $('#info-text-latest').toggle();},
+                info_button_latest_toggle: function() { $('#info-text-latest').toggle();},
                 info_text_latest_close: function() { $('#info-text-latest').hide();},
-                1: function(){ $("#info-button-latest").css('background-position', '-28px -0.5px');},
-                0: function(){ $("#info-button-latest").css('background-position', '0px -0.5px');} 
+                1: function(){ $("#info-button-latest-toggle").css('background-position', '-28px -0.5px');},
+                0: function(){ $("#info-button-latest-toggle").css('background-position', '0px -0.5px');} 
             };
             //keeps track if the info button is currently clicked
             var clicked = 0;
             //hover for the info button
-            $('#info-button-latest').hover( function(){
+            $('#info-button-latest-toggle').hover( function(){
                 //if clicked === 0 then the info button is in a non-clicked state
                 //and so should change on hover over
                 if (clicked === 0){
@@ -67,43 +67,7 @@ $.ajax({
             });
         }; //END OF INFOTEST
 
- 		
-    	
-    	// console.log(data.features[0].properties.mag);
-    	// console.log(data.features[0].properties.place);
-    	
-    	// console.log(time_eq);
-    	// console.log(data.features[0].properties.felt);
-    	 // console.log(data);
-         // var toggle = 0;
-
-        //    var infoTest = function(){
-        //      $('.info-button-latest-mag').on('click', function(){
-        //         var thisID = this.id;
-        //         if(thisID === "info-button-latest"){
-        //             $('#info-text-latest').show();
-        //             $("#info-button-latest").css('background-position', '-28px -0.5px');
-        //         } else if(thisID === "info-text-latest-close"){
-        //             $('#info-text-latest').hide();
-        //              $("#info-button-latest").css('background-position', '0px -0.5px');
-        //         }
-        //     });
-
-
-           
-
-                
-        //         // $('body').on('click', function(){
-        //         //    if (toggle === 1){ 
-        //         //     $('#info-text-latest').hide();
-        //         //     toggle = 0;
-        //         //    }
-        //         // });
-
-    
-            
-        // }
-            infoTest();
+        infoText();
 
 
    
