@@ -265,7 +265,7 @@ var barVisualisation = function(data){
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.attr("background-color", "pink")
-		.text("earthquake magitude class");
+		.text("Earthquake Magitude Class");
 
 		svg.append("g")
 		.attr("class", "y axis")

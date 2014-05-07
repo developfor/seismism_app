@@ -361,4 +361,14 @@ background-position: -28px -0.5px;
   cursor: pointer;
 }
 
+.leaflet-bar a:first-child {
+border-top-left-radius: 0px !important;
+border-top-right-radius: 0px !important;
+}
+
+.leaflet-bar a:last-child {
+ border-bottom-left-radius: 0px !important; 
+border-bottom-right-radius: 0px !important;
+}
+
 

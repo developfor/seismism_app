@@ -80,7 +80,7 @@ position: relative;
 
 .block-graph{
 position: relative;
-background: pink;
+
 width: 230px;
 height: 375px;
 margin-top: 13.2px;
@@ -255,7 +255,6 @@ bottom: 0;
 	float: left;
 	width: 960px;
 	height: 328px;
-	
 	margin-top: 13.2px;
 	/*margin-bottom: 13.2px;*/
 	position: relative;
@@ -267,7 +266,7 @@ bottom: 0;
 	float: left;
 	width: 960px;
 	height: 58px;
-	/*background: pink;*/
+	
 	margin-top: 13.2px;
 	/*margin-bottom: 13.2px;*/
 	position: relative;
