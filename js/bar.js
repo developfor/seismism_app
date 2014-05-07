@@ -25,7 +25,7 @@ var barVisualisation = function(data){
 	};
 
 	//variables for postion and sizes
-	var margin = {top:15, right:0, bottom: 50, left:55},
+	var margin = {top:15, right:0, bottom: 70, left:55},
 	width = 220 - margin.right - margin.left,
 	height = 300 - margin.top - margin.bottom,
 	padding = 10;
@@ -254,11 +254,20 @@ var barVisualisation = function(data){
 		.attr("dx", "-2em")
 		.attr("transform", function(d) {
 			return "translate(-10,5)rotate(-65)" 
-		})
+		});
+
+		svg.append("g")
+		.attr("class", "y axis")
+		.call(yAxis)
 		.append("text")
-		.style("text-anchor", "start")
-		.attr("y", 28)
+		.attr("y", 270)
+		.attr("x", 130)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.attr("background-color", "pink")
 		.text("earthquake magitude class");
+
+
 
 		svg.append("g")
 		.attr("class", "y axis")
