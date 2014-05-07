@@ -254,12 +254,24 @@ bottom: 0;
 	clear: both;
 	float: left;
 	width: 960px;
-	height: 286px;
-	background: pink;
+	height: 328px;
+	
 	margin-top: 13.2px;
-	margin-bottom: 13.2px;
+	/*margin-bottom: 13.2px;*/
 	position: relative;
 	background: #474747;
+}
+
+#block-footer{
+	clear: both;
+	float: left;
+	width: 960px;
+	height: 58px;
+	/*background: pink;*/
+	margin-top: 13.2px;
+	/*margin-bottom: 13.2px;*/
+	position: relative;
+	/*background: #474747;*/
 }
 
 

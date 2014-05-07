@@ -61,9 +61,16 @@
 /*
  * Table
  */
+.datatable-info-text-top {
+color: #FFF;
+font-size: 14px;
+padding: 10px;
+border-bottom: solid 1px #777;
+}
+
 
  #datatable-wrapper{
-    background-color: #719ba7;
+    background-color: #474747;
  }
 table.dataTable {
     margin: 0 auto;
@@ -143,10 +150,13 @@ table.dataTable tr.even td.sorting_1 { background-color: #fade86; color: white; 
  * Table information
  */
 .dataTables_info {
-    clear: both;
-    float: left;
-    color: white;
-    padding: 6px;
+  clear: both;
+float: left;
+color: #FFF;
+
+font-size: 14px;
+line-height: 35px;
+padding-left: 10px;
 }
 
 
@@ -156,7 +166,6 @@ table.dataTable tr.even td.sorting_1 { background-color: #fade86; color: white; 
 .dataTables_paginate {
     float: right;
     text-align: right;
-    padding: 6px;
 }
 
 /* Two button pagination - previous / next */
@@ -219,7 +228,7 @@ table.dataTable tr.even td.sorting_1 { background-color: #fade86; color: white; 
 
 .paging_full_numbers a.paginate_button,
 .paging_full_numbers a.paginate_active {
-    border: 1px solid #aaa;
+ /*   border: 1px solid #aaa;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -227,15 +236,27 @@ table.dataTable tr.even td.sorting_1 { background-color: #fade86; color: white; 
     margin: 0 3px;
     cursor: pointer;
     *cursor: hand;
-    color: #333 !important;
+    color: #333 !important;*/
+    cursor: pointer;
+padding-top: 5px;
+padding-bottom: 5px;
+height: 26px;
+border-right: 1px solid #2A2A2A;
+width: 70px;
+text-align: center;
+line-height: 25px;
+color: #FFF;
+font-size: 13px;
+font-weight: bold;
+float: left;
 }
 
 .paging_full_numbers a.paginate_button {
-    background-color: #ddd;
+    background-color: #2E5879;
 }
 
 .paging_full_numbers a.paginate_button:hover {
-    background-color: #ccc;
+    background-color: #2E5879;
     text-decoration: none !important;
 }
 
