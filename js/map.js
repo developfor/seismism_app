@@ -120,10 +120,10 @@ var mapVisualisation = function(data){
 			}
 		
 
-			 // var eqTime = moment(mData.time).format("MMM DD, YYYY @ h:mma");
+			  var eqTime = moment(mData.time).format("MMM DD, YYYY @ h:mma");
 			 // console.log(mData.time);
 			$("#quake-details").css('visibility', 'visible');
-			$("#map-quake-time").empty().append(mData.time + " (UTC)");
+			$("#map-quake-time").empty().append(eqTime + " (UTC)");
 			$("#map-quake-mag").empty().append(mData.mag);
 			$("#map-quake-place").empty().append(mData.place);
 			$("#map-quake-depth").empty().append(mData.depth);
