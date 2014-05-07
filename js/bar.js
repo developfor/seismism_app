@@ -98,6 +98,11 @@ var barVisualisation = function(data){
 
 			// $( "#amount" ).val( "7");
 			// $( "#amount" ).text( "7");
+// if else statment
+if (Modernizr.touch) {   
+    // alert('Touch Screen');  
+} else {   
+    // alert('No Touch Screen');  
 
 			d3.selectAll("rect")
 			.on("mouseover", function(d) {
@@ -118,9 +123,10 @@ var barVisualisation = function(data){
 	            $(this).css("fill", "#00BAFF");
 	            d3.select("#tooltip").classed("hidden", true);
 		    });
-
+		    
+// if else statment
 		}//END OF GRAPHUPDATE FUNCTION
-
+} 
 		function slide(){
 			var data_parsed = [];
 
@@ -213,6 +219,7 @@ var barVisualisation = function(data){
 		   		//and so should change on hover over
 		   		if (clicked === 0){
 		      		$(this).css('background-position', '-28px -0.5px');
+		      		console.log("hovered");
 		  		}
 		   	},
 		   	function(){
@@ -269,7 +276,6 @@ var barVisualisation = function(data){
 
 		svg.append("g")
 		.attr("class", "y axis")
-		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", -40)
