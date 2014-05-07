@@ -86,8 +86,13 @@ background-position: -28px -0.5px;
 }
 
 #info-text-classes-close{
-  width: 30px;
-  cursor: pointer;
+  width: 20px;
+cursor: pointer;
+height: 20px;
+background-color: #2E5879;
+position: absolute;
+top: 0;
+right: 0;
 }
 
 .slider-area {
