@@ -289,7 +289,7 @@ bottom: 0;
 	position: relative;
 }
 
-.footer-text-left{
+.madeby-text{
 	font-size: 12px;
 	width: 53px;
 	font-weight: bold;
@@ -297,9 +297,14 @@ bottom: 0;
 	margin-top: 5px;
 	margin-left: 10px;
 }
+.madeby-wrapper{
+	background-color: #FFF;
+width: 120px;
+float: right;
+height: 38px;
+}
 .footer-text-right{
 	font-size: 12px;
-	/*width: 53px;*/
 	font-weight: bold;
 	float: right;
 	margin-top: 5px;
@@ -307,12 +312,14 @@ bottom: 0;
 }
 
 .df-logo{
-	float: left;
-	background: url("../images/df_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
-	background-size: 100px auto;
-	height: 50px;
-	width: 200px;
-	text-indent: -9999px;
-	display: inline;
+float: left;
+background: url("../images/df_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 100px auto;
+text-indent: -9999px;
+display: inline;
+margin-top: 10px;
+margin-left: 10px;
+background-repeat: no-repeat;
+width: 110px;
 }
 
