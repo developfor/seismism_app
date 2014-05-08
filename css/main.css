@@ -284,7 +284,7 @@ bottom: 0;
 	clear: both;
 	float: left;
 	width: 960px;
-	height: 58px;	
+	height: 30px;
 	margin-top: 13.2px;
 	position: relative;
 }
@@ -303,12 +303,34 @@ width: 120px;
 float: right;
 height: 38px;
 }
+
+
+.footer-text-left{
+	font-size: 12px;
+	font-weight: bold;
+	float: left;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.footer-text-left a{
+color: #EE2D5A;
+text-decoration: none;
+}
+
+
+
 .footer-text-right{
 	font-size: 12px;
 	font-weight: bold;
 	float: right;
 	margin-top: 5px;
 	margin-right: 10px;
+}
+
+.footer-text-right a{
+color: #2E5879;
+text-decoration: none;
 }
 
 .df-logo{
