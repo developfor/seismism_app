@@ -289,5 +289,30 @@ bottom: 0;
 	position: relative;
 }
 
+.footer-text-left{
+	font-size: 12px;
+	width: 53px;
+	font-weight: bold;
+	float: left;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+.footer-text-right{
+	font-size: 12px;
+	/*width: 53px;*/
+	font-weight: bold;
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+}
 
+.df-logo{
+	float: left;
+	background: url("../images/df_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
+	background-size: 100px auto;
+	height: 50px;
+	width: 200px;
+	text-indent: -9999px;
+	display: inline;
+}
 

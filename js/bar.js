@@ -223,7 +223,7 @@ if (Modernizr.touch && (isAndroid || isIOs)) {
 		   		//and so should change on hover over
 		   		if (clicked === 0){
 		      		$(this).css('background-position', '-28px -0.5px');
-		      		console.log("hovered");
+		      		
 		  		}
 		   	},
 		   	function(){

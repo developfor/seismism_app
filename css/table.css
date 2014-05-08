@@ -14,7 +14,7 @@
     font-size: 12px;
     line-height: 2em;
     color: #FFF;
-    background-color: #474747;
+    background-color: #2A2A2A;
     text-align: center;
     border-bottom: black;
 }
@@ -296,7 +296,9 @@ table.dataTable th:active {
 .dataTables_scroll {
     clear: both;
 }
-
+.dataTables_scrollHeadInner{
+background-color: #2A2A2A;
+}
 .dataTables_scrollBody {
     *margin-top: -1px;
 }
