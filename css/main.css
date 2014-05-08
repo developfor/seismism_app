@@ -28,6 +28,7 @@ margin-top: 0px;
 background-color: #474747;
 height: 50px;
 color: #FFF;
+width: 100%;
 }
 
 .wrapper-title {
@@ -181,8 +182,16 @@ background-position: -28px -0.5px;
 }
 
 #info-text-latest-close{
-  width: 30px;
-  cursor: pointer;
+width: 20px;
+cursor: pointer;
+float: right;
+height: 20px;
+background-color: #2E5879;
+text-align: center;
+position: absolute;
+right: 0;
+top: 0;
+
 }
 
 
@@ -254,9 +263,8 @@ bottom: 0;
 	clear: both;
 	float: left;
 	width: 960px;
-	height: 330px;
+	height: auto;
 	margin-top: 13.2px;
-	/*margin-bottom: 13.2px;*/
 	position: relative;
 	background: #474747;
 }
@@ -265,12 +273,9 @@ bottom: 0;
 	clear: both;
 	float: left;
 	width: 960px;
-	height: 58px;
-	
+	height: 58px;	
 	margin-top: 13.2px;
-	/*margin-bottom: 13.2px;*/
 	position: relative;
-	/*background: #474747;*/
 }
 
 

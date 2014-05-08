@@ -338,17 +338,17 @@ background-position: -28px -0.5px;
 }*/
 
 #info-text-map{
-  z-index: 1000;
-  display: none;
-  width: 230px;
-  height: 200px;
-  margin-left: 10px;
-  background-color: black;
-  color: white;
-  position: absolute;
-  left:0px;
-  top: 10px;
-  background: rgba(0, 0, 0, 0.85);
+z-index: 1000;
+ display: none; 
+width: 245px;
+height: 260px;
+margin-left: 10px;
+background-color: #000;
+color: #FFF;
+position: absolute;
+right: 10px;
+top: 10px;
+background: rgba(0, 0, 0, 0.85);
 }
 
 #info-text-map p{
@@ -357,8 +357,15 @@ background-position: -28px -0.5px;
 }
 
 #info-text-map-close{
-  width: 30px;
-  cursor: pointer;
+width: 20px;
+cursor: pointer;
+float: right;
+height: 20px;
+background-color: #2E5879;
+text-align: center;
+position: absolute;
+right: 0;
+top: 0;
 }
 
 .leaflet-bar a:first-child {

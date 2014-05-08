@@ -99,7 +99,11 @@ var barVisualisation = function(data){
 			// $( "#amount" ).val( "7");
 			// $( "#amount" ).text( "7");
 // if else statment
-if (Modernizr.touch) {   
+var nua = navigator.userAgent;
+var isAndroid = ((nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 &&     nua.indexOf('AppleWebKit') > -1) && !(nua.indexOf('Chrome') > -1));// Android detection code
+var isIOs =  ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false ); // iOS detection code
+
+if (Modernizr.touch && (isAndroid || isIOs)) {   
     // alert('Touch Screen');  
 } else {   
     // alert('No Touch Screen');  
