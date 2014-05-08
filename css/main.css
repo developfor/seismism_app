@@ -17,6 +17,15 @@ html, body{
 	margin: 0;
 }
 
+.logo{
+float: left;
+background: url("../images/seismism_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 200px auto;
+height: 50px;
+width: 200px;
+text-indent: -9999px;
+}
+
 .wrapper{
 	margin: 0 auto;
 	width:960px;
@@ -49,6 +58,8 @@ display: inline;
 font-size: 11px;
 margin-left: 2px;
 display: inline;
+float: left;
+margin-top: 23px;
 }
 
 .block-wrapper{
