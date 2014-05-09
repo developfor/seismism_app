@@ -178,7 +178,7 @@ var scatterVisualisation = function(data){
 			.attr("x", -140)
 			.attr("dy", ".85em")
 			.attr("transform", "rotate(-90)")
-			.text("depth of focus (km)");
+			.text("earthquake depth (km)");
 
 		svg.append("text")
 			.attr("class", "label")
