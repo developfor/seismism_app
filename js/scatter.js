@@ -18,6 +18,7 @@ var scatterVisualisation = function(data){
 	data4 = 4.5,
 	data5 = 5.5;
 
+
 	//used to checked which button has been clicked. Used in on click function 
 	var previous = "mag1",
 	buttonHighlight = '#F8BD00';

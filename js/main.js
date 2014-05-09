@@ -18,18 +18,51 @@
 						datum["id"] = entry.id;
 						dataset.push(datum);
 					}
-				});
-				scatterVisualisation(dataset);
-				totalEarthquakes(dataset);
-				barVisualisation(dataset);
-				mapVisualisation(dataset);
-				tableVisualisation(dataset);
+				});	
 
+				var components = [
+					totalEarthquakes,
+					scatterVisualisation,
+					barVisualisation,
+					mapVisualisation,
+					tableVisualisation
+				];
+
+				function recursiveCreation(components){
+					//console.log(components);
+					if(components.length){
+						var component = components.shift();
+						component(dataset);
+						setTimeout(function(){recursiveCreation(components)}, 100);
+					}
+				};
+
+				recursiveCreation(components);
+
+
+				// setTimeout(function(){
+				// 	totalEarthquakes(dataset)
+				// 	setTimeout(function(){
+				// 		scatterVisualisation(dataset)
+				// 		setTimeout(function(){
+				// 				barVisualisation(dataset)
+				// 				setTimeout(function(){
+				// 					mapVisualisation(dataset)
+				// 					setTimeout(function(){
+				// 						tableVisualisation(dataset)
+				// 					}, 1000)
+				// 				}, 1000)
+				// 			}, 1000)	
+				// 	}, 1000)
+				// }, 1000);
+				
+				
 				// Time of the last entry in the csv.
 				// var lastEntry = dataset.slice(-1).pop().time
 				//  $("#total-eq-since").append(moment(lastEntry).format("MMM DD, YYYY @ h:mm A"));
 			}
 		});
 	};
-	dataVisualisation();
+	setTimeout(dataVisualisation(), 2000);
 })(this, document);
+
