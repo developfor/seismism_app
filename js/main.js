@@ -1,3 +1,4 @@
+setTimeout(function(){
 (function(window, document, undefined){
 	var dataVisualisation = function(){
 
@@ -20,25 +21,58 @@
 					}
 				});	
 
+				// preloader begin
+				$("body").append('<div id="load-line" ></div>');
+				complete = function(){
+					$("#dashboard-blocks").animate( {'opacity':1}, 2000);
+				};
+				 
 				var components = [
 					totalEarthquakes,
 					scatterVisualisation,
 					barVisualisation,
 					mapVisualisation,
-					tableVisualisation
+					tableVisualisation,
+					complete
 				];
+				var totalComponents = components.length;
 
 				function recursiveCreation(components){
-					//console.log(components);
+					
+					var leftToLoad = components.length/totalComponents,
+						amountLeft =  1-leftToLoad,
+						percentage = Math.round(amountLeft*100),
+					    percentageToString = percentage.toString() + "%";
+
+					console.log(percentage);
+
+					var loadLine = function(){
+
+						// $("#load-line").remove();
+						 console.log(percentageToString);
+						   $("#load-line").css("width", percentageToString);
+						  // $("#load-line").animate({"width": percentageToString});
+						  // $("#load-line").animate({"width": percentageToString}, "slow");
+
+						// $("#load-line").css("transition", "1s");
+						
+					}
+					loadLine();
+
+					 if(components.length === 0){
+					 	setTimeout(function(){$("#load-line").animate({"opacity":0})}, 600);
+					 }
 					if(components.length){
 						var component = components.shift();
 						component(dataset);
-						setTimeout(function(){recursiveCreation(components)}, 100);
+						setTimeout(function(){recursiveCreation(components)}, 1);
 					}
+
+					
 				};
-
+			
 				recursiveCreation(components);
-
+				// preloader end
 
 				// setTimeout(function(){
 				// 	totalEarthquakes(dataset)
@@ -63,6 +97,8 @@
 			}
 		});
 	};
-	setTimeout(dataVisualisation(), 2000);
+	setTimeout(dataVisualisation(), 0);
 })(this, document);
 
+
+}, 1000);
