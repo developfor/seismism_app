@@ -33,6 +33,7 @@ setTimeout(function(){
 					barVisualisation,
 					mapVisualisation,
 					tableVisualisation,
+					instructions,
 					complete
 				];
 				var totalComponents = components.length;
