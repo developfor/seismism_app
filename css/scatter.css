@@ -118,6 +118,8 @@ float: left;
 }
 .info-text-magnitude-block-b li{
 margin-bottom: 5px;
+border-bottom: #FFF solid 1px;
+margin-right: 10px;
 }
 
 .info-text-magnitude-block-b b{
