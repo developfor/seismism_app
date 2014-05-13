@@ -2,24 +2,29 @@ setTimeout(function(){
 (function(window, document, undefined){
 	var dataVisualisation = function(){
 
-		d3.csv("data/all_week.csv", function(error, data){
+		d3.json("data/all_week.json", function(error, data){
 			if(error){
 				console.log("there is an error " + error);
 			} else {
 				var dataset = [];
-				data.forEach(function(entry){
-					if(entry.mag > 0  && entry.type === "earthquake"){
+				// console.log(console.log(data.features[1].geometry.coordinates))
+
+				data.features.forEach(function(entry){
+					// console.log(entry.properties.mag)
+					if(entry.properties.mag > 0  && entry.properties.type === "earthquake"){
 						var datum = {};
-						datum["time"] = entry["time"];
-						datum["latitude"] = entry.latitude;
-						datum["longitude"] = entry.longitude;
-						datum["depth"] = entry.depth;
-						datum["mag"] = entry.mag;
-						datum["place"] = entry.place;
-						datum["id"] = entry.id;
+						datum["time"] = entry.properties["time"];
+						datum["latitude"] = entry.geometry.coordinates[1];
+						datum["longitude"] = entry.geometry.coordinates[0];
+						datum["depth"] = entry.geometry.coordinates[2];
+						datum["mag"] = entry.properties.mag;
+						datum["place"] = entry.properties.place;
+						datum["id"] = entry.properties.id;
 						dataset.push(datum);
 					}
 				});	
+
+
 
 				// preloader begin
 				$("body").append('<div id="load-line" ></div>');
@@ -45,12 +50,12 @@ setTimeout(function(){
 						percentage = Math.round(amountLeft*100),
 					    percentageToString = percentage.toString() + "%";
 
-					console.log(percentage);
+					// console.log(percentage);
 
 					var loadLine = function(){
 
 						// $("#load-line").remove();
-						 console.log(percentageToString);
+						 // console.log(percentageToString);
 						   $("#load-line").css("width", percentageToString);
 						  // $("#load-line").animate({"width": percentageToString});
 						  // $("#load-line").animate({"width": percentageToString}, "slow");
