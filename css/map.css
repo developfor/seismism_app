@@ -341,7 +341,7 @@ background-position: -28px -0.5px;
 z-index: 1000;
  display: none; 
 width: 245px;
-height: 260px;
+height: 220px;
 margin-left: 10px;
 background-color: #000;
 color: #FFF;
@@ -367,15 +367,22 @@ position: absolute;
 right: 0;
 top: 0;
 }
-
-
+#info-text-map-table{
+margin-top: 20px;
+margin-left: 10px;
+margin-right: 10px;
+}
 .info-text-map-row{
 	clear: both;
 	margin: 6px;
+	height: 20px;
+	border-bottom: solid #FFF 1px;
+
 }
 .info-text-map-row h1{
 	float: left;
 	padding-right: 12px;
+	font-size: 12px;
 }
 
 .info-text-map-mag0{
@@ -390,7 +397,7 @@ border-color: rgb(118, 183, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
+/*margin-top: 4px;*/
 }
 
 .info-text-map-mag1{
@@ -405,7 +412,6 @@ border-color: rgb(118, 183, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .info-text-map-mag2{
@@ -420,7 +426,6 @@ border-color: rgb(0, 128, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .info-text-map-mag3{
@@ -435,7 +440,6 @@ border-color: rgb(255, 143, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .info-text-map-mag4{
@@ -450,7 +454,6 @@ border-color: rgb(255, 92, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .info-text-map-mag5{
@@ -465,7 +468,6 @@ border-color: rgb(255, 0, 0);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .info-text-map-mag6{
@@ -480,7 +482,6 @@ border-color: rgb(153, 0, 255);
 border-radius: 40px; 
 -khtml-border-radius: 40px;
 float: left;
-margin-top: 4px;
 }
 
 .leaflet-bar a:first-child {
