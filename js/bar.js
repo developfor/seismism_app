@@ -276,7 +276,7 @@ if (Modernizr.touch && (isAndroid || isIOs)) {
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.attr("background-color", "pink")
-		.text("Earthquake Magitude Class");
+		.text("Earthquake Magnitude Class");
 
 		svg.append("g")
 		.attr("class", "y axis")
