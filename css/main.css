@@ -282,7 +282,7 @@ background-position: -28px -0.5px;
 
 #info-text-latest p{
   font-size: 12px;
-  padding: 10px;
+  padding: 6px;
 }
 
 #info-text-latest-close{
@@ -438,5 +438,10 @@ text-decoration: none;
     -webkit-transition:width .25s;
     -moz-transition: width 0.25s;*/
     
+}
+
+.source a{
+color: #00BAFF;
+font-weight: bold;
 }
 
