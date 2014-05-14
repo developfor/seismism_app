@@ -427,8 +427,8 @@ text-decoration: none;
 }
 
 .footer-text-right a{
-color: #00BAFF;
-text-decoration: none;
+	color: #00BAFF;
+	text-decoration: none;
 }
 
 
@@ -438,10 +438,27 @@ text-decoration: none;
 	height: 13px;
 	background-color:  #2E5879;
 	width: 0;
-/*	 transition:width 0.25s;
+	/*	 
+	transition:width 0.25s;
     -webkit-transition:width .25s;
-    -moz-transition: width 0.25s;*/
+    -moz-transition: width 0.25s;
+    */
     
+}
+
+#loading-text{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-weight: bold;
+	font-size: 50px;
+	margin-left: -100px;
+	color: #B4B4B4;
+}
+
+#loading-text p{
+	/*text-align: center;*/
+
 }
 
 .source a{

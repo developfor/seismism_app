@@ -67,6 +67,8 @@ setTimeout(function(){
 
 					 if(components.length === 0){
 					 	setTimeout(function(){$("#load-line").animate({"opacity":0})}, 600);
+					 	setTimeout(function(){$("#loading-text").remove()});
+					 
 					 }
 					if(components.length){
 						var component = components.shift();
