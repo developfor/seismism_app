@@ -30,6 +30,37 @@ height: 50px;
 width: 200px;
 text-indent: -9999px;
 }
+#header-text-slogan{
+	position: absolute;
+	right: 130px;
+}
+/*.header-text-right p{
+	float: right !important;
+}*/
+.header-text-right a{
+	font-size: 12px;
+	/*font-weight: bold;*/
+	
+	/*margin-top: 5px;*/
+	margin-left: 10px;
+	color: #EE2D5A;
+	text-decoration: none;
+}
+
+
+
+
+.df-logo{
+float: left;
+background: url("../images/df_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
+background-size: 100px auto;
+text-indent: -9999px;
+display: inline;
+margin-top: 18px;
+margin-left: 10px;
+background-repeat: no-repeat;
+width: 110px;
+}
 
 .wrapper{
 	margin: 0 auto;
@@ -49,6 +80,7 @@ width: 100%;
 width: 960px;
 height: 50px;
 margin: 0 auto;
+position: relative;
 }
 
 .title h1 {
@@ -79,11 +111,11 @@ margin: 0 auto;
 	height: auto;
 	margin-top: 13.2px;
 	position: relative;
-	background: #474747;
+	/*background: #474747;*/
 }
 
 .block-instructions h1{
-	color: white;
+	color: #474747;
 	/*font-weight:bold;*/
 	font-size: 30px;
 	width: 650px;
@@ -95,7 +127,7 @@ margin: 0 auto;
 }
 
 .block-instructions h2{
-	color: white;
+	color: #474747;
 	font-size: 18px;
 	width: 800px;
 	margin: auto;
@@ -105,7 +137,7 @@ margin: 0 auto;
 }
 
 .block-instructions h3{
-	color: white;
+	color: #474747;
 	font-size: 16px;
 	width: 700px;
 	margin: auto;
@@ -119,10 +151,10 @@ float: right;
 background-color: #F8BD00;
 cursor: pointer;
 padding: 5px;
-height: 26px;
+height: 13px;
 width: 170px;
 text-align: center;
-line-height: 25px;
+line-height: 13px;
 color: black;
 font-size: 13px;
 font-weight: bold;
@@ -395,17 +427,7 @@ color: #00BAFF;
 text-decoration: none;
 }
 
-.df-logo{
-float: left;
-background: url("../images/df_logo.png")no-repeat scroll rgba(0, 0, 0, 0);
-background-size: 100px auto;
-text-indent: -9999px;
-display: inline;
-margin-top: 10px;
-margin-left: 10px;
-background-repeat: no-repeat;
-width: 110px;
-}
+
 
 /*load line*/
 #load-line{
