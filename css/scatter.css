@@ -19,7 +19,7 @@
 }
 
 .label{
-	font-size: 12px;
+	font-size: 10px;
 }
 .b-buttons{
 	width: 100%;
@@ -124,6 +124,15 @@ margin-right: 10px;
 
 .info-text-magnitude-block-b b{
 color: #F8BD00;
+}
+
+
+
+#viz-b-title h1{
+padding: 4px;
+color: white;
+font-size: 14px;
+padding: 10px 0px 0px 12px;
 }
 
 .scatter-key{

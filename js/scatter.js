@@ -2,7 +2,7 @@ var scatterVisualisation = function(data){
 	//variables for postion and sizes
 	var margin = {top:5, right:5, bottom: 5, left:15},
 	width = 500 - margin.right - margin.left,
-	height = 190 - margin.top - margin.bottom,
+	height = 175 - margin.top - margin.bottom,
 	padding = 40,
 	padding2 = 30,
 	minRadius = 1,
@@ -46,7 +46,7 @@ var scatterVisualisation = function(data){
 
 	function yScales(data){
 		return d3.scale.linear()
-			.domain([-16, d3.max(data, function(d) { return +d.depth; })])
+			.domain([-30, d3.max(data, function(d) { return +d.depth; })])
 			.range([height - padding, padding * yMultiply]);
 	}
 
@@ -176,15 +176,15 @@ var scatterVisualisation = function(data){
 		svg.append("text")
 			.attr("class", "label")
 			.attr("y", -5)
-			.attr("x", -140)
+			.attr("x", -115)
 			.attr("dy", ".85em")
 			.attr("transform", "rotate(-90)")
 			.text("earthquake depth (km)");
 
 		svg.append("text")
 			.attr("class", "label")
-			.attr("x", width - 320)
-			.attr("y", height - 3)
+			.attr("x", width - 300)
+			.attr("y", height - 9)
 			.text("earthquake magnitude");
 
    		//calls graphUpdate when buttons are clicked
