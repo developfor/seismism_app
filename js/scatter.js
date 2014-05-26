@@ -7,7 +7,7 @@ var scatterVisualisation = function(data){
 	padding2 = 30,
 	minRadius = 1,
 	maxRadius = 7,
-	yMultiply = 0.3
+	yMultiply = 0.3,
 	xAxisStart = 0.1;
 
 	//variables for data
